@@ -1,4 +1,4 @@
-<jsp:useBean id="userToUpdate" class="dto.OperatoerDTO" scope="session" />
+<jsp:useBean id="userToUpdate" class="dto.BrugerDTO" scope="session" />
 <%@include file="header.jsp"%>
 <h1>Update Operator</h1>
 <form method="POST" action="index.jsp">

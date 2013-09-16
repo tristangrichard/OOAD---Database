@@ -1,5 +1,5 @@
 <jsp:useBean id="oprList" class="java.util.ArrayList" scope="request" />
-<%@ page import="dto.OperatoerDTO" %>
+<%@ page import="dto.BrugerDTO" %>
 <%@include file="header.jsp"%>
 <h1>Operator List</h1>
 	<table class="list">
@@ -11,7 +11,7 @@
 			<th colspan="2"></th>
 		</tr>
 		<% for (int i=0; i < oprList.size(); i++) { 
-		OperatoerDTO opr = (OperatoerDTO) oprList.get(i);%>
+		BrugerDTO opr = (BrugerDTO) oprList.get(i);%>
 		<tr<% if (i%2 != 0) out.print(" class=\"alt\""); %>>
 			<td><%= opr.getOprId() %></td>
 			<td><%= opr.getOprNavn() %></td>
