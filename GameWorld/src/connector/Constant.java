@@ -6,10 +6,10 @@ package connector;
 public abstract class Constant
 {
 	public static final String
-		server					= "127.0.0.1",  // database-serveren
-		database				=  "gameworld",  //"jdbcdatabase", // navnet paa din database = dit studienummer
-		username				= "client", // dit brugernavn = dit studienummer 
-		password				= "1234"; // dit password som du har valgt til din database
+	server					= "sql-lab1.cc.dtu.dk",  // database-serveren
+	database				=  "s123968",  //"jdbcdatabase", // navnet paa din database = dit studienummer
+	username				= "s123968", // dit brugernavn = dit studienummer 
+	password				= "yankee11"; // dit password som du har valgt til din database
 	
 	public static final int
 		port					= 3306;

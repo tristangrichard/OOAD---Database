@@ -7,7 +7,7 @@ package dto;
  * @version 1.2
  */
 
-public class OperatoerDTO
+public class BrugerDTO
 {
 	/** Operatoer-identifikationsnummer (opr_id) i omraadet 1-99999999. Vaelges af brugerne */
 	private int oprId;                     
@@ -21,11 +21,11 @@ public class OperatoerDTO
 	private String password;
 	private String rolle;
 
-	public OperatoerDTO() {
+	public BrugerDTO() {
 		super();
 	}
 
-	public OperatoerDTO(int oprId, String oprNavn, String ini, String cpr, String password, String rolle) {
+	public BrugerDTO(int oprId, String oprNavn, String ini, String cpr, String password, String rolle) {
 		this.oprId = oprId;
 		this.oprNavn = oprNavn;
 		this.ini = ini;

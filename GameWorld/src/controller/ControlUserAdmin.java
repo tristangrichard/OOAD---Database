@@ -8,14 +8,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import daointerfaces.DALException;
-import dto.OperatoerDTO;
+import dto.BrugerDTO;
 import funktionalitet.*;
 
 @WebServlet("/control")
 public class ControlUserAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IOperatorLogic operatorLogic = null;
-	private OperatoerDTO user = null;
+	private BrugerDTO user = null;
 
 	public ControlUserAdmin() {
 		super();
@@ -48,7 +48,7 @@ public class ControlUserAdmin extends HttpServlet {
 		}
 
 		// Create user bean if not already existing.
-		user = (OperatoerDTO) session.getAttribute("user");
+		user = (BrugerDTO) session.getAttribute("user");
 		if (user == null) {
 			try {
 				int oprID = Integer.parseInt(request.getUserPrincipal().getName());
@@ -69,7 +69,7 @@ public class ControlUserAdmin extends HttpServlet {
 		// Redirects to oprList.jsp.
 		if ("oprList".equals(action)) { 
 			try {
-				List<OperatoerDTO> oprList = operatorLogic.getOperatoerList(); // Get the operator list.
+				List<BrugerDTO> oprList = operatorLogic.getOperatoerList(); // Get the operator list.
 				request.setAttribute("oprList", oprList); // Assign the operator list to request attribute oprList.
 				request.getRequestDispatcher("../WEB-INF/opr/oprList.jsp?").forward(request, response); // Sends the request to the actual operator list jsp file.
 			} catch (DALException e) {
@@ -124,7 +124,7 @@ public class ControlUserAdmin extends HttpServlet {
 			if (oprIDToUpdate != 0) {
 				try {
 					// Creating a User bean that is to hold the information about the user to be updated.
-					OperatoerDTO userToUpdate = operatorLogic.getOperatoer(oprIDToUpdate);
+					BrugerDTO userToUpdate = operatorLogic.getOperatoer(oprIDToUpdate);
 					session.setAttribute("userToUpdate", userToUpdate);
 					request.getRequestDispatcher("../WEB-INF/opr/updateOpr.jsp?").forward(request, response); // Send the request to the update operator file.
 				} catch (DALException e) {

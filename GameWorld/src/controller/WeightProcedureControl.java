@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import daointerfaces.DALException;
-import dto.OperatoerDTO;
+import dto.BrugerDTO;
 
 import funktionalitet.IOperatorLogic;
 import funktionalitet.OperatorLogic;
@@ -20,7 +20,7 @@ public class WeightProcedureControl {
 	private double tara;
 	private double netto;
 	private IOperatorLogic oprLogic;
-	private OperatoerDTO operatoer;
+	private BrugerDTO operatoer;
 	private AktivProduktBatchControl aktivProduktBatch;
 
 	// Julian

@@ -12,7 +12,7 @@ import connector.Connector;
 
 public class OperatorLogic implements IOperatorLogic{	
 	private IOperatoerDAO o;
-	private OperatoerDTO user;
+	private BrugerDTO user;
 
 	public OperatorLogic() throws DALException {
 		try {
@@ -48,7 +48,7 @@ public class OperatorLogic implements IOperatorLogic{
 		do {
 			newPass = createPass();
 		} while (!controlPassword(newPass));
-		OperatoerDTO newUser = new OperatoerDTO(oprID, oprName, ini, tempCPR, newPass, rolle);
+		BrugerDTO newUser = new BrugerDTO(oprID, oprName, ini, tempCPR, newPass, rolle);
 		o.createOperatoer(newUser);
 		return newPass;
 	}
@@ -82,7 +82,7 @@ public class OperatorLogic implements IOperatorLogic{
 			if (controlPassword(newPassword)) {
 				cpr = processCPR(cpr);
 				String ini = initGen(oprName);
-				OperatoerDTO opr = new OperatoerDTO(oprID, oprName, ini, cpr, newPassword, newRolle);
+				BrugerDTO opr = new BrugerDTO(oprID, oprName, ini, cpr, newPassword, newRolle);
 				o.updateOperatoer(opr);
 			} else {
 				throw new DALException("The new password is invalid.");
@@ -95,7 +95,7 @@ public class OperatorLogic implements IOperatorLogic{
 	@Override
 	public void deleteOpr(int currentUser, int oprID) throws DALException {
 		if (isAdmin(currentUser) && !isAdmin(oprID)) {
-			OperatoerDTO opr = o.getOperatoer(oprID);
+			BrugerDTO opr = o.getOperatoer(oprID);
 			opr.setRolle("inaktiv");
 			o.updateOperatoer(opr);
 		} else {
@@ -104,12 +104,12 @@ public class OperatorLogic implements IOperatorLogic{
 	}
 
 	@Override
-	public List<OperatoerDTO> getOperatoerList() throws DALException {
+	public List<BrugerDTO> getOperatoerList() throws DALException {
 		return o.getOperatoerList();
 	}
 
 	@Override
-	public OperatoerDTO getOperatoer(int oprID) throws DALException {
+	public BrugerDTO getOperatoer(int oprID) throws DALException {
 		return o.getOperatoer(oprID);
 	}
 
