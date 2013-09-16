@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Context path="/17_CDIOFinal">
+<Context path="/GameWorld">
 
 <!-- JDBCRealm setup -->
 <Realm className="org.apache.catalina.realm.JDBCRealm" debug="99"
 	driverName="com.mysql.jdbc.Driver"
-	connectionURL="jdbc:mysql://127.0.0.1:3306/gameworld?user=client&amp;password=1234"
-	userTable="operatoer" userNameCol="opr_id" userCredCol="password"
-	userRoleTable="operatoer" roleNameCol="rolle"/>
+	connectionURL="jdbc:mysql://sql-lab1.cc.dtu.dk:3306/s123968?user=s123968&amp;password=yankee11"
+	userTable="Users" userNameCol="Uid" userCredCol="pass"
+	userRoleTable="Role" roleNameCol="role"/>
 </Context>
