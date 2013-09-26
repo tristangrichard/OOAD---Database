@@ -43,7 +43,7 @@
 				<li><a href="produkt/index.jsp">Produktbatch Admin</a>  <% }%>
 				<hr><li><a href="login/logout.jsp">Logout</a> <% } else { %>
 				<hr><li><a href="login/index.jsp">Login</a> <% } %>
-				<hr><li><a href="createOpr.jsp">Create User</a>
+				<hr><li><a href="create/index.jsp">Create User</a>
 			</ul>
 		</div>
 		<div id="main">

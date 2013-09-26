@@ -8,12 +8,12 @@ import javax.servlet.http.*;
 
 import daointerfaces.DALException;
 import dto.BrugerDTO;
-import funktionalitet.IOperatorLogic;
-import funktionalitet.OperatorLogic;
+import funktionalitet.IUserLogic;
+import funktionalitet.UserLogic;
 
 public class ControlCreate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private IOperatorLogic operatorLogic = null;
+	private IUserLogic userLogic = null;
 	private BrugerDTO user = null;
 
 	public ControlCreate() {
@@ -32,13 +32,13 @@ public class ControlCreate extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application = request.getSession().getServletContext();
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 
-		operatorLogic = (OperatorLogic) application.getAttribute("operatorLogic");
-		if (operatorLogic == null) {
+		userLogic = (UserLogic) application.getAttribute("operatorLogic");
+		if (userLogic == null) {
 			try {
-				operatorLogic = new OperatorLogic();
-				application.setAttribute("operatorLogic", operatorLogic);
+				userLogic = new UserLogic();
+				application.setAttribute("operatorLogic", userLogic);
 			} catch (DALException e) {
 				e.printStackTrace();
 				request.setAttribute("error", e.getMessage());
@@ -46,50 +46,50 @@ public class ControlCreate extends HttpServlet {
 		}
 
 		// Create user bean if not already existing.
-		user = (BrugerDTO) session.getAttribute("user");
-		if (user == null) {
-			try {
-				int oprID = Integer.parseInt(request.getUserPrincipal().getName());
-				user = operatorLogic.getOperatoer(oprID);
-				session.setAttribute("user", user);
-			} catch (DALException e) {
-				e.printStackTrace();
-				request.setAttribute("error", e.getMessage());
-			}
-		}
+//		user = (BrugerDTO) session.getAttribute("user");
+//		if (user == null) {
+//			try {
+//				int oprID = Integer.parseInt(request.getUserPrincipal().getName());
+//				user = userLogic.getOperatoer(oprID);
+//				session.setAttribute("user", user);
+//			} catch (DALException e) {
+//				e.printStackTrace();
+//				request.setAttribute("error", e.getMessage());
+//			}
+//		}
 
 		// Getting the action parameter.
 		String action = null;
 		action = request.getParameter("action");
 		// Action: Log outs the current user.
 		// Redirects to index.jsp.
-		if ("updateOprFilled".equals(action)) {
+		if ("userFilled".equals(action)) {
 			// Getting all the details from the filled form.
 			try {
-				int updOprID = Integer.parseInt(request.getParameter("oprIDToUpdate"));
-				String updOprName = request.getParameter("updOprName");
-				String updOprCpr = request.getParameter("updOprCpr");
-				String updOprPass1 = request.getParameter("updOprPass1");
-				String updOprPass2 = request.getParameter("updOprPass2");
-				String updOprPassOld = request.getParameter("updOprPassOld");
-				String updOprRole = request.getParameter("updOprRole");
-
-				if (!operatorLogic.isAdmin(user.getOprId())) { // Use the normal method if user is not an admin.
-					operatorLogic.updateOpr(updOprID, updOprName, updOprCpr, updOprPassOld, updOprPass1, updOprPass2, updOprRole);
-				} else { // Use the admin method that does not require the old password if the user is an admin.
-					operatorLogic.updateOprAdmin(updOprID, updOprName, updOprCpr, updOprPass1, updOprPass2, updOprRole);
-				}
-				request.setAttribute("message", "Operator with ID: " + updOprID + " successfully updated.");
-			//	request.getRequestDispatcher("../index.jsp?action=oprList").forward(request, response);
+				String userName = request.getParameter("newUserName");
+				String userBirth = request.getParameter("newUserBirth");
+				String userRole = request.getParameter("newUserRole");
+				String userEmail = request.getParameter("newUserEmail");
+				String userSex = request.getParameter("newUserSex");
+				int sex = Integer.parseInt(userSex);
+				userLogic.createUser(userName, userBirth, userRole, userEmail, sex);
+				System.out.println("Done");
+				//} else { // Use the admin method that does not require the old password if the user is an admin.
+			//		userLogic.updateOprAdmin(updOprID, updOprName, updOprCpr, updOprPass1, updOprPass2, updOprRole);
+				//}
+				//request.setAttribute("message", "Operator with ID: " + updOprID + " successfully updated.");
+			request.getRequestDispatcher("../index.jsp").forward(request, response);
 			} catch (DALException e) {
+				System.out.println("Failed1");
 			//	e.printStackTrace();
-			//	request.setAttribute("error", e.getMessage());
-			//	request.getRequestDispatcher("index.jsp?action=updateOpr").forward(request, response);
+			request.setAttribute("error", e.getMessage());
+			request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response);
 			} catch (NumberFormatException e) {
+				System.out.println("Failed2");
 			//	e.printStackTrace();
 			//	request.setAttribute("error", "Attribute oprIDToUpdate could not be parsed as an integer.");
 			//	request.getRequestDispatcher("index.jsp?action=updateOpr").forward(request, response);
 			}
-		}
+		}else {request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response);}
 	}
 }

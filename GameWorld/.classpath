@@ -7,7 +7,7 @@
 	<classpathentry kind="lib" path="jars/catalina-ant.jar"/>
 	<classpathentry kind="lib" path="jars/catalina-ha.jar"/>
 	<classpathentry kind="lib" path="jars/catalina-tribes.jar"/>
-	<classpathentry kind="lib" path="jars/catalina.jar"/>
+	<classpathentry kind="lib" path="jars/catalina.jar" sourcepath="jars/catalina.jar"/>
 	<classpathentry kind="lib" path="jars/ecj-4.2.1.jar"/>
 	<classpathentry kind="lib" path="jars/el-api.jar"/>
 	<classpathentry kind="lib" path="jars/jasper-el.jar"/>

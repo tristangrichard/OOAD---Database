@@ -26,12 +26,8 @@
 		<div id="navigation">
 			<!-- Site navigation menu -->
 			<ul class="navbar">
-				<li><a href="../index.jsp">Home</a>
+				<li><a href="../index.jsp">Cancel</a>
 					<hr>
-				<li><a href="index.jsp?action=oprList">Operator List</a>
-				<li><a href="index.jsp?action=createOpr">Create Operator</a>
-				<li><a href="index.jsp?action=updateOpr">Update Account</a>
-				<hr><li><a href="../login/logout.jsp">Logout</a>
 			</ul>
 		</div>
 		<div id="main">

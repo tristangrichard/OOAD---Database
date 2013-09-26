@@ -1,43 +1,42 @@
 <%@include file="header.jsp"%>
 <h1>Create User</h1>
-<form method="POST" action="Create/index.jsp">
+<form method="POST" action="index.jsp">
 	<!-- This is for creating -->
 	<table>
 		<tr>
 			<td>Name:</td>
-			<td><input type="text" name="newOprName"
-				value="<% if (request.getParameter("newOprName") != null)
-				out.print(request.getParameter("newOprName"));%>"
+			<td><input type="text" name="newUserName"
+				value="<% if (request.getParameter("newUserName") != null)
+				out.print(request.getParameter("newUserName"));%>"
 				onclick="this.select()"></td>
 			<td class="expl">2-20 characters, at least 2 words.</td>
 		</tr>
-	<!--	<tr>
-			<td>Operator-ID:</td>
-			<td><input type="text" name="newOprID"
-				value="<% if (request.getParameter("newOprID") != null)
-				out.print(request.getParameter("newOprID"));%>"
+	<tr>
+			<td>Email:</td>
+			<td><input type="email" name="newUserEmail"
+				value="<% if (request.getParameter("newUserEmail") != null)
+				out.print(request.getParameter("newUserEmail"));%>"
 				onclick="this.select()"></td>
-			<td class="expl">Number between 1-9999999, needs to be unique.</td>
+			<td class="expl">name@mail.com.</td>
 		</tr>
-		<tr>
-	-->		<td>Date of Birth:</td>
-			<td><input type="text" name="newOprCpr"
-				value="<% if (request.getParameter("newOprCpr") != null)
-				out.print(request.getParameter("newOprCpr"));
+			<td>Date of Birth:</td>
+			<td><input type="text" name="newUserBirth"
+				value="<% if (request.getParameter("newUserBirth") != null)
+				out.print(request.getParameter("newUserBirth"));
 			else {%>DD-MM-YYYY <%}%>"
 				onclick="this.select()"></td>
 			<td class="expl"></td>
 		</tr>
 		<tr>
 			<td>Role:</td>
-			<td><select name="newOprRole">
+			<td><select name="newUserRole">
 					<option value="User">User</option>
 			</select></td>
 			<td>
 		</tr>
 		<tr>
 			<td>Sex:</td>
-			<td><select name="newOprSex">
+			<td><select name="newUserSex">
 					<option value= 1 >Male</option>
 					<option value= 0 >Female</option>
 			</select></td>
@@ -45,7 +44,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="right"><input type="hidden" name="action"
-				value="updateOprFilled"><input type="submit"
+				value="userFilled"><input type="submit"
 				value="Create Operator"></td>
 			<td></td>
 		</tr>
