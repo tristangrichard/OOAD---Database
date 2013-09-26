@@ -2,13 +2,13 @@ package Test;
 
 public class TestBL {
 
-	private int errors = 0;
+	private boolean error = false;
 	
-	public int TestBLStart(){
+	public void TestBLStart(){
 		
 		//in here add methods for testing BusinessLogic
 		
-		return errors;
+		
 	}
 	
 	//define methods for testing BusinessLogic

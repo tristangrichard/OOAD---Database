@@ -1,20 +1,29 @@
 package Test;
 
 public class TestStatistics {
-
-	private int errors = 0;
 	
-	public int TestStatisticsStart(){
+	private boolean error = false;
+	
+	public void TestStatisticsStart(){
 		
 		//in here add methods for testing Statistics
 		
-		return errors;
-	}
+//////////////////////////////////////////////////////////////////////////
+//		Framework for tests												//
+//		try{															//
+//		error = false;													//
+//			System.out.print(9);										//
+//		}																//
+//		catch(Exception e){												//
+//			error = true;												//
+//		}																//
+//		finally {TestLauncher.printProgress(error);}					//
+//////////////////////////////////////////////////////////////////////////
 	
-	//define methods for testing Statistics
+		//define methods for testing Statistics
 	
 	
 	
 	
-	
+	}	
 }
