@@ -4,6 +4,10 @@
     <servlet-name>controlUser</servlet-name>
     <servlet-class>controller.ControlUserAdmin</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>controlCreate</servlet-name>
+    <servlet-class>controller.ControlCreate</servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>controlProduktAdmin</servlet-name>
     <servlet-class>controller.ControlProduktAdmin</servlet-class>
@@ -27,6 +31,10 @@
   <servlet-mapping>
     <servlet-name>controlUser</servlet-name>
     <url-pattern>/admin/*</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>controlCreater</servlet-name>
+    <url-pattern>/create/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>controlProduktAdmin</servlet-name>
