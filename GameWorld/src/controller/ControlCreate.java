@@ -65,31 +65,32 @@ public class ControlCreate extends HttpServlet {
 		// Redirects to index.jsp.
 		if ("userFilled".equals(action)) {
 			// Getting all the details from the filled form.
+			String fName = null;
+			String lName = null;
+			String userBirth = null;
+			String userRole = "User";
+			String userEmail = null;
+			String userSex = null;
+			int sex = 0;
 			try {
-				String userName = request.getParameter("newUserName");
-				String userBirth = request.getParameter("newUserBirth");
-				String userRole = request.getParameter("newUserRole");
-				String userEmail = request.getParameter("newUserEmail");
-				String userSex = request.getParameter("newUserSex");
-				int sex = Integer.parseInt(userSex);
-				userLogic.createUser(userName, userBirth, userRole, userEmail, sex);
-				System.out.println("Done");
+				fName = request.getParameter("newFName");
+				lName = request.getParameter("newLName");
+				userBirth = request.getParameter("newUserBirth");
+				userEmail = request.getParameter("newUserEmail");
+				userSex = request.getParameter("newUserSex");
+				sex = Integer.parseInt(userSex);
+				String pass = userLogic.createUser(fName, lName, userBirth, userRole, userEmail, sex);
 				//} else { // Use the admin method that does not require the old password if the user is an admin.
 			//		userLogic.updateOprAdmin(updOprID, updOprName, updOprCpr, updOprPass1, updOprPass2, updOprRole);
 				//}
-				//request.setAttribute("message", "Operator with ID: " + updOprID + " successfully updated.");
-			request.getRequestDispatcher("../index.jsp").forward(request, response);
+				request.setAttribute("message", "Operator with ID: " + userEmail + " successfully updated. Your password is:"+pass);
+				request.setAttribute("action", "Redirect");
+				request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response);
 			} catch (DALException e) {
-				System.out.println("Failed1");
-			//	e.printStackTrace();
 			request.setAttribute("error", e.getMessage());
 			request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response);
-			} catch (NumberFormatException e) {
-				System.out.println("Failed2");
-			//	e.printStackTrace();
-			//	request.setAttribute("error", "Attribute oprIDToUpdate could not be parsed as an integer.");
-			//	request.getRequestDispatcher("index.jsp?action=updateOpr").forward(request, response);
 			}
-		}else {request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response);}
+		}
+		else {request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response);}
 	}
 }
