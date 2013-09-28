@@ -4,12 +4,16 @@
 	<!-- This is for creating -->
 	<table>
 		<tr>
-			<td>Name:</td>
-			<td><input type="text" name="newUserName"
-				value="<% if (request.getParameter("newUserName") != null)
-				out.print(request.getParameter("newUserName"));%>"
+			<td>First Name:</td>
+			<td><input type="text" name="newFName" required
+				value="<% if (request.getParameter("newFName") != null)
+				out.print(request.getParameter("newFName"));%>"
 				onclick="this.select()"></td>
-			<td class="expl">2-20 characters, at least 2 words.</td>
+			<td>Last Name:</td>
+			<td><input type="text" name="newLName" required
+				value="<% if (request.getParameter("newLName") != null)
+				out.print(request.getParameter("newLName"));%>"
+				onclick="this.select()"></td>
 		</tr>
 	<tr>
 			<td>Email:</td>
@@ -26,13 +30,6 @@
 			else {%>DD-MM-YYYY <%}%>"
 				onclick="this.select()"></td>
 			<td class="expl"></td>
-		</tr>
-		<tr>
-			<td>Role:</td>
-			<td><select name="newUserRole">
-					<option value="User">User</option>
-			</select></td>
-			<td>
 		</tr>
 		<tr>
 			<td>Sex:</td>
