@@ -27,7 +27,7 @@ public class TestLauncher {
 		tdb.TestDBStart();
 		tbl.TestBLStart();
 		ts.TestStatisticsStart();
-		
-		System.out.println("Number of errors is: "+errors);
+		System.out.println("Test finished");
+		//possibly add function here to return to start of program
 	}
 }

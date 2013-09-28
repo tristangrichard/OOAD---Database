@@ -26,10 +26,10 @@ public class TestDB {
 
 	public void TestDBStart(){	
 	//testing creation updating deletion of a user, and game in DB, clean test		
-	UsersIDAO uidao = new MySQLUsersDAO();
+	UsersIDAO uidao = (UsersIDAO) new MySQLUsersDAO();
 	GameIDAO gidao = new MySQLGameDAO();
 	// sets up fictional user for testing DB with
-	UsersDTO bdto = new UsersDTO(10001, "Test", "Testesen", "11-3-2001", "passtest", "test@test.mail", true);
+	UsersDTO bdto = new UsersDTO(10001, "Test", "Testesen", "11-3-2001", "passtest", "test@test.mail",true, "Administrator");
 	GameDTO gdto = new GameDTO(10001, "MODERNWARFARETEST", "11-3-2001");
 	
 	create(uidao,bdto);
@@ -47,7 +47,7 @@ public class TestDB {
 		uidao.create(bdto);
 	} catch (DALException e) {
 		error = true;
-		e.printStackTrace();
+		System.out.println("create user failed");
 	}
 	finally{
 		{TestLauncher.printProgress(error);	
@@ -65,12 +65,13 @@ public class TestDB {
 	try {
 		uidao.update(bdto);
 		if (old != uidao.get(bdto.getUid())){//compares old to updated UsersDTO
-			error = true;}
+			error = true;
+			System.out.println("update user failed");}
 		else{}
 	}
 	catch (DALException e) {
 		error = true;
-		e.printStackTrace();
+		System.out.println("update user failed");
 	}
 	finally{
 		{TestLauncher.printProgress(error);	
@@ -84,7 +85,7 @@ public class TestDB {
 		uidao.delete(bdto.getUid());
 	} catch (DALException e) {
 		error = true;
-		e.printStackTrace();
+		System.out.println("delete user failed");
 	}
 	try {
 		uidao.get(bdto.getUid());
@@ -97,13 +98,13 @@ public class TestDB {
 	}
 	}
 	//////////////////////////////////////////////////////////////////////////	
-	//simple user creation test
-	public void createG(GameIDAO gidao, GameDTO bdto){
+	//simple game creation test
+	public void createG(GameIDAO gidao, GameDTO gdto){
 	try {
-		uidao.create(bdto);
+		gidao.create(gdto);
 	} catch (DALException e) {
 		error = true;
-		e.printStackTrace();
+		System.out.println("create game failed");
 	}
 	finally{
 		{TestLauncher.printProgress(error);	
@@ -112,21 +113,21 @@ public class TestDB {
 	}
 	
 	//////////////////////////////////////////////////////////////////////////
-	//simple user update test
-	public void update(UsersIDAO uidao, UsersDTO bdto){
-	UsersDTO old = bdto;
-	bdto.setFname("Test1");
-	bdto.setLname("Testesten1");
-	bdto.setPass("pass");
+	//simple game update test
+	public void updateG(GameIDAO gidao, GameDTO gdto){
+	GameDTO old = gdto;
+	gdto.setGname("GameTest");
+	gdto.setReleased("01-01-2001");
 	try {
-		uidao.update(bdto);
-		if (old != uidao.get(bdto.getUid())){//compares old to updated UsersDTO
-			error = true;}
+		gidao.update(gdto);
+		if (old != gidao.get(gdto.getGid())){//compares old to updated GameDTO
+			error = true;
+			System.out.println("update game failed");}
 		else{}
 	}
 	catch (DALException e) {
 		error = true;
-		e.printStackTrace();
+		System.out.println("update game failed");
 	}
 	finally{
 		{TestLauncher.printProgress(error);	
@@ -134,16 +135,16 @@ public class TestDB {
 	error = false;		}
 	}
 	//////////////////////////////////////////////////////////////////////////
-	// cleans up user creation and at the same time tests if deletion is successfull
-	public void delete(UsersIDAO uidao, UsersDTO bdto){
+	// cleans up game creation and at the same time tests if deletion is successfull
+	public void deleteG(GameIDAO gidao, GameDTO gdto){
 	try {
-		uidao.delete(bdto.getUid());
+		gidao.delete(gdto.getGid());
 	} catch (DALException e) {
 		error = true;
-		e.printStackTrace();
+		System.out.println("delete game failed");
 	}
 	try {
-		uidao.get(bdto.getUid());
+		gidao.get(gdto.getGid());
 	} catch (DALException e) {
 	}
 	finally{
