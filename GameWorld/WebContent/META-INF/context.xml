@@ -6,6 +6,6 @@
 <Realm className="org.apache.catalina.realm.JDBCRealm" debug="99"
 	driverName="com.mysql.jdbc.Driver"
 	connectionURL="jdbc:mysql://sql-lab1.cc.dtu.dk:3306/s123968?user=s123968&amp;password=yankee11"
-	userTable="Users" userNameCol="Uid" userCredCol="pass"
+	userTable="Users" userNameCol="email" userCredCol="pass"
 	userRoleTable="Role" roleNameCol="role"/>
 </Context>
