@@ -9,8 +9,9 @@ public class UsersDTO
 	private String pass;
 	private String email;
 	private boolean sex;
+	private String role;
 
-	public UsersDTO(int Uid, String Fname, String Lname, String DOB, String pass, String email, boolean sex)
+	public UsersDTO(int Uid, String Fname, String Lname, String DOB, String pass, String email, boolean sex, String rolle)
 	{
 		this.Uid = Uid;
 		this.Fname = Fname;
@@ -19,6 +20,7 @@ public class UsersDTO
 		this.pass = pass;
 		this.email = email;
 		this.sex = sex;
+		this.role = rolle;
 	}
 
 	public int getUid(){return Uid;}
@@ -41,5 +43,8 @@ public class UsersDTO
 
 	public boolean getSex(){return sex;}
 	public void setSex(boolean sex){this.sex = sex;}
+	
+	public String getRole(){return role;}
+	public void setRole(String role){this.role = role;}
 }
 
