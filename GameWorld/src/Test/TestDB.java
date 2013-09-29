@@ -29,7 +29,7 @@ public class TestDB {
 	UsersIDAO uidao = (UsersIDAO) new MySQLUsersDAO();
 	GameIDAO gidao = new MySQLGameDAO();
 	// sets up fictional user for testing DB with
-	UsersDTO bdto = new UsersDTO(10001, "Test", "Testesen", "11-3-2001", "passtest", "test@test.mail",true, "Administrator");
+	UsersDTO bdto = new UsersDTO(10001, "Test", "Testesen", "11-3-2001", "passtest", "test@test.mail",true);
 	GameDTO gdto = new GameDTO(10001, "MODERNWARFARETEST", "11-3-2001");
 	
 	create(uidao,bdto);

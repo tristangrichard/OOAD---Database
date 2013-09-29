@@ -42,7 +42,7 @@
 					</tr>
 					<tr>
 						<td align="left">Password:</td>
-						<td><input type="password" name="j_password" value="0000"
+						<td><input type="password" name="j_password" value="1234"
 							onclick="this.select()"></td>
 					</tr>
 					<tr>
@@ -53,11 +53,11 @@
 			</form>
 			<p>
 				The following test users are created in the system, the password for
-				all of them are "<span id="password">0000</span>". This password
+				all of them are "<span id="password">1234</span>". This password
 				is entered as default so just enter the applicable id and click
 				Login.
 			</p>
-			<p>administrator id: 1</p>
+			<p>!!!!!!!</p>
 		</div>
 		<div id="footer">Gruppe 8</div>
 	</div>

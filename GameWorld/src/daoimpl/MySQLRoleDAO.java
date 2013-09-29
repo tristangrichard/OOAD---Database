@@ -17,7 +17,7 @@ public class MySQLRoleDAO extends RoleIDAO
 
 	public void create(RoleDTO row) throws DALException
 	{
-		String create = "INSERT INTO Role(Uid, Role) VALUES (" + row.getUid() + ", '" + row.getRole() + "');";
+		String create = "INSERT INTO Role(email, Role) VALUES ('" + row.getEmail() + "', '" + row.getRole() + "');";
 		Connector.doUpdate(create);
 	}
 	public void delete(int Uid) throws DALException
@@ -27,7 +27,7 @@ public class MySQLRoleDAO extends RoleIDAO
 	}
 	public void update(RoleDTO row) throws DALException
 	{
-		String update = "UPDATE Role SET Uid = " + row.getUid() + ", Role = '" + row.getRole() + "' WHERE Uid = " + row.getUid() + ";";
+		String update = "UPDATE Role SET Uid = " + row.getEmail() + ", Role = '" + row.getRole() + "' WHERE email = " + row.getEmail() + ";";
 		Connector.doUpdate(update);
 	}
 
@@ -37,7 +37,7 @@ public class MySQLRoleDAO extends RoleIDAO
 		{
 			ResultSet rs = Connector.doQuery("SELECT * FROM Role WHERE Uid = " + Uid + ";");
 			if(!rs.next()) throw new DALException("Missing entry.");
-			return new RoleDTO(rs.getInt("Uid"), rs.getString("Role"));
+			return new RoleDTO(rs.getString("email"), rs.getString("Role"));
 		}
 		catch(SQLException e){throw new DALException(e);}
 	}
@@ -49,7 +49,7 @@ public class MySQLRoleDAO extends RoleIDAO
 			List<RoleDTO> results = new ArrayList<RoleDTO>();
 			ResultSet rs = Connector.doQuery("SELECT * FROM Role;");
 			if(!rs.next()) throw new DALException("Missing table: Role");
-			do results.add(new RoleDTO(rs.getInt("Uid"), rs.getString("Role")));
+			do results.add(new RoleDTO(rs.getString("email"), rs.getString("Role")));
 			while(rs.next());
 			return results;
 		}

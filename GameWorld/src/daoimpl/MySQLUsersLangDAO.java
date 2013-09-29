@@ -17,7 +17,7 @@ public class MySQLUsersLangDAO extends UsersLangIDAO
 
 	public void create(UsersLangDTO row) throws DALException
 	{
-		String create = "INSERT INTO UsersLang(Uid, Langid) VALUES (" + row.getUid() + ", " + row.getLangid() + ");";
+		String create = "INSERT INTO UsersLang(email, Langid) VALUES ('" + row.getEmail() + "', " + row.getLangid() + ");";
 		Connector.doUpdate(create);
 	}
 	public void delete(int Uid, int Langid) throws DALException
@@ -27,7 +27,7 @@ public class MySQLUsersLangDAO extends UsersLangIDAO
 	}
 	public void update(UsersLangDTO row) throws DALException
 	{
-		String update = "UPDATE UsersLang SET Uid = " + row.getUid() + ", Langid = " + row.getLangid() + " WHERE Uid = " + row.getUid() + " AND Langid = " + row.getLangid() + ";";
+		String update = "UPDATE UsersLang SET Uid = " + row.getEmail() + ", Langid = " + row.getLangid() + " WHERE email = " + row.getEmail() + " AND Langid = " + row.getLangid() + ";";
 		Connector.doUpdate(update);
 	}
 
@@ -37,7 +37,7 @@ public class MySQLUsersLangDAO extends UsersLangIDAO
 		{
 			ResultSet rs = Connector.doQuery("SELECT * FROM UsersLang WHERE Uid = " + Uid + " AND Langid = " + Langid + ";");
 			if(!rs.next()) throw new DALException("Missing entry.");
-			return new UsersLangDTO(rs.getInt("Uid"), rs.getInt("Langid"));
+			return new UsersLangDTO(rs.getString("email"), rs.getInt("Langid"));
 		}
 		catch(SQLException e){throw new DALException(e);}
 	}
@@ -49,7 +49,7 @@ public class MySQLUsersLangDAO extends UsersLangIDAO
 			List<UsersLangDTO> results = new ArrayList<UsersLangDTO>();
 			ResultSet rs = Connector.doQuery("SELECT * FROM UsersLang;");
 			if(!rs.next()) throw new DALException("Missing table: UsersLang");
-			do results.add(new UsersLangDTO(rs.getInt("Uid"), rs.getInt("Langid")));
+			do results.add(new UsersLangDTO(rs.getString("Email"), rs.getInt("Langid")));
 			while(rs.next());
 			return results;
 		}

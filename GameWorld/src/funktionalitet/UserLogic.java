@@ -47,9 +47,9 @@ public class UserLogic implements IUserLogic{
 
 	@Override
 	public String createUser(String fName, String lName, String birth, String role, String temail, int sex, int lang) throws DALException {
-		boolean exists = true;
+
 		try {
-			o.getByEmail(temail);
+			o.get(temail);
 			}catch(DALException e)
 			{
 				String DOB = processCPR(birth);
@@ -63,11 +63,11 @@ public class UserLogic implements IUserLogic{
 				} while (!controlPassword(newPass));
 				if (fName == "" || lName == "")
 					throw new DALException("Please enter your full name!");
-				UsersDTO newUser = new UsersDTO( 0, fName, lName, DOB, newPass, email, bSex);
-				int Uid = o.create(newUser);
-				UsersLangDTO langdto = new UsersLangDTO(Uid,lang);
+				UsersDTO newUser = new UsersDTO(fName, lName, DOB, newPass, email, bSex);
+				o.create(newUser);
+				UsersLangDTO langdto = new UsersLangDTO(email,lang);
 				l.create(langdto);
-				RoleDTO ro = new RoleDTO(Uid, role);
+				RoleDTO ro = new RoleDTO(email, role);
 				r.create(ro);
 				return newPass;
 			}
@@ -77,8 +77,9 @@ public class UserLogic implements IUserLogic{
 
 	@Override
 	public void updateOpr(int oprID, String oprName, String cpr, String oldPassword, String newPassword, String newPassword2, String newRolle) throws DALException {
+		String email = null;
 		try {
-			user = o.get(oprID);
+			user = o.get(email);
 		} catch (DALException e) {
 			throw new DALException("The specified operator does not exist.");
 		}
@@ -90,8 +91,9 @@ public class UserLogic implements IUserLogic{
 
 	@Override
 	public void updateOprAdmin(int oprID, String oprName, String cpr, String newPassword, String newPassword2, String newRolle) throws DALException {
+		String email = null;
 		try {
-			user = o.get(oprID);
+			user = o.get(email);
 		}
 		catch (DALException e) {
 			throw new DALException("The specified operator does not exist.");
@@ -116,8 +118,9 @@ public class UserLogic implements IUserLogic{
 
 	@Override
 	public void deleteOpr(int currentUser, int oprID) throws DALException {
+		String email = null;
 		if (isAdmin(currentUser) && !isAdmin(oprID)) {
-			UsersDTO opr = o.get(oprID);
+			UsersDTO opr = o.get(email);
 		//	opr.setRole("inaktiv");
 		//	o.update(opr);
 		} else {
@@ -132,7 +135,8 @@ public class UserLogic implements IUserLogic{
 
 	@Override
 	public UsersDTO getOperatoer(int oprID) throws DALException {
-		return o.get(oprID);
+		String email = null;
+		return o.get(email);
 	}
 
 	private String createPass() {

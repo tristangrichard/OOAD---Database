@@ -2,7 +2,6 @@ package dto;
 
 public class UsersDTO
 {
-	private int Uid;
 	private String Fname;
 	private String Lname;
 	private String DOB;
@@ -10,9 +9,8 @@ public class UsersDTO
 	private String email;
 	private boolean sex;
 
-	public UsersDTO(int Uid, String Fname, String Lname, String DOB, String pass, String email, boolean sex)
+	public UsersDTO(String Fname, String Lname, String DOB, String pass, String email, boolean sex)
 	{
-		this.Uid = Uid;
 		this.Fname = Fname;
 		this.Lname = Lname;
 		this.DOB = DOB;
@@ -20,9 +18,6 @@ public class UsersDTO
 		this.email = email;
 		this.sex = sex;
 	}
-
-	public int getUid(){return Uid;}
-	public void setUid(int Uid){this.Uid = Uid;}
 
 	public String getFname(){return Fname;}
 	public void setFname(String Fname){this.Fname = Fname;}

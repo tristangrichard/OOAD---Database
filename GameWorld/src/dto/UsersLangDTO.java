@@ -2,17 +2,17 @@ package dto;
 
 public class UsersLangDTO
 {
-	private int Uid;
+	private String email;
 	private int Langid;
 
-	public UsersLangDTO(int Uid, int Langid)
+	public UsersLangDTO(String email, int Langid)
 	{
-		this.Uid = Uid;
+		this.email = email;
 		this.Langid = Langid;
 	}
 
-	public int getUid(){return Uid;}
-	public void setUid(int Uid){this.Uid = Uid;}
+	public String getEmail(){return email;}
+	public void setUid(String email){this.email = email;}
 
 	public int getLangid(){return Langid;}
 	public void setLangid(int Langid){this.Langid = Langid;}
