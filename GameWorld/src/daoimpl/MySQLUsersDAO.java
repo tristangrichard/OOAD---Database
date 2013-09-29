@@ -17,7 +17,7 @@ public class MySQLUsersDAO extends UsersIDAO
 
 	public void create(UsersDTO row) throws DALException
 	{
-		String create = "INSERT INTO Users(Uid, Fname, Lname, DOB, pass, email, sex, role) VALUES (" + row.getUid() + ", '" + row.getFname() + "', '" + row.getLname() + "', '" + row.getDob() + "', '" + row.getPass() + "', '" + row.getEmail() + "', " + row.getSex() + ", '" + row.getRole() + "' );";
+		String create = "INSERT INTO Users(Uid, Fname, Lname, DOB, pass, email, sex, role) VALUES (" + row.getUid() + ", '" + row.getFname() + "', '" + row.getLname() + "', '" + row.getDob() + "', '" + row.getPass() + "', '" + row.getEmail() + "', " + row.getSex() +");";
 		Connector.doUpdate(create);
 	}
 	public void delete(int Uid) throws DALException
@@ -37,7 +37,7 @@ public class MySQLUsersDAO extends UsersIDAO
 		{
 			ResultSet rs = Connector.doQuery("SELECT * FROM Users WHERE Uid = " + Uid + ";");
 			if(!rs.next()) throw new DALException("Missing entry.");
-			return new UsersDTO(rs.getInt("Uid"), rs.getString("Fname"), rs.getString("Lname"), rs.getString("DOB"), rs.getString("pass"), rs.getString("email"), rs.getBoolean("sex"),rs.getString("role"));
+			return new UsersDTO(rs.getInt("Uid"), rs.getString("Fname"), rs.getString("Lname"), rs.getString("DOB"), rs.getString("pass"), rs.getString("email"), rs.getBoolean("sex"));
 		}
 		catch(SQLException e){throw new DALException(e);}
 	}
@@ -49,7 +49,7 @@ public class MySQLUsersDAO extends UsersIDAO
 			List<UsersDTO> results = new ArrayList<UsersDTO>();
 			ResultSet rs = Connector.doQuery("SELECT * FROM Users;");
 			if(!rs.next()) throw new DALException("Missing table: Users");
-			do results.add(new UsersDTO(rs.getInt("Uid"), rs.getString("Fname"), rs.getString("Lname"), rs.getString("DOB"), rs.getString("pass"), rs.getString("email"), rs.getBoolean("sex"),rs.getString("role")));
+			do results.add(new UsersDTO(rs.getInt("Uid"), rs.getString("Fname"), rs.getString("Lname"), rs.getString("DOB"), rs.getString("pass"), rs.getString("email"), rs.getBoolean("sex")));
 			while(rs.next());
 			return results;
 		}
