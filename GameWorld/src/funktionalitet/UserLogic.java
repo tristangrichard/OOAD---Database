@@ -15,6 +15,7 @@ public class UserLogic implements IUserLogic{
 	private UsersIDAO o;
 	private UsersDTO user;
 	private UsersLangIDAO l;
+	private RoleIDAO r;
 
 	public UserLogic() throws DALException {
 		try {
@@ -29,6 +30,8 @@ public class UserLogic implements IUserLogic{
 			e.printStackTrace();
 		}
 		o = new MySQLUsersDAO();
+		l = new MySQLUsersLangDAO();
+		r = new MySQLRoleDAO();
 
 	}
 	
@@ -43,25 +46,33 @@ public class UserLogic implements IUserLogic{
 	}
 
 	@Override
-	public String createUser(String fName, String lName, String birth, String rolle, String temail, int sex, int lang) throws DALException {
-		String DOB = processCPR(birth);
-		String email = processEmail(temail);
-		Boolean bSex = false;
-		System.out.println(rolle);
-		if (sex == 1)
-			bSex = true;
-		String newPass;
-		do {
-			newPass = createPass();
-		} while (!controlPassword(newPass));
-		if (fName == "" || lName == "")
-			throw new DALException("Please enter your full name!");
-		UsersDTO newUser = new UsersDTO( 0, fName, lName, DOB, newPass, email, bSex);
-		o.create(newUser);
-		int Uid = o.getByEmail(email).getUid();
-		UsersLangDTO langdto = new UsersLangDTO(Uid,lang);
-		l.create(langdto);
-		return newPass;
+	public String createUser(String fName, String lName, String birth, String role, String temail, int sex, int lang) throws DALException {
+		boolean exists = true;
+		try {
+			o.getByEmail(temail);
+			}catch(DALException e)
+			{
+				String DOB = processCPR(birth);
+				String email = processEmail(temail);
+				Boolean bSex = false;
+				if (sex == 1)
+					bSex = true;
+				String newPass;
+				do {
+					newPass = createPass();
+				} while (!controlPassword(newPass));
+				if (fName == "" || lName == "")
+					throw new DALException("Please enter your full name!");
+				UsersDTO newUser = new UsersDTO( 0, fName, lName, DOB, newPass, email, bSex);
+				int Uid = o.create(newUser);
+				UsersLangDTO langdto = new UsersLangDTO(Uid,lang);
+				l.create(langdto);
+				RoleDTO ro = new RoleDTO(Uid, role);
+				r.create(ro);
+				return newPass;
+			}
+		throw new DALException("User already exists!");
+		
 	}
 
 	@Override

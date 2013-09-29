@@ -40,17 +40,13 @@
 					<option value= 1 >Male</option>
 					<option value= 0 >Female</option>
 			</select></td>
-			<td>
 				<td>Language:</td>
 			<td><select name="newUserLang">
 				<% for (int i = 0; i< langList.size(); i++) {
-				LangDTO l = (LangDTO) langList.get(i);
-				out.println(l.getLang());%>
-					<option value= <% l.getLang(); %> ><% l.getLang(); %></option>
+				LangDTO l = (LangDTO) langList.get(i); %>
+					<option value= <%= l.getLangid() %> ><%= l.getLang() %></option>
 				<%} %>
-				<option value= hmm >< hmm </option>
 			</select></td>
-			<td>
 		</tr>
 		<tr>
 			<td colspan="2" align="right"><input type="hidden" name="action"

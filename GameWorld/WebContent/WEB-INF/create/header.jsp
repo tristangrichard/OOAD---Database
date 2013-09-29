@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-<title>Scale Application</title>
+<title>GameWorld</title>
 <link rel="stylesheet" href="../css/style1.css">
 
 </head>
 
 <body>
 	<div id="header">
-		<h1 id="headerh1">Scale Application!</h1>
+		<h1 id="headerh1">GameWorld</h1>
 		<div id="messagecontainer">
 			<div class="error">
 				${error}

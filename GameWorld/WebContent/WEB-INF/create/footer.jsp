@@ -1,6 +1,6 @@
 </div>
 		<div id="footer">
-			Gruppe 17
+			Gruppe 8
 		</div>
 	</div>
 </body>

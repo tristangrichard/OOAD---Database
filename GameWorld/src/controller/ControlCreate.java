@@ -3,13 +3,10 @@ package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-
 import org.apache.catalina.filters.AddDefaultCharsetFilter;
-
 import daointerfaces.DALException;
 import daointerfaces.LangIDAO;
 import daoimpl.MySQLLangDAO;
@@ -52,35 +49,28 @@ public class ControlCreate extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 			}
 		}
+		l = (MySQLLangDAO) application.getAttribute("LangDAO");
 		if (l == null) {
-			l = new MySQLLangDAO();
-			try {
-				List<LangDTO> langList = new ArrayList<LangDTO>(l.getList());
-				request.setAttribute("langList", langList);
-			} catch (DALException e) {
-				request.setAttribute("error", e.getMessage());
-				request.getRequestDispatcher("../WEB-INF/raavarebatch/index.jsp?").forward(request, response);
-			}
+				l = new MySQLLangDAO();
+				application.setAttribute("LangDAO", l);
 		}
-		// Create user bean if not already existing.
-		//		user = (BrugerDTO) session.getAttribute("user");
-		//		if (user == null) {
-		//			try {
-		//				int oprID = Integer.parseInt(request.getUserPrincipal().getName());
-		//				user = userLogic.getOperatoer(oprID);
-		//				session.setAttribute("user", user);
-		//			} catch (DALException e) {
-		//				e.printStackTrace();
-		//				request.setAttribute("error", e.getMessage());
-		//			}
-		//		}
 
 		// Getting the action parameter.
 		String action = null;
 		action = request.getParameter("action");
 		// Action: Log outs the current user.
 		// Redirects to index.jsp.
-		if ("userFilled".equals(action)) {
+		if ("List".equals(action)) { 
+			try {
+				List<LangDTO> langList = new ArrayList<LangDTO>(l.getList());
+				request.setAttribute("langList", langList);
+				request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response); // Sends the request to the actual operator list jsp file.
+			} catch (DALException e) {
+				e.printStackTrace();
+				request.setAttribute("error", e.getMessage());
+				
+			}
+		}else if ("userFilled".equals(action)) {
 			// Getting all the details from the filled form.
 			String fName = null;
 			String lName = null;
@@ -105,11 +95,11 @@ public class ControlCreate extends HttpServlet {
 				//		userLogic.updateOprAdmin(updOprID, updOprName, updOprCpr, updOprPass1, updOprPass2, updOprRole);
 				//}
 				request.setAttribute("message", "Operator with ID: " + userEmail + " successfully updated. Your password is:"+pass);
-				request.setAttribute("action", "Redirect");
 				request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response);
 			} catch (DALException e) {
 				request.setAttribute("error", e.getMessage());
-				request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response);
+				request.setAttribute("action", "List");
+				request.getRequestDispatcher("index.jsp?action=List").forward(request, response);
 			}
 		}
 		else {request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response);}

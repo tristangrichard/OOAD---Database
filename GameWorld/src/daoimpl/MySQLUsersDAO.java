@@ -15,10 +15,19 @@ import daointerfaces.DALException;
 public class MySQLUsersDAO extends UsersIDAO
 {
 
-	public void create(UsersDTO row) throws DALException
+	public int create(UsersDTO row) throws DALException
 	{
-		String create = "INSERT INTO Users(Uid, Fname, Lname, DOB, pass, email, sex, role) VALUES (" + row.getUid() + ", '" + row.getFname() + "', '" + row.getLname() + "', '" + row.getDob() + "', '" + row.getPass() + "', '" + row.getEmail() + "', " + row.getSex() +");";
+		String create = "INSERT INTO Users(Uid, Fname, Lname, DOB, pass, email, sex) VALUES (" + row.getUid() + ", '" + row.getFname() + "', '" + row.getLname() + "', '" + row.getDob() + "', '" + row.getPass() + "', '" + row.getEmail() + "', " + row.getSex() +");";
 		Connector.doUpdate(create);
+		int Uid = -1;
+		try {
+			ResultSet getUid = Connector.doQuery("SELECT Uid FROM Users WHERE email = '" + row.getEmail() + "';");
+			if(!getUid.next()) throw new DALException("Missing entry.");
+			Uid = getUid.getInt("Uid");
+		} catch (SQLException e) {
+			throw new DALException(e);
+		}
+		return Uid;
 	}
 	public void delete(int Uid) throws DALException
 	{
@@ -45,7 +54,7 @@ public class MySQLUsersDAO extends UsersIDAO
 	{
 		try
 		{
-			ResultSet rs = Connector.doQuery("SELECT * FROM Users WHERE Uid = " + email + ";");
+			ResultSet rs = Connector.doQuery("SELECT * FROM Users WHERE email = '" + email + "';");
 			if(!rs.next()) throw new DALException("Missing entry.");
 			return new UsersDTO(rs.getInt("Uid"), rs.getString("Fname"), rs.getString("Lname"), rs.getString("DOB"), rs.getString("pass"), rs.getString("email"), rs.getBoolean("sex"));
 		}
