@@ -1,4 +1,7 @@
 <%@include file="header.jsp"%>
+<jsp:useBean id="langList" class="java.util.ArrayList"
+	scope="request" />
+<%@ page import="dto.LangDTO" %>
 <h1>Create User</h1>
 <form method="POST" action="index.jsp">
 	<!-- This is for creating -->
@@ -36,6 +39,16 @@
 			<td><select name="newUserSex">
 					<option value= 1 >Male</option>
 					<option value= 0 >Female</option>
+			</select></td>
+			<td>
+				<td>Language:</td>
+			<td><select name="newUserLang">
+				<% for (int i = 0; i< langList.size(); i++) {
+				LangDTO l = (LangDTO) langList.get(i);
+				out.println(l.getLang());%>
+					<option value= <% l.getLang(); %> ><% l.getLang(); %></option>
+				<%} %>
+				<option value= hmm >< hmm </option>
 			</select></td>
 			<td>
 		</tr>

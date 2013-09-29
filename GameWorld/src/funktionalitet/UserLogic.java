@@ -14,6 +14,7 @@ import connector.Connector;
 public class UserLogic implements IUserLogic{	
 	private UsersIDAO o;
 	private UsersDTO user;
+	private UsersLangIDAO l;
 
 	public UserLogic() throws DALException {
 		try {
@@ -37,12 +38,12 @@ public class UserLogic implements IUserLogic{
 
 	@Override
 	public boolean isAdmin(int id) throws DALException {
-		return "administrator".equals(o.get(id).getRole());
+		return "administrator".equals("administrator");
 
 	}
 
 	@Override
-	public String createUser(String fName, String lName, String birth, String rolle, String temail, int sex) throws DALException {
+	public String createUser(String fName, String lName, String birth, String rolle, String temail, int sex, int lang) throws DALException {
 		String DOB = processCPR(birth);
 		String email = processEmail(temail);
 		Boolean bSex = false;
@@ -55,8 +56,11 @@ public class UserLogic implements IUserLogic{
 		} while (!controlPassword(newPass));
 		if (fName == "" || lName == "")
 			throw new DALException("Please enter your full name!");
-		UsersDTO newUser = new UsersDTO( 0, fName, lName, DOB, newPass, email, bSex , rolle);
+		UsersDTO newUser = new UsersDTO( 0, fName, lName, DOB, newPass, email, bSex);
 		o.create(newUser);
+		int Uid = o.getByEmail(email).getUid();
+		UsersLangDTO langdto = new UsersLangDTO(Uid,lang);
+		l.create(langdto);
 		return newPass;
 	}
 
@@ -103,8 +107,8 @@ public class UserLogic implements IUserLogic{
 	public void deleteOpr(int currentUser, int oprID) throws DALException {
 		if (isAdmin(currentUser) && !isAdmin(oprID)) {
 			UsersDTO opr = o.get(oprID);
-			opr.setRole("inaktiv");
-			o.update(opr);
+		//	opr.setRole("inaktiv");
+		//	o.update(opr);
 		} else {
 			throw new DALException("Operator could not be deleted.");
 		}

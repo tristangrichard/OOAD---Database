@@ -41,6 +41,16 @@ public class MySQLUsersDAO extends UsersIDAO
 		}
 		catch(SQLException e){throw new DALException(e);}
 	}
+	public UsersDTO getByEmail(String email) throws DALException
+	{
+		try
+		{
+			ResultSet rs = Connector.doQuery("SELECT * FROM Users WHERE Uid = " + email + ";");
+			if(!rs.next()) throw new DALException("Missing entry.");
+			return new UsersDTO(rs.getInt("Uid"), rs.getString("Fname"), rs.getString("Lname"), rs.getString("DOB"), rs.getString("pass"), rs.getString("email"), rs.getBoolean("sex"));
+		}
+		catch(SQLException e){throw new DALException(e);}
+	}
 
 	public List<UsersDTO> getList() throws DALException
 	{
