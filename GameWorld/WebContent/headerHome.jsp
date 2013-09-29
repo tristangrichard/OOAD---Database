@@ -36,11 +36,10 @@
 			<ul class="navbar">
 				<li><a href="index.jsp">Home</a><hr> <% if (request.getUserPrincipal() != null) {
 					if (request.isUserInRole("administrator")) {%>
-				<li><a href="admin/index.jsp">Operator Admin</a> <% } if (request.isUserInRole("farmaceut") || request.isUserInRole("administrator")) { %>
-				<li><a href="raavare/index.jsp">Råvare Admin</a>
-				<li><a href="recept/index.jsp">Recept Admin</a> <% } if (request.isUserInRole("vaerkfoerer") || request.isUserInRole("farmaceut") || request.isUserInRole("administrator")) { %>
-				<li><a href="raavarebatch/index.jsp">Råvarebatch Admin</a>
-				<li><a href="produkt/index.jsp">Produktbatch Admin</a>  <% }%>
+				<li><a href="admin/index.jsp">User Administration</a>
+				<li><a href="genre/index.jsp">Genre Administration</a> <% } if (request.isUserInRole("game") || request.isUserInRole("administrator")) { %>
+				<li><a href="game/index.jsp">Game Administration</a> <% } if (request.isUserInRole("user")) { %>
+				<li><a href="myGames/index.jsp">My Games</a> <% }%>
 				<hr><li><a href="login/logout.jsp">Logout</a> <% } else { %>
 				<hr><li><a href="login/index.jsp">Login</a> <% } %>
 				<hr><li><a href="create/index.jsp?action=List">Create User</a>
