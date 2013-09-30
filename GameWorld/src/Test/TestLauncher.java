@@ -5,7 +5,7 @@ public class TestLauncher {
 	private static int errors = 0;
 	private static int tests = 0;
 	
-	TestDB tdb = new TestDB();
+	Test_User_Game tdb = new Test_User_Game();
 	TestBL tbl = new TestBL();
 	TestStatistics ts = new TestStatistics();
 	

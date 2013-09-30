@@ -8,7 +8,7 @@ import daointerfaces.UsersIDAO;
 import dto.GameDTO;
 import dto.UsersDTO;
 
-public class TestDB {
+public class Test_User_Game {
 
 	private boolean error = false;
 
@@ -26,7 +26,7 @@ public class TestDB {
 
 	public void TestDBStart(){	
 	//testing creation updating deletion of a user, and game in DB, clean test		
-	UsersIDAO uidao = (UsersIDAO) new MySQLUsersDAO();
+	UsersIDAO uidao = new MySQLUsersDAO();
 	GameIDAO gidao = new MySQLGameDAO();
 	// sets up fictional user for testing DB with
 	UsersDTO bdto = new UsersDTO("Test", "Testesen", "11-3-2001", "passtest", "test@test.mail",true);

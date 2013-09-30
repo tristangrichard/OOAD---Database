@@ -42,12 +42,26 @@ public class MySQLUsersGamesDAO extends UsersGamesIDAO
 		catch(SQLException e){throw new DALException(e);}
 	}
 
-	public List<UsersGamesDTO> getList(String email) throws DALException
+	public List<UsersGamesDTO> getListbyEmail(String email) throws DALException
 	{
 		try
 		{
 			List<UsersGamesDTO> results = new ArrayList<UsersGamesDTO>();
 			ResultSet rs = Connector.doQuery("SELECT * FROM UsersGames where email ='"+ email +"';");
+			if(!rs.next()) throw new DALException("Missing table: UsersGames");
+			do results.add(new UsersGamesDTO(rs.getString("email"), rs.getInt("Gid")));
+			while(rs.next());
+			return results;
+		}
+		catch(SQLException e){throw new DALException(e);}
+	}
+	
+	public List<UsersGamesDTO> getListbyID(int id) throws DALException
+	{
+		try
+		{
+			List<UsersGamesDTO> results = new ArrayList<UsersGamesDTO>();
+			ResultSet rs = Connector.doQuery("SELECT * FROM UsersGames where Gid ='"+ id +"';");
 			if(!rs.next()) throw new DALException("Missing table: UsersGames");
 			do results.add(new UsersGamesDTO(rs.getString("email"), rs.getInt("Gid")));
 			while(rs.next());
