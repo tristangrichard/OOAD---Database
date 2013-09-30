@@ -137,38 +137,47 @@ public class Test_User_Game_Lists {
 			catch(Exception e){		
 				System.out.print("delete user in DB failed");
 				error = true;															
-			}	
+			}
+			finally{
+				TestLauncher.printProgress(error);	
+				}
+			}
 		}
-	}
 
-	public void cleanGameList(GameIDAO gidao){
-		for (GameDTO dto : glist){
-			try{																	
-				error = false;						//database deletion
-				gidao.delete(dto.getGid());
-				glist.remove(dto);
-			}																		
-			catch(Exception e){		
-				System.out.print("delete game in DB failed");
-				error = true;															
-			}	
-		}	
-	}
-	
-	public void cleanUGList(UsersGamesIDAO ugidao){
-		for (UsersGamesDTO dto : uglist){
-			try{																	
-				error = false;						//database deletion
-				ugidao.delete(dto.getEmail(), dto.getGid());
-				uglist.remove(dto);
-			}																		
-			catch(Exception e){		
-				System.out.print("delete usersgames in DB failed");
-				error = true;															
-			}	
-		}	
-	}
-}
+		public void cleanGameList(GameIDAO gidao){
+			for (GameDTO dto : glist){
+				try{																	
+					error = false;						//database deletion
+					gidao.delete(dto.getGid());
+					glist.remove(dto);
+				}																		
+				catch(Exception e){		
+					System.out.print("delete game in DB failed");
+					error = true;															
+				}	
+				finally{
+					TestLauncher.printProgress(error);	
+					}
+				}	
+			}
+
+			public void cleanUGList(UsersGamesIDAO ugidao){
+				for (UsersGamesDTO dto : uglist){
+					try{																	
+						error = false;						//database deletion
+						ugidao.delete(dto.getEmail(), dto.getGid());
+						uglist.remove(dto);
+					}																		
+					catch(Exception e){		
+						System.out.print("delete usersgames in DB failed");
+						error = true;															
+					}	
+					finally{
+						TestLauncher.printProgress(error);	
+						}
+					}	
+				}
+			}
 
 
 

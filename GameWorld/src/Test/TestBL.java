@@ -4,11 +4,20 @@ public class TestBL {
 
 	private boolean error = false;
 	
+		//////////////////////////////////////////////////////////////////////////
+		//Framework for tests													//
+		//try{																	//
+		//error = false;														//
+		//System.out.print(9);													//
+		//}																		//
+		//catch(Exception e){													//
+		//error = true;															//
+		//}																		//
+		//finally {TestLauncher.printProgress(error);}							//
+		//////////////////////////////////////////////////////////////////////////
+	
 	public void TestBLStart(){
-		
-		//in here add methods for testing BusinessLogic
-		
-		
+	
 	}
 	
 	//define methods for testing BusinessLogic
