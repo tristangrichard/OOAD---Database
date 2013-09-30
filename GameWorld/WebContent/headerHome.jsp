@@ -41,8 +41,8 @@
 				<li><a href="game/index.jsp">Game Administration</a> <% } if (request.isUserInRole("user")) { %>
 				<li><a href="myGames/index.jsp">My Games</a> <% }%>
 				<hr><li><a href="login/logout.jsp">Logout</a> <% } else { %>
-				<hr><li><a href="login/index.jsp">Login</a> <% } %>
-				<hr><li><a href="create/index.jsp?action=List">Create User</a>
+				<hr><li><a href="login/index.jsp">Login</a> <% } if (!request.isUserInRole("game") && !request.isUserInRole("administrator") && !request.isUserInRole("user")) { %>
+				<hr><li><a href="create/index.jsp?action=List">Create User</a> <%} %>
 			</ul>
 		</div>
 		<div id="main">

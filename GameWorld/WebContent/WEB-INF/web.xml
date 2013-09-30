@@ -8,6 +8,10 @@
     <servlet-name>controlCreate</servlet-name>
     <servlet-class>controller.ControlCreate</servlet-class>
   </servlet>
+     <servlet>
+    <servlet-name>controlMyGames</servlet-name>
+    <servlet-class>controller.ControlMyGames</servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>controlProduktAdmin</servlet-name>
     <servlet-class>controller.ControlProduktAdmin</servlet-class>
@@ -35,6 +39,10 @@
    <servlet-mapping>
     <servlet-name>controlCreate</servlet-name>
     <url-pattern>/create/*</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>controlMyGames</servlet-name>
+    <url-pattern>/mygames/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>controlProduktAdmin</servlet-name>
@@ -99,7 +107,7 @@
     </web-resource-collection>
     <auth-constraint>
       <role-name>administrator</role-name>
-      <role-name>farmaceut</role-name>
+      <role-name>game</role-name>
     </auth-constraint>
   </security-constraint>
   <security-constraint>
@@ -112,8 +120,8 @@
     </web-resource-collection>
     <auth-constraint>
       <role-name>administrator</role-name>
-      <role-name>farmaceut</role-name>
-      <role-name>vaerkfoerer</role-name>
+      <role-name>game</role-name>
+      <role-name>user</role-name>
     </auth-constraint>
   </security-constraint>
   <security-constraint>
@@ -125,9 +133,8 @@
     </web-resource-collection>
     <auth-constraint>
       <role-name>administrator</role-name>
-      <role-name>farmaceut</role-name>
-      <role-name>vaerkfoerer</role-name>
-      <role-name>operatoer</role-name>
+      <role-name>game</role-name>
+      <role-name>user</role-name>
     </auth-constraint>
   </security-constraint>
   <login-config>
@@ -141,12 +148,9 @@
     <role-name>administrator</role-name>
   </security-role>
   <security-role>
-    <role-name>farmaceut</role-name>
+    <role-name>game</role-name>
   </security-role>
   <security-role>
-    <role-name>vaerkfoerer</role-name>
-  </security-role>
-  <security-role>
-    <role-name>operatoer</role-name>
+    <role-name>user</role-name>
   </security-role>
 </web-app>

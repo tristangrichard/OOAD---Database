@@ -36,7 +36,7 @@
 			<form method="POST" action="j_security_check">
 				<table>
 					<tr>
-						<td align="left">ID:</td>
+						<td align="left">Email:</td>
 						<td><input type="text" name="j_username" value="Enter ID"
 							onclick="this.select()"></td>
 					</tr>
@@ -54,10 +54,12 @@
 			<p>
 				The following test users are created in the system, the password for
 				all of them are "<span id="password">1234</span>". This password
-				is entered as default so just enter the applicable id and click
+				is entered as default so just enter the applicable email and click
 				Login.
 			</p>
-			<p>!!!!!!!</p>
+			<p>Admin: m.b@mail.dk</p>
+			<p>Game: info@ea.dk</p>
+			<p>User: ST92@dtu.dk</p>
 		</div>
 		<div id="footer">Gruppe 8</div>
 	</div>
