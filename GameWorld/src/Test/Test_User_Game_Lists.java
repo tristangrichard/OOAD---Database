@@ -47,7 +47,9 @@ public class Test_User_Game_Lists {
 
 		createUGL(uidao,bdto, gidao, gdto, ugidao, ugdto);
 		updateUL(uidao);
-		updateUGL(uidao, gidao, ugidao);
+		cleanUserList(uidao);
+		cleanGameList(gidao);
+		cleanUGList(ugidao);
 	}
 
 	//sets the 3 lists, and creates in databases.
@@ -85,51 +87,88 @@ public class Test_User_Game_Lists {
 		}
 	}
 
-	public void updateUL(UsersIDAO uidao){
+	public void updateUL(UsersIDAO uidao){		//update user list in DB
 
 		for (UsersDTO dto : ulist){
 			dto.setFname("testnewFname");
-			
+
 			try{																	
 				error = false;						//database updating
 				uidao.update(dto);
 				if (dto.getFname() != uidao.get(dto.getEmail()).getFname()){
 					error = true;
-					}
+				}
 			}																		
 			catch(Exception e){
-				System.out.print("create usergamelists in DB failed");
+				System.out.print("update users in DB failed");
 				error = true;															
 			}	
 			finally{TestLauncher.printProgress(error);}
 		}
-		
 	}
-	
-	public void updateUGL(UsersIDAO uidao, GameIDAO gidao, UsersGamesIDAO ugidao){
-		int i=0;
-		for (UsersDTO dto : ulist){
-			i++;
-			dto.setEmail("testnewEmail"+i);
-			
+
+	public void updateGL(GameIDAO gidao){		//update game list in DB
+
+		for (GameDTO dto : glist){
+			dto.setGname("testnewGname");
+
 			try{																	
 				error = false;						//database updating
-				uidao.update(dto);
-				String email = dto.getEmail();
-				int gid  = 101+i;
-				if (email != ugidao.get(email, gid).getEmail()){
+				gidao.update(dto);
+				if (dto.getGname() != gidao.get(dto.getGid()).getGname()){
 					error = true;
 				}
 			}																		
 			catch(Exception e){
-				System.out.print("change email of users failed");
+				System.out.print("update games in DB failed");
 				error = true;															
 			}	
-		}				
-		TestLauncher.printProgress(error);
+			finally{TestLauncher.printProgress(error);}
 		}
-		
+	}
+
+	public void cleanUserList(UsersIDAO uidao){
+		for (UsersDTO dto : ulist){
+			try{																	
+				error = false;						//database deletion
+				uidao.delete(dto.getEmail());
+				ulist.remove(dto);
+			}																		
+			catch(Exception e){		
+				System.out.print("delete user in DB failed");
+				error = true;															
+			}	
+		}
+	}
+
+	public void cleanGameList(GameIDAO gidao){
+		for (GameDTO dto : glist){
+			try{																	
+				error = false;						//database deletion
+				gidao.delete(dto.getGid());
+				glist.remove(dto);
+			}																		
+			catch(Exception e){		
+				System.out.print("delete game in DB failed");
+				error = true;															
+			}	
+		}	
+	}
 	
+	public void cleanUGList(UsersGamesIDAO ugidao){
+		for (UsersGamesDTO dto : uglist){
+			try{																	
+				error = false;						//database deletion
+				ugidao.delete(dto.getEmail(), dto.getGid());
+				uglist.remove(dto);
+			}																		
+			catch(Exception e){		
+				System.out.print("delete usersgames in DB failed");
+				error = true;															
+			}	
+		}	
+	}
 }
+
 
 
