@@ -47,7 +47,7 @@ public class MySQLGameDAO extends GameIDAO
 		try
 		{
 			List<GameDTO> results = new ArrayList<GameDTO>();
-			ResultSet rs = Connector.doQuery("SELECT * FROM Game;");
+			ResultSet rs = Connector.doQuery("SELECT * FROM Game ORDER BY Gname;");
 			if(!rs.next()) throw new DALException("Missing table: Game");
 			do results.add(new GameDTO(rs.getInt("Gid"), rs.getString("Gname"), rs.getString("Released")));
 			while(rs.next());
