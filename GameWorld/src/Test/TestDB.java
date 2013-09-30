@@ -29,7 +29,7 @@ public class TestDB {
 	UsersIDAO uidao = (UsersIDAO) new MySQLUsersDAO();
 	GameIDAO gidao = new MySQLGameDAO();
 	// sets up fictional user for testing DB with
-	UsersDTO bdto = new UsersDTO(10001, "Test", "Testesen", "11-3-2001", "passtest", "test@test.mail",true);
+	UsersDTO bdto = new UsersDTO("Test", "Testesen", "11-3-2001", "passtest", "test@test.mail",true);
 	GameDTO gdto = new GameDTO(10001, "MODERNWARFARETEST", "11-3-2001");
 	
 	create(uidao,bdto);
@@ -64,7 +64,7 @@ public class TestDB {
 	bdto.setPass("pass");
 	try {
 		uidao.update(bdto);
-		if (old != uidao.get(bdto.getUid())){//compares old to updated UsersDTO
+		if (old != uidao.get(bdto.getEmail())){//compares old to updated UsersDTO
 			error = true;
 			System.out.println("update user failed");}
 		else{}
@@ -82,13 +82,13 @@ public class TestDB {
 	// cleans up user creation and at the same time tests if deletion is successfull
 	public void delete(UsersIDAO uidao, UsersDTO bdto){
 	try {
-		uidao.delete(bdto.getUid());
+		uidao.delete(bdto.getEmail());
 	} catch (DALException e) {
 		error = true;
 		System.out.println("delete user failed");
 	}
 	try {
-		uidao.get(bdto.getUid());
+		uidao.get(bdto.getEmail());
 	} catch (DALException e) {
 	}
 	finally{

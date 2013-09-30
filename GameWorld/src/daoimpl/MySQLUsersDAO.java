@@ -20,9 +20,9 @@ public class MySQLUsersDAO extends UsersIDAO
 		String create = "INSERT INTO Users(Fname, Lname, DOB, pass, email, sex) VALUES ('" + row.getFname() + "', '" + row.getLname() + "', '" + row.getDob() + "', '" + row.getPass() + "', '" + row.getEmail() + "', " + row.getSex() +");";
 		Connector.doUpdate(create);
 	}
-	public void delete(int Uid) throws DALException
+	public void delete(String email) throws DALException
 	{
-		String delete = "DELETE FROM Users WHERE Uid = " + Uid + ";";
+		String delete = "DELETE FROM Users WHERE email = '" + email + "';";
 		Connector.doUpdate(delete);
 	}
 	public void update(UsersDTO row) throws DALException
