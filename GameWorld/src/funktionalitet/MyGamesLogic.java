@@ -47,14 +47,18 @@ public class MyGamesLogic implements IMyGamesLogic {
 
 	@Override
 	public List<GameDTO> getMyGames(String email) throws DALException {
-		List<UsersGamesDTO> myGames = o.getListbyEmail(email);
+		List<UsersGamesDTO> myGames = new ArrayList<UsersGamesDTO>();
 		List<GameDTO> games = new ArrayList<GameDTO>();
+		try 
+		{
+			myGames = o.getListbyEmail(email);
 		for (int i= 0; i< myGames.size(); i++)
 		{
 			int a = myGames.get(i).getGid();
 			games.add(g.get(a));
 		}
 		return games;
+		} catch (DALException e){ throw new DALException("You haven't registrered any games yet. Please do so.");}
 	}
 
 }

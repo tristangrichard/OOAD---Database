@@ -105,8 +105,8 @@ public class ControlMyGames extends HttpServlet {
 				request.setAttribute("gameList", ga);
 				request.getRequestDispatcher("../WEB-INF/myGames/myGames.jsp").forward(request, response); // Sends the request to the actual operator list jsp file.
 			} catch (DALException e) {
-				e.printStackTrace();
 				request.setAttribute("error", e.getMessage());
+				request.getRequestDispatcher("index.jsp?action=Add").forward(request, response);
 
 			}
 		}else if ("Add".equals(action)) { 
@@ -135,6 +135,6 @@ public class ControlMyGames extends HttpServlet {
 				request.setAttribute("error", errorMessage);
 				request.getRequestDispatcher("index.jsp?action=Add").forward(request, response);
 			}
-		}else {request.getRequestDispatcher("../WEB-INF/index").forward(request, response);}
+		}else {request.getRequestDispatcher("index.jsp").forward(request, response);}
 	}
 }
