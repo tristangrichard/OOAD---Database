@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-<title>Scale Application</title>
+<title>GameWorld</title>
 <link rel="stylesheet" href="css/style1.css">
 
 </head>
