@@ -6,11 +6,9 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import daointerfaces.DALException;
 import daointerfaces.LangIDAO;
 import daoimpl.MySQLLangDAO;
-import dto.BrugerDTO;
 import dto.LangDTO;
 import funktionalitet.IUserLogic;
 import funktionalitet.UserLogic;
@@ -18,7 +16,6 @@ import funktionalitet.UserLogic;
 public class ControlCreate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IUserLogic userLogic = null;
-	private BrugerDTO user = null;
 	private LangIDAO l = null;
 
 	public ControlCreate() {
@@ -75,7 +72,7 @@ public class ControlCreate extends HttpServlet {
 			String fName = null;
 			String lName = null;
 			String userBirth = null;
-			String userRole = "User";
+			String userRole = "user";
 			String userEmail = null;
 			String userSex = null;
 			int sex = 0;

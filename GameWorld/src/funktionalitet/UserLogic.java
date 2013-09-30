@@ -134,8 +134,7 @@ public class UserLogic implements IUserLogic{
 	}
 
 	@Override
-	public UsersDTO getOperatoer(int oprID) throws DALException {
-		String email = null;
+	public UsersDTO getUser(String email) throws DALException {
 		return o.get(email);
 	}
 

@@ -11,6 +11,6 @@ public interface IUserLogic {
 	public void updateOpr(int oprID, String oprName, String cpr, String oldPassword, String newPassword, String newPassword2, String rolle) throws DALException;
 	public void updateOprAdmin(int oprID, String oprName, String cpr,  String newPassword, String newPassword2, String rolle) throws DALException;
 	public void deleteOpr(int currentUser, int oprID) throws DALException;
-	public UsersDTO getOperatoer(int oprID) throws DALException;
+	public UsersDTO getUser(String email) throws DALException;
 	public List<UsersDTO> getOperatoerList() throws DALException;
 }

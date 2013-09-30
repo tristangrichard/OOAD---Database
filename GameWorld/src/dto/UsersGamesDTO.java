@@ -2,17 +2,17 @@ package dto;
 
 public class UsersGamesDTO
 {
-	private int Uid;
+	private String email;
 	private int Gid;
 
-	public UsersGamesDTO(int Uid, int Gid)
+	public UsersGamesDTO(String email, int Gid)
 	{
-		this.Uid = Uid;
+		this.email = email;
 		this.Gid = Gid;
 	}
 
-	public int getUid(){return Uid;}
-	public void setUid(int Uid){this.Uid = Uid;}
+	public String getEmail(){return email;}
+	public void setUid(String email){this.email = email;}
 
 	public int getGid(){return Gid;}
 	public void setGid(int Gid){this.Gid = Gid;}

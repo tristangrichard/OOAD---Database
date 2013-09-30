@@ -86,6 +86,17 @@
       <role-name>administrator</role-name>
     </auth-constraint>
   </security-constraint>
+   <security-constraint>
+    <display-name>My Games administration</display-name>
+    <web-resource-collection>
+      <web-resource-name>My Games Controller</web-resource-name>
+      <description>accessible by user only</description>
+      <url-pattern>/mygames/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>user</role-name>
+    </auth-constraint>
+  </security-constraint>
   <security-constraint>
     <display-name>Raavare administration</display-name>
     <web-resource-collection>
