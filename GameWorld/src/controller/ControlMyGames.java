@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -11,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import daoimpl.MySQLGameDAO;
 import daoimpl.MySQLUsersGamesDAO;
 import daointerfaces.DALException;
+import daointerfaces.GameIDAO;
 import daointerfaces.UsersGamesIDAO;
 import dto.BrugerDTO;
 import dto.GameDTO;
@@ -29,6 +32,7 @@ public class ControlMyGames extends HttpServlet {
 	private IMyGamesLogic myGames = null;
 	private UsersDTO user = null;
 	private IUserLogic u = null;
+	private GameIDAO games = null;
 	
 	
 	public ControlMyGames() {
@@ -69,6 +73,11 @@ public class ControlMyGames extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 			}
 		}
+		games = (MySQLGameDAO) session.getAttribute("games");
+		if (games == null) {
+				games = new MySQLGameDAO();
+				application.setAttribute("games", games);
+		}
 		user = (UsersDTO) session.getAttribute("user");
 		if (user == null) {
 			try {
@@ -89,46 +98,43 @@ public class ControlMyGames extends HttpServlet {
 		if ("List".equals(action)) { 
 			try {
 				List<GameDTO> gameList = new ArrayList<GameDTO>(myGames.getMyGames(user.getEmail()));
-				request.setAttribute("gameList", gameList);
+				List<String> ga = new ArrayList<String>();
+				for(GameDTO game: gameList)
+					ga.add(game.getGname());
+				Collections.sort(ga); 
+				request.setAttribute("gameList", ga);
 				request.getRequestDispatcher("../WEB-INF/myGames/myGames.jsp").forward(request, response); // Sends the request to the actual operator list jsp file.
 			} catch (DALException e) {
 				e.printStackTrace();
 				request.setAttribute("error", e.getMessage());
 
 			}
-		
-//		}else if ("userFilled".equals(action)) {
-//			// Getting all the details from the filled form.
-//			String fName = null;
-//			String lName = null;
-//			String userBirth = null;
-//			String userRole = "User";
-//			String userEmail = null;
-//			String userSex = null;
-//			int sex = 0;
-//			String userLang = null;
-//			int langu = 0;
-//			try {
-//				fName = request.getParameter("newFName");
-//				lName = request.getParameter("newLName");
-//				userBirth = request.getParameter("newUserBirth");
-//				userEmail = request.getParameter("newUserEmail");
-//				userSex = request.getParameter("newUserSex");
-//				sex = Integer.parseInt(userSex);
-//				userLang = request.getParameter("newUserLang");
-//				langu = Integer.parseInt(userLang);
-//				String pass = userLogic.createUser(fName, lName, userBirth, userRole, userEmail, sex, langu);
-//				//} else { // Use the admin method that does not require the old password if the user is an admin.
-//				//		userLogic.updateOprAdmin(updOprID, updOprName, updOprCpr, updOprPass1, updOprPass2, updOprRole);
-//				//}
-//				request.setAttribute("message", "Operator with ID: " + userEmail + " successfully updated. Your password is:"+pass);
-//				request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response);
-//			} catch (DALException e) {
-//				request.setAttribute("error", e.getMessage());
-//				request.setAttribute("action", "List");
-//				request.getRequestDispatcher("index.jsp?action=List").forward(request, response);
-//			}
-		}
-		else {request.getRequestDispatcher("../WEB-INF/myGames/myGames.jsp?").forward(request, response);}
+		}else if ("Add".equals(action)) { 
+			try {
+				List<GameDTO> gameList = new ArrayList<GameDTO>(games.getList());
+				request.setAttribute("gameList", gameList);
+				request.getRequestDispatcher("../WEB-INF/myGames/addGame.jsp").forward(request, response); // Sends the request to the actual operator list jsp file.
+			} catch (DALException e) {
+				e.printStackTrace();
+				request.setAttribute("error", e.getMessage());
+
+			}
+		}else if ("gameToAdd".equals(action)) { 
+			try {
+				String gameToAdd = (String) request.getParameter("gameToAdd");
+				int g = Integer.parseInt(gameToAdd);
+				GameDTO game = games.get(g);
+				UsersGamesDTO userGame = new UsersGamesDTO(user.getEmail(), game.getGid());
+				myGames.addGame(userGame);
+				String message = game.getGname()+" was succesfully added to your list!";
+				request.setAttribute("message", message);
+				request.getRequestDispatcher("index.jsp?action=Add").forward(request, response); // Sends the request to the actual operator list jsp file.
+			} catch (DALException e) {
+				String errorMessage = e.getMessage();
+				if (errorMessage.contains("PRIMARY")) { errorMessage = "You have already added the game to your account!"; } // Shows a special error message if the opr_id is already in use.
+				request.setAttribute("error", errorMessage);
+				request.getRequestDispatcher("index.jsp?action=Add").forward(request, response);
+			}
+		}else {request.getRequestDispatcher("../WEB-INF/index").forward(request, response);}
 	}
 }
