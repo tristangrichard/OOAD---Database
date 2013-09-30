@@ -26,7 +26,7 @@
 		<div id="navigation">
 			<!-- Site navigation menu -->
 			<ul class="navbar">
-				<li><a href="../index.jsp">Cancel</a>
+				<li><a href="../index.jsp">Back</a>
 					<hr>
 			</ul>
 		</div>

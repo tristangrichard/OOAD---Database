@@ -9,8 +9,8 @@
 		<tr>
 			<th>Title</th>
 			<!--  <th>Råvare ID</th>
-			<th>Mængde[kg]</th>-->
-			<th></th>
+			<th>Mængde[kg]</th>
+			<th></th>   -->
 		</tr>
 		<%
 			for (int i = 0; i < gameList.size(); i++) {
