@@ -1,7 +1,6 @@
 <%@include file="header.jsp"%>
 <jsp:useBean id="gameList" class="java.util.ArrayList"
 	scope="request" />
-<%@ page import="dto.GameDTO" %>
 <h1>My Games</h1>
 <form method="POST" action="index.jsp">
 	<!-- This is for creating -->
@@ -12,13 +11,15 @@
 			<th>Mængde[kg]</th>
 			<th></th>   -->
 		</tr>
+		
 		<%
 			for (int i = 0; i < gameList.size(); i++) {
-				GameDTO g = (GameDTO) gameList.get(i);
+				String name = gameList.get(i).toString();
 		%>
 		<tr <%if (i % 2 != 0)
 					out.print(" class=\"alt\"");%>>
-			<td><%=g.getGname()%></td>
+					
+			<td><%= name %></td>
 		<!-- <td></td>
 			<td></td>
 			<td><a
