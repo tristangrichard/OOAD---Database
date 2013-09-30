@@ -2,6 +2,7 @@ package funktionalitet;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import connector.Connector;
@@ -40,9 +41,8 @@ public class MyGamesLogic implements IMyGamesLogic {
 		g = new MySQLGameDAO();
 	}
 	@Override
-	public void addGame(String game) throws DALException {
-		// TODO Auto-generated method stub
-
+	public void addGame(UsersGamesDTO game) throws DALException {
+		o.create(game);
 	}
 
 	@Override
@@ -54,7 +54,6 @@ public class MyGamesLogic implements IMyGamesLogic {
 			int a = myGames.get(i).getGid();
 			games.add(g.get(a));
 		}
-			
 		return games;
 	}
 
