@@ -88,9 +88,6 @@ public class ControlCreate extends HttpServlet {
 				userLang = request.getParameter("newUserLang");
 				langu = Integer.parseInt(userLang);
 				String pass = userLogic.createUser(fName, lName, userBirth, userRole, userEmail, sex, langu);
-				//} else { // Use the admin method that does not require the old password if the user is an admin.
-				//		userLogic.updateOprAdmin(updOprID, updOprName, updOprCpr, updOprPass1, updOprPass2, updOprRole);
-				//}
 				request.setAttribute("message", "Operator with ID: " + userEmail + " successfully updated. Your password is:"+pass);
 				request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response);
 			} catch (DALException e) {
