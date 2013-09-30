@@ -47,7 +47,7 @@ public class MyGamesLogic implements IMyGamesLogic {
 
 	@Override
 	public List<GameDTO> getMyGames(String email) throws DALException {
-		List<UsersGamesDTO> myGames = o.getList(email);
+		List<UsersGamesDTO> myGames = o.getListbyEmail(email);
 		List<GameDTO> games = new ArrayList<GameDTO>();
 		for (int i= 0; i< myGames.size(); i++)
 		{

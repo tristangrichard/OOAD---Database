@@ -8,6 +8,6 @@ import dto.UsersGamesDTO;
 
 public interface IMyGamesLogic {
 	
-		public void addGame(String game) throws DALException;
+		public void addGame(UsersGamesDTO game) throws DALException;
 		public List<GameDTO> getMyGames(String email) throws DALException;
 }
