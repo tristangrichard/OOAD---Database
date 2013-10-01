@@ -30,7 +30,7 @@
 				<li><a href="index.jsp?action=List">My Games</a>
 				<li><a href="index.jsp?action=Add">Add new game</a>
 					<hr>
-				<li><a href="login/logout.jsp">Logout</a>
+				<li><a href="../login/logout.jsp">Logout</a>
 			</ul>
 		</div>
 		<div id="main">
