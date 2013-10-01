@@ -27,7 +27,7 @@
 			<!-- Site navigation menu -->
 			<ul class="navbar">
 				<li><a href="../index.jsp">Cancel</a>
-					<hr>
+				<hr><li><a href="../login/index.jsp">Login</a>
 			</ul>
 		</div>
 		<div id="main">

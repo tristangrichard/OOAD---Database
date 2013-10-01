@@ -89,7 +89,7 @@ public class ControlCreate extends HttpServlet {
 				langu = Integer.parseInt(userLang);
 				String pass = userLogic.createUser(fName, lName, userBirth, userRole, userEmail, sex, langu);
 				request.setAttribute("message", "Operator with ID: " + userEmail + " successfully updated. Your password is:"+pass);
-				request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response);
+				request.getRequestDispatcher("index.jsp?action=List").forward(request, response);
 			} catch (DALException e) {
 				request.setAttribute("error", e.getMessage());
 				request.setAttribute("action", "List");
