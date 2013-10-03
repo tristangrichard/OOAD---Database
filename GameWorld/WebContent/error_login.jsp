@@ -30,7 +30,7 @@
 	<div id="container">
 		<div id="main">
 			<!-- Main content -->
-			<h1>Login error</h1>
+			<h1>Login error - GAME OVER!!!</h1>
 			<p>Login failed.</p>
 			<p>
 				<a href="index.jsp">Try again</a>

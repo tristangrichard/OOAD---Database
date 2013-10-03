@@ -7,6 +7,8 @@ public class TestLauncher {
 	
 	Test_User_Game tdb = new Test_User_Game();
 	Test_User_Game_Lists tdbl = new Test_User_Game_Lists();
+	Test_Publisher_Genre tpg = new Test_Publisher_Genre();
+	
 	TestBL tbl = new TestBL();
 	TestStatistics ts = new TestStatistics();
 	
@@ -27,8 +29,11 @@ public class TestLauncher {
 		
 		tdb.TestDBStart();
 		tdbl.TestDBStart();
-		tbl.TestBLStart();
-		ts.TestStatisticsStart();
+		tpg.TestDBStart();
+		
+//		tbl.TestBLStart();
+//		ts.TestStatisticsStart();
+		
 		System.out.println("Test finished");
 		//possibly add function here to return to start of program
 	}
