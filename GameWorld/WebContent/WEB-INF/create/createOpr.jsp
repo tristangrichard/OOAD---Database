@@ -51,7 +51,7 @@
 		<tr>
 			<td colspan="2" align="right"><input type="hidden" name="action"
 				value="userFilled"><input type="submit"
-				value="Create Operator"></td>
+				value="Create User"></td>
 			<td></td>
 		</tr>
 	</table>
