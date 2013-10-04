@@ -45,7 +45,7 @@ public class MySQLLangDAO extends LangIDAO
 		try
 		{
 			List<LangDTO> results = new ArrayList<LangDTO>();
-			ResultSet rs = Connector.doQuery("SELECT * FROM Lang;");
+			ResultSet rs = Connector.doQuery("SELECT * FROM Lang ORDER by Lang;");
 			if(!rs.next()) throw new DALException("Missing table: Lang");
 			do results.add(new LangDTO(rs.getInt("Langid"), rs.getString("Lang")));
 			while(rs.next());
