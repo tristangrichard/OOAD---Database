@@ -94,10 +94,12 @@ public class ControlMyGames extends HttpServlet {
 			try {
 				List<GameDTO> gameList = new ArrayList<GameDTO>(myGames.getMyGames(user.getEmail()));
 				List<String> ga = new ArrayList<String>();
-				for(GameDTO game: gameList)
+				List<String> url = new ArrayList<String>();
+				for(GameDTO game: gameList){
 					ga.add(game.getGname());
-				Collections.sort(ga); 
+					url.add(game.getUrl());}
 				request.setAttribute("gameList", ga);
+				request.setAttribute("gameUrl", url);
 				request.getRequestDispatcher("../WEB-INF/myGames/myGames.jsp").forward(request, response); // Sends the request to the actual operator list jsp file.
 			} catch (DALException e) {
 				request.setAttribute("error", e.getMessage());

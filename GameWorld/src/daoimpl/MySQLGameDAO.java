@@ -17,7 +17,7 @@ public class MySQLGameDAO extends GameIDAO
 
 	public void create(GameDTO row) throws DALException
 	{
-		String create = "INSERT INTO Game(Gid, Gname, Released) VALUES (" + row.getGid() + ", '" + row.getGname() + "', '" + row.getReleased() + "');";
+		String create = "INSERT INTO Game(Gid, Gname, Released, Url) VALUES (" + row.getGid() + ", '" + row.getGname() + "', '" + row.getReleased() + "', '" + row.getUrl() + "');";
 		Connector.doUpdate(create);
 	}
 	public void delete(int Gid) throws DALException
@@ -27,7 +27,7 @@ public class MySQLGameDAO extends GameIDAO
 	}
 	public void update(GameDTO row) throws DALException
 	{
-		String update = "UPDATE Game SET Gid = " + row.getGid() + ", Gname = '" + row.getGname() + "', Released = '" + row.getReleased() + "' WHERE Gid = " + row.getGid() + ";";
+		String update = "UPDATE Game SET Gid = " + row.getGid() + ", Gname = '" + row.getGname() + "', Released = '" + row.getReleased() + "', Url = '" + row.getUrl() + "' WHERE Gid = " + row.getGid() + ";";
 		Connector.doUpdate(update);
 	}
 
@@ -37,7 +37,7 @@ public class MySQLGameDAO extends GameIDAO
 		{
 			ResultSet rs = Connector.doQuery("SELECT * FROM Game WHERE Gid = " + Gid + ";");
 			if(!rs.next()) throw new DALException("Missing entry.");
-			return new GameDTO(rs.getInt("Gid"), rs.getString("Gname"), rs.getString("Released"));
+			return new GameDTO(rs.getInt("Gid"), rs.getString("Gname"), rs.getString("Released"), rs.getString("Url"));
 		}
 		catch(SQLException e){throw new DALException(e);}
 	}
@@ -49,7 +49,7 @@ public class MySQLGameDAO extends GameIDAO
 			List<GameDTO> results = new ArrayList<GameDTO>();
 			ResultSet rs = Connector.doQuery("SELECT * FROM Game ORDER BY Gname;");
 			if(!rs.next()) throw new DALException("Missing table: Game");
-			do results.add(new GameDTO(rs.getInt("Gid"), rs.getString("Gname"), rs.getString("Released")));
+			do results.add(new GameDTO(rs.getInt("Gid"), rs.getString("Gname"), rs.getString("Released"), rs.getString("Url")));
 			while(rs.next());
 			return results;
 		}
