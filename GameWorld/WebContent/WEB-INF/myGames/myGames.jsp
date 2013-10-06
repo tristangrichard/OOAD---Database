@@ -10,48 +10,36 @@
 			<th>Mængde[kg]</th>
 			<th></th>   -->
 		</tr>
-		
 		<%
 		int i = 0;
 		int j = 0;
 		int a = 0;
 		while (j < gameList.size()){
 			a = 0;
-		
 			while (i < gameList.size()) {
-				String name = gameList.get(i).toString();
-				
-		%>
-		<!-- <tr <%if (i % 4 != 0)
-					out.print(" class=\"alt\"");%>> -->
-					
-		<td><%= name %></td>
-		
-		
-		<% 
+				String name = gameList.get(i).toString();	
+			%>
+			<td><%= name %></td>
+			<% 
 			a++;
 			i++;
 			if (a == 6)break;
-		} %>
+			} %>
 		</tr>
 		<tr>
-		<%	
+			<%	
 			a = 0;
 			while (j < gameList.size()) {
 			String url = gameUrl.get(j).toString();	%>
-			<td>	
-			<img alt="" src="<%= url %>" width="100" height="145">
+			<td><img alt="" src="<%= url %>" width="100" height="145">
 			</td>
-			
-
-		<% 
+			<% 
 			a++;
 			j++;
 			if (a == 6)break;
-			}
-		%>
+			}%>
 		</tr>
-		<% } %>
+	<% } %>
 	</table>
 </form>
 <%@include file="footer.jsp"%>

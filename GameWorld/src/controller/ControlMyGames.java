@@ -90,9 +90,17 @@ public class ControlMyGames extends HttpServlet {
 				List<GameDTO> gameList = new ArrayList<GameDTO>(myGames.getMyGames(user.getEmail()));
 				List<String> ga = new ArrayList<String>();
 				List<String> url = new ArrayList<String>();
-				for(GameDTO game: gameList){
+				for(GameDTO game: gameList)
 					ga.add(game.getGname());
-					url.add(game.getUrl());}
+				Collections.sort(ga);
+				for (String name : ga){
+					for(GameDTO game: gameList){
+						if (name.equals(game.getGname())){
+						url.add(game.getUrl());
+						break;
+						}
+					}
+				}
 				request.setAttribute("gameList", ga);
 				request.setAttribute("gameUrl", url);
 				request.getRequestDispatcher("../WEB-INF/myGames/myGames.jsp").forward(request, response); // Sends the request to the actual operator list jsp file.
