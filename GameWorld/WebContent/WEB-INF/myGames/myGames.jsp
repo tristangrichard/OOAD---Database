@@ -6,29 +6,52 @@
 	<!-- This is for creating -->
 	<table class="list">
 		<tr width="100">
-			<th>Title</th><th>Preview</th>
 			<!--  <th>Råvare ID</th>
 			<th>Mængde[kg]</th>
 			<th></th>   -->
 		</tr>
 		
 		<%
-			for (int i = 0; i < gameList.size(); i++) {
+		int i = 0;
+		int j = 0;
+		int a = 0;
+		while (j < gameList.size()){
+			a = 0;
+		
+			while (i < gameList.size()) {
 				String name = gameList.get(i).toString();
-				String url = gameUrl.get(i).toString();
+				
 		%>
-		<tr <%if (i % 2 != 0)
-					out.print(" class=\"alt\"");%>>
+		<!-- <tr <%if (i % 4 != 0)
+					out.print(" class=\"alt\"");%>> -->
 					
 		<td><%= name %></td>
-		<td>	
-		<a href="<%= url %>" class="image" title="<%= name %>">
-		<img alt="<%= name %>" src="<%= url %>" width="100" height="145"></a>
-		</td>
-		</tr> 
+		
+		
 		<% 
+			a++;
+			i++;
+			if (a == 6)break;
+		} %>
+		</tr>
+		<tr>
+		<%	
+			a = 0;
+			while (j < gameList.size()) {
+			String url = gameUrl.get(j).toString();	%>
+			<td>	
+			<img alt="" src="<%= url %>" width="100" height="145">
+			</td>
+			
+
+		<% 
+			a++;
+			j++;
+			if (a == 6)break;
 			}
 		%>
+		</tr>
+		<% } %>
 	</table>
 </form>
 <%@include file="footer.jsp"%>
