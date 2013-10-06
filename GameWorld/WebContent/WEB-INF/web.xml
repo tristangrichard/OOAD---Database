@@ -13,6 +13,10 @@
     <servlet-class>controller.ControlMyGames</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>controlGame</servlet-name>
+    <servlet-class>controller.ControlGame</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>controlLogin</servlet-name>
     <servlet-class>controller.ControlLogin</servlet-class>
   </servlet>
@@ -27,6 +31,10 @@
    <servlet-mapping>
     <servlet-name>controlMyGames</servlet-name>
     <url-pattern>/mygames/*</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>controlGame</servlet-name>
+    <url-pattern>/game/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>controlLogin</servlet-name>
@@ -63,6 +71,18 @@
     </web-resource-collection>
     <auth-constraint>
       <role-name>user</role-name>
+      <role-name>administrator</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <display-name>My Games administration</display-name>
+    <web-resource-collection>
+      <web-resource-name>My Games Controller</web-resource-name>
+      <description>accessible by game and administrator only</description>
+      <url-pattern>/game/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>game</role-name>
       <role-name>administrator</role-name>
     </auth-constraint>
   </security-constraint>

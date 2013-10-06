@@ -2,11 +2,9 @@ package controller;
 
 import java.io.IOException;
 import java.util.*;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
 import daoimpl.MySQLLangDAO;
 import daointerfaces.DALException;
 import daointerfaces.LangIDAO;

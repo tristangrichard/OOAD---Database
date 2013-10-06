@@ -47,7 +47,7 @@ public class MySQLGenreDAO extends GenreIDAO
 		try
 		{
 			List<GenreDTO> results = new ArrayList<GenreDTO>();
-			ResultSet rs = Connector.doQuery("SELECT * FROM Genre;");
+			ResultSet rs = Connector.doQuery("SELECT * FROM Genre ORDER BY Genre;");
 			if(!rs.next()) throw new DALException("Missing table: Genre");
 			do results.add(new GenreDTO(rs.getInt("Genreid"), rs.getString("Genre")));
 			while(rs.next());
