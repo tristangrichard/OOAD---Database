@@ -5,21 +5,19 @@
 <form method="POST" action="index.jsp">
 	<!-- This is for creating -->
 	<table class="list">
-		<tr width="100">
-			<!--  <th>Råvare ID</th>
-			<th>Mængde[kg]</th>
-			<th></th>   -->
-		</tr>
 		<%
 		int i = 0;
 		int j = 0;
 		int a = 0;
 		while (j < gameList.size()){
 			a = 0;
+		%>
+		<tr>
+		<%
 			while (i < gameList.size()) {
 				String name = gameList.get(i).toString();	
 			%>
-			<td><%= name %></td>
+			<td width="115"><%= name %></td>
 			<% 
 			a++;
 			i++;
@@ -31,7 +29,7 @@
 			a = 0;
 			while (j < gameList.size()) {
 			String url = gameUrl.get(j).toString();	%>
-			<td><img alt="" src="<%= url %>" width="100" height="145">
+			<td align="center"><img alt="" src="<%= url %>" width="100" height="145">
 			</td>
 			<% 
 			a++;

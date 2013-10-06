@@ -135,6 +135,8 @@ public class ControlMyGames extends HttpServlet {
 				request.setAttribute("error", errorMessage);
 				request.getRequestDispatcher("index.jsp?action=Add").forward(request, response);
 			}
-		}else {request.getRequestDispatcher("index.jsp").forward(request, response);}
+		}else { 
+				request.getRequestDispatcher("../WEB-INF/myGames/index.jsp?").forward(request, response);
+			}
 	}
 }
