@@ -47,7 +47,7 @@ public class MyGamesLogic implements IMyGamesLogic {
 		for (int i= 0; i< myGames.size(); i++)
 		{
 			int a = myGames.get(i).getGid();
-			games.add(g.get(a));
+			games.add(g.getById(a));
 		}
 		return games;
 		} catch (DALException e){ throw new DALException("You haven't registrered any games yet. Please do so.");}

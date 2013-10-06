@@ -69,24 +69,16 @@ public class ControlCreate extends HttpServlet {
 			}
 		}else if ("userFilled".equals(action)) {
 			// Getting all the details from the filled form.
-			String fName = null;
-			String lName = null;
-			String userBirth = null;
-			String userRole = "user";
-			String userEmail = null;
-			String userSex = null;
-			int sex = 0;
-			String userLang = null;
-			int langu = 0;
 			try {
-				fName = request.getParameter("newFName");
-				lName = request.getParameter("newLName");
-				userBirth = request.getParameter("newUserBirth");
-				userEmail = request.getParameter("newUserEmail");
-				userSex = request.getParameter("newUserSex");
-				sex = Integer.parseInt(userSex);
-				userLang = request.getParameter("newUserLang");
-				langu = Integer.parseInt(userLang);
+				String fName = request.getParameter("newFName");
+				String lName = request.getParameter("newLName");
+				String userBirth = request.getParameter("newUserBirth");
+				String userEmail = request.getParameter("newUserEmail");
+				String userSex = request.getParameter("newUserSex");
+				int sex = Integer.parseInt(userSex);
+				String userLang = request.getParameter("newUserLang");
+				int langu = Integer.parseInt(userLang);
+				String userRole = "user";
 				String pass = userLogic.createUser(fName, lName, userBirth, userRole, userEmail, sex, langu);
 				request.setAttribute("message", "Operator with ID: " + userEmail + " successfully updated. Your password is:"+pass);
 				request.getRequestDispatcher("index.jsp?action=List").forward(request, response);

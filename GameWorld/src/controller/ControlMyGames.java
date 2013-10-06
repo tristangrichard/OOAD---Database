@@ -123,7 +123,7 @@ public class ControlMyGames extends HttpServlet {
 			try {
 				String gameToAdd = (String) request.getParameter("gameToAdd");
 				int g = Integer.parseInt(gameToAdd);
-				GameDTO game = games.get(g);
+				GameDTO game = games.getById(g);
 				UsersGamesDTO userGame = new UsersGamesDTO(user.getEmail(), game.getGid());
 				myGames.addGame(userGame);
 				String message = game.getGname()+" was succesfully added to your list!";

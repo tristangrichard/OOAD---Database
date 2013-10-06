@@ -31,11 +31,21 @@ public class MySQLGameDAO extends GameIDAO
 		Connector.doUpdate(update);
 	}
 
-	public GameDTO get(int Gid) throws DALException
+	public GameDTO getById(int Gid) throws DALException
 	{
 		try
 		{
 			ResultSet rs = Connector.doQuery("SELECT * FROM Game WHERE Gid = " + Gid + ";");
+			if(!rs.next()) throw new DALException("Missing entry.");
+			return new GameDTO(rs.getInt("Gid"), rs.getString("Gname"), rs.getString("Released"), rs.getString("Url"));
+		}
+		catch(SQLException e){throw new DALException(e);}
+	}
+	public GameDTO getByTitle(String Title) throws DALException
+	{
+		try
+		{
+			ResultSet rs = Connector.doQuery("SELECT * FROM Game WHERE Gname = " + Title + ";");
 			if(!rs.next()) throw new DALException("Missing entry.");
 			return new GameDTO(rs.getInt("Gid"), rs.getString("Gname"), rs.getString("Released"), rs.getString("Url"));
 		}

@@ -47,7 +47,7 @@ public class MySQLOSDAO extends OSIDAO
 		try
 		{
 			List<OSDTO> results = new ArrayList<OSDTO>();
-			ResultSet rs = Connector.doQuery("SELECT * FROM OS;");
+			ResultSet rs = Connector.doQuery("SELECT * FROM OS ORDER BY OS;");
 			if(!rs.next()) throw new DALException("Missing table: OS");
 			do results.add(new OSDTO(rs.getInt("OSid"), rs.getString("OS")));
 			while(rs.next());
