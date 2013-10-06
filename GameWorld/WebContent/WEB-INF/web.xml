@@ -13,22 +13,6 @@
     <servlet-class>controller.ControlMyGames</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>controlProduktAdmin</servlet-name>
-    <servlet-class>controller.ControlProduktAdmin</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>controlReceptAdmin</servlet-name>
-    <servlet-class>controller.ControlReceptAdmin</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>controlRaavareAdmin</servlet-name>
-    <servlet-class>controller.ControlRaavareAdmin</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>controlRaavareBatchAdmin</servlet-name>
-    <servlet-class>controller.ControlRaavareBatchAdmin</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>controlLogin</servlet-name>
     <servlet-class>controller.ControlLogin</servlet-class>
   </servlet>
@@ -43,22 +27,6 @@
    <servlet-mapping>
     <servlet-name>controlMyGames</servlet-name>
     <url-pattern>/mygames/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>controlProduktAdmin</servlet-name>
-    <url-pattern>/produkt/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>controlReceptAdmin</servlet-name>
-    <url-pattern>/recept/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>controlRaavareAdmin</servlet-name>
-    <url-pattern>/raavare/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>controlRaavareBatchAdmin</servlet-name>
-    <url-pattern>/raavarebatch/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>controlLogin</servlet-name>
@@ -95,44 +63,7 @@
     </web-resource-collection>
     <auth-constraint>
       <role-name>user</role-name>
-    </auth-constraint>
-  </security-constraint>
-  <security-constraint>
-    <display-name>Raavare administration</display-name>
-    <web-resource-collection>
-      <web-resource-name>Raavare Controller</web-resource-name>
-      <description>accessible by Administrator and Farmaceut</description>
-      <url-pattern>/raavare/*</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
       <role-name>administrator</role-name>
-      <role-name>farmaceut</role-name>
-    </auth-constraint>
-  </security-constraint>
-  <security-constraint>
-    <display-name>Recept administration</display-name>
-    <web-resource-collection>
-      <web-resource-name>Recept controller</web-resource-name>
-      <description>accessible by administrator and farmaceut</description>
-      <url-pattern>/recept/*</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
-      <role-name>administrator</role-name>
-      <role-name>game</role-name>
-    </auth-constraint>
-  </security-constraint>
-  <security-constraint>
-    <display-name>RaavareBatch and produktBatch administration</display-name>
-    <web-resource-collection>
-      <web-resource-name>Raavare and produkt batch administration</web-resource-name>
-      <description>accessible by all beside operator</description>
-      <url-pattern>/raavarebatch/*</url-pattern>
-      <url-pattern>/produkt/*</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
-      <role-name>administrator</role-name>
-      <role-name>game</role-name>
-      <role-name>user</role-name>
     </auth-constraint>
   </security-constraint>
   <security-constraint>

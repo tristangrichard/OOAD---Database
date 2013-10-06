@@ -17,7 +17,7 @@
 			while (i < gameList.size()) {
 				String name = gameList.get(i).toString();	
 			%>
-			<td width="115"><%= name %></td>
+			<td width="115" align="center"><%= name %></td>
 			<% 
 			a++;
 			i++;

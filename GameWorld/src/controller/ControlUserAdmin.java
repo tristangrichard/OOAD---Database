@@ -10,7 +10,6 @@ import javax.servlet.http.*;
 import daoimpl.MySQLLangDAO;
 import daointerfaces.DALException;
 import daointerfaces.LangIDAO;
-import dto.BrugerDTO;
 import dto.LangDTO;
 import dto.UsersDTO;
 import funktionalitet.*;
