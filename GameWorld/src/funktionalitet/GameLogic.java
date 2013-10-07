@@ -88,9 +88,11 @@ public class GameLogic implements IGameLogic {
 				GameLangDTO temp = new GameLangDTO(Gid,j);
 				gaLa.create(temp);
 			}
+			for (String i : os)
+				System.out.println(i);
 			for (String i : os) {
 				int j = Integer.parseInt(i);
-				GameOSDTO temp = new GameOSDTO(Gid,j);
+				GameOSDTO temp = new GameOSDTO(j, Gid);
 				gaOs.create(temp);
 			}
 			return;
