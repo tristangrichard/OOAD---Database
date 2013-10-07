@@ -1,6 +1,7 @@
 <%@include file="header.jsp"%>
 <jsp:useBean id="gameList" class="java.util.ArrayList" scope="request" />
 <jsp:useBean id="gameUrl" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="idList" class="java.util.ArrayList" scope="request" />
 <h1>Our Games</h1>
 <form method="POST" action="index.jsp">
 	<!-- This is for creating -->

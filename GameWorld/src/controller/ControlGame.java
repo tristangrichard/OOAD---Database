@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-
 import daoimpl.MySQLDeveloperDAO;
 import daoimpl.MySQLGenreDAO;
 import daoimpl.MySQLLangDAO;
@@ -144,7 +142,7 @@ public class ControlGame extends HttpServlet {
 				String url = request.getParameter("newUrl");
 				String pub = request.getParameter("newPub");
 				String dev = request.getParameter("newDev");
-				gameLogic.createGame(title, release, url, genre, lang, operating, user.getEmail(), dev, pub);
+				gameLogic.createGame(title, release, url, genre, lang, operating, dev, pub);
 				request.setAttribute("message", title + " was succesfully added to our databse!");
 				request.getRequestDispatcher("../WEB-INF/game/index.jsp?").forward(request, response);
 			}catch (DALException e) {
@@ -157,6 +155,7 @@ public class ControlGame extends HttpServlet {
 				List<GameDTO> gameList = new ArrayList<GameDTO>(gameLogic.listGames(user.getEmail()));
 				List<String> ga = new ArrayList<String>();
 				List<String> url = new ArrayList<String>();
+				List<Integer> Pid = new ArrayList<Integer>();
 				for(GameDTO game: gameList)
 					ga.add(game.getGname());
 				Collections.sort(ga);
@@ -164,10 +163,12 @@ public class ControlGame extends HttpServlet {
 					for(GameDTO game: gameList){
 						if (name.equals(game.getGname())){
 						url.add(game.getUrl());
+						Pid.add(game.getGid());
 						break;
 						}
 					}
 				}
+				request.setAttribute("idList", Pid);
 				request.setAttribute("gameList", ga);
 				request.setAttribute("gameUrl", url);
 				request.getRequestDispatcher("../WEB-INF/game/ourGames.jsp").forward(request, response); // Sends the request to the actual user list jsp file.
@@ -179,7 +180,7 @@ public class ControlGame extends HttpServlet {
 			
 		}
 		else if("Stat".equals(action)){ // Get Stats
-			
+			request.getRequestDispatcher("../WEB-INF/game/index.jsp?").forward(request, response);
 		}
 		
 		else { 

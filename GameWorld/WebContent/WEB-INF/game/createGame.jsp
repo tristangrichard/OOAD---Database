@@ -31,7 +31,9 @@
 	<tr>
 			<td>Release date:</td>
 			<td><input type="text" name="newRelease"
-				value="DD-MM-YYYY"
+				value="<% if (request.getParameter("newUrl") != null)
+				out.print(request.getParameter("newUrl")); 
+				else out.print("DD-MM-YYYY"); %>"
 				onclick="this.select()"></td>
 			<td class="expl"></td>
 		</tr>

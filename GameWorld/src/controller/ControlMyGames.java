@@ -107,7 +107,6 @@ public class ControlMyGames extends HttpServlet {
 			} catch (DALException e) {
 				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("index.jsp?action=Add").forward(request, response);
-
 			}
 		}else if ("Add".equals(action)) { 
 			try {

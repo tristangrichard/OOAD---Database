@@ -16,6 +16,10 @@
     <servlet-name>controlGame</servlet-name>
     <servlet-class>controller.ControlGame</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>controlGenre</servlet-name>
+    <servlet-class>controller.ControlGenre</servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>controlLogin</servlet-name>
     <servlet-class>controller.ControlLogin</servlet-class>
@@ -35,6 +39,10 @@
    <servlet-mapping>
     <servlet-name>controlGame</servlet-name>
     <url-pattern>/game/*</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>controlGenre</servlet-name>
+    <url-pattern>/genre/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>controlLogin</servlet-name>
@@ -83,6 +91,17 @@
     </web-resource-collection>
     <auth-constraint>
       <role-name>game</role-name>
+      <role-name>administrator</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <display-name>Genre administration</display-name>
+    <web-resource-collection>
+      <web-resource-name>Genre Controller</web-resource-name>
+      <description>accessible by administrator only</description>
+      <url-pattern>/genre/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
       <role-name>administrator</role-name>
     </auth-constraint>
   </security-constraint>

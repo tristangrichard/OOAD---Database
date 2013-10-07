@@ -63,13 +63,11 @@ public class GameLogic implements IGameLogic {
 		gaPub = new MySQLUserPubDAO();
 
 	}
-	public void createGame(String title, String release, String url, String[] genre, String[] language, String[] os, String email, String dev, String pub) throws DALException {
+	public void createGame(String title, String release, String url, String[] genre, String[] language, String[] os, String dev, String pub) throws DALException {
 		try{
 			ga.getByTitle(title);
 		}catch (DALException e){
 			String passedUrl = processUrl(url);
-			GameDTO newGame = new GameDTO(0, title, release, passedUrl);
-			ga.create(newGame);
 			gameDTO = ga.getByTitle(title);
 			int Gid = gameDTO.getGid();
 			int tempPub = Integer.parseInt(pub);
@@ -78,6 +76,8 @@ public class GameLogic implements IGameLogic {
 			int tempDev = Integer.parseInt(dev);
 			rowDev = new GameDevDTO(tempDev, Gid);
 			gameDev.create(rowDev);
+			GameDTO newGame = new GameDTO(0, title, release, passedUrl);
+			ga.create(newGame);
 			for (String i : genre) {
 				int j = Integer.parseInt(i);
 				GameGenreDTO temp = new GameGenreDTO(Gid,j);
