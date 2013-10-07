@@ -5,30 +5,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import connector.Connector;
 import daoimpl.MySQLGameDAO;
+import daoimpl.MySQLGameDevDAO;
 import daoimpl.MySQLGameGenreDAO;
 import daoimpl.MySQLGameLangDAO;
 import daoimpl.MySQLGameOSDAO;
 import daoimpl.MySQLGamePubDAO;
 import daoimpl.MySQLUserPubDAO;
-import daoimpl.MySQLUsersGamesDAO;
 import daointerfaces.DALException;
+import daointerfaces.GameDevIDAO;
 import daointerfaces.GameGenreIDAO;
 import daointerfaces.GameIDAO;
 import daointerfaces.GameLangIDAO;
 import daointerfaces.GameOSIDAO;
 import daointerfaces.GamePubIDAO;
 import daointerfaces.UserPubIDAO;
-import daointerfaces.UsersGamesIDAO;
 import dto.GameDTO;
+import dto.GameDevDTO;
 import dto.GameGenreDTO;
 import dto.GameLangDTO;
 import dto.GameOSDTO;
 import dto.GamePubDTO;
 import dto.UserPubDTO;
-import dto.UsersGamesDTO;
 
 public class GameLogic implements IGameLogic {
 
@@ -38,8 +37,10 @@ public class GameLogic implements IGameLogic {
 	private GameGenreIDAO gaGen;
 	private GameOSIDAO gaOs;
 	private GameDTO gameDTO;
-	private GamePubDTO row;
-	private GamePubIDAO myGames;
+	private GamePubDTO rowPub;
+	private GamePubIDAO gamePub;
+	private GameDevDTO rowDev;
+	private GameDevIDAO gameDev;
 
 	public GameLogic() throws DALException {
 		try {
@@ -57,7 +58,8 @@ public class GameLogic implements IGameLogic {
 		gaLa = new MySQLGameLangDAO();
 		gaGen = new MySQLGameGenreDAO();
 		gaOs = new MySQLGameOSDAO();
-		myGames = new MySQLGamePubDAO();
+		gamePub = new MySQLGamePubDAO();
+		gameDev = new MySQLGameDevDAO();
 		gaPub = new MySQLUserPubDAO();
 
 	}
@@ -70,10 +72,12 @@ public class GameLogic implements IGameLogic {
 			ga.create(newGame);
 			gameDTO = ga.getByTitle(title);
 			int Gid = gameDTO.getGid();
-			UserPubDTO pu = gaPub.get(email);
-			int Pid = pu.getPid();
-			row = new GamePubDTO(Pid, Gid);
-			myGames.create(row);
+			int tempPub = Integer.parseInt(pub);
+			rowPub = new GamePubDTO(tempPub, Gid);
+			gamePub.create(rowPub);
+			int tempDev = Integer.parseInt(dev);
+			rowDev = new GameDevDTO(tempDev, Gid);
+			gameDev.create(rowDev);
 			for (String i : genre) {
 				int j = Integer.parseInt(i);
 				GameGenreDTO temp = new GameGenreDTO(Gid,j);
@@ -105,7 +109,7 @@ public class GameLogic implements IGameLogic {
 		int Pid = pub.getPid();
 		try 
 		{
-			ourGames = myGames.getList(Pid);
+			ourGames = gamePub.getList(Pid);
 			for (int i= 0; i< ourGames.size(); i++)
 			{
 				int a = ourGames.get(i).getGid();
