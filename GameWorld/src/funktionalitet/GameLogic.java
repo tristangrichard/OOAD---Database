@@ -53,7 +53,7 @@ public class GameLogic implements IGameLogic {
 		myGames = new MySQLUsersGamesDAO();
 
 	}
-	public void createGame(String title, String release, String url, String[] genre, String[] language, String[] os, String email) throws DALException {
+	public void createGame(String title, String release, String url, String[] genre, String[] language, String[] os, String email, String dev, String pub) throws DALException {
 		try{
 			ga.getByTitle(title);
 		}catch (DALException e){

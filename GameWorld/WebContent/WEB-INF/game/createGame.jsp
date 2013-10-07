@@ -2,9 +2,13 @@
 <jsp:useBean id="langList" class="java.util.ArrayList" scope="request" />
 <jsp:useBean id="genreList" class="java.util.ArrayList" scope="request" />
 <jsp:useBean id="osList" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="devList" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="pubList" class="java.util.ArrayList" scope="request" />
 <%@ page import="dto.LangDTO" %>
 <%@ page import="dto.GenreDTO" %>
 <%@ page import="dto.OSDTO" %>
+<%@ page import="dto.DeveloperDTO" %>
+<%@ page import="dto.PublisherDTO" %>
 
 <h1>Create Game</h1>
 <form method="POST" action="index.jsp">
@@ -48,6 +52,13 @@
 					<option value= <%= l.getLangid() %> ><%= l.getLang() %></option>
 				<%} %>
 			</select></td>
+			<td>Developer:</td>
+			<td><select name="newDev" required>
+			<% for (int i = 0; i< devList.size(); i++) {
+				DeveloperDTO d = (DeveloperDTO) devList.get(i); %>
+					<option value= <%= d.getDid() %> ><%= d.getDeveloper() %></option>
+				<%} %>
+			</select></td>
 		</tr>
 		<tr>
 			<td>Operating System:</td>
@@ -55,6 +66,13 @@
 				<% for (int i = 0; i< osList.size(); i++) {
 				OSDTO o = (OSDTO) osList.get(i); %>
 					<option value= <%= o.getOsid() %> ><%= o.getOs() %></option>
+				<%} %>
+			</select></td>
+			<td>Publisher:</td>
+			<td><select name="newPub" required>
+			<% for (int i = 0; i< pubList.size(); i++) {
+				PublisherDTO p = (PublisherDTO) pubList.get(i); %>
+					<option value= <%= p.getPid() %> ><%= p.getPublisher() %></option>
 				<%} %>
 			</select></td>
 		</tr>

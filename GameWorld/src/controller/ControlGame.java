@@ -9,17 +9,23 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
+import daoimpl.MySQLDeveloperDAO;
 import daoimpl.MySQLGenreDAO;
 import daoimpl.MySQLLangDAO;
 import daoimpl.MySQLOSDAO;
+import daoimpl.MySQLPublisherDAO;
 import daointerfaces.DALException;
+import daointerfaces.DeveloperIDAO;
 import daointerfaces.GenreIDAO;
 import daointerfaces.LangIDAO;
 import daointerfaces.OSIDAO;
+import daointerfaces.PublisherIDAO;
+import dto.DeveloperDTO;
 import dto.GameDTO;
 import dto.GenreDTO;
 import dto.LangDTO;
 import dto.OSDTO;
+import dto.PublisherDTO;
 import dto.UsersDTO;
 import funktionalitet.GameLogic;
 import funktionalitet.IGameLogic;
@@ -30,6 +36,8 @@ public class ControlGame extends HttpServlet {
 
 	private GenreIDAO gen = null;
 	private LangIDAO lan = null;
+	private PublisherIDAO pub = null;
+	private DeveloperIDAO dev = null;
 	private OSIDAO os = null;
 	private IGameLogic  gameLogic = null;
 	private UsersDTO user = null;
@@ -94,7 +102,16 @@ public class ControlGame extends HttpServlet {
 				os = new MySQLOSDAO();
 				application.setAttribute("lan", lan);
 		}
-		
+		dev = (MySQLDeveloperDAO) application.getAttribute("developer"); // Used to get os on website
+		if (dev == null) {
+				dev = new MySQLDeveloperDAO();
+				application.setAttribute("developer", dev);
+		}
+		pub = (MySQLPublisherDAO) application.getAttribute("publisher"); // Used to get os on website
+		if (pub == null) {
+				pub = new MySQLPublisherDAO();
+				application.setAttribute("publisher", pub);
+		}
 		// Getting the action parameter.
 		String action = null;
 		action = request.getParameter("action");
@@ -104,8 +121,12 @@ public class ControlGame extends HttpServlet {
 				List<LangDTO> langList = new ArrayList<LangDTO>(lan.getList());
 				List<GenreDTO> genreList = new ArrayList<GenreDTO>(gen.getList());
 				List<OSDTO> osList = new ArrayList<OSDTO>(os.getList());
+				List<DeveloperDTO> devList = new ArrayList<DeveloperDTO>(dev.getList());
+				List<PublisherDTO> pubList = new ArrayList<PublisherDTO>(pub.getList());
 				request.setAttribute("langList", langList);
 				request.setAttribute("genreList", genreList);
+				request.setAttribute("devList", devList);
+				request.setAttribute("pubList", pubList);
 				request.setAttribute("osList", osList);
 				request.getRequestDispatcher("../WEB-INF/game/createGame.jsp?").forward(request, response);
 			} catch (DALException e) {
@@ -121,7 +142,9 @@ public class ControlGame extends HttpServlet {
 				String title = request.getParameter("newTitle");
 				String release = request.getParameter("newRelease");
 				String url = request.getParameter("newUrl");
-				gameLogic.createGame(title, release, url, genre, lang, operating, user.getEmail());
+				String pub = request.getParameter("newPub");
+				String dev = request.getParameter("newDev");
+				gameLogic.createGame(title, release, url, genre, lang, operating, user.getEmail(), dev, pub);
 				request.setAttribute("message", title + " was succesfully added to our databse!");
 				request.getRequestDispatcher("../WEB-INF/game/index.jsp?").forward(request, response);
 			}catch (DALException e) {
