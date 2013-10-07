@@ -9,7 +9,7 @@ public class UsersDTO
 	private String email;
 	private boolean sex;
 
-	public UsersDTO(String Fname, String Lname, String DOB, String pass, String email, boolean sex)
+	public UsersDTO(String Fname, String Lname, String DOB, String pass, String email, Boolean sex)
 	{
 		this.Fname = Fname;
 		this.Lname = Lname;
@@ -33,8 +33,8 @@ public class UsersDTO
 
 	public String getEmail(){return email;}
 	public void setEmail(String email){this.email = email;}
-
-	public boolean getSex(){return sex;}
-	public void setSex(boolean sex){this.sex = sex;}
+	
+	public Boolean getSex(){return sex;}
+	public void setSex(Boolean sex){this.sex = sex;}
 }
 

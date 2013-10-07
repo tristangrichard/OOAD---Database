@@ -12,7 +12,7 @@ public class UsersLangDTO
 	}
 
 	public String getEmail(){return email;}
-	public void setUid(String email){this.email = email;}
+	public void setEmail(String email){this.email = email;}
 
 	public int getLangid(){return Langid;}
 	public void setLangid(int Langid){this.Langid = Langid;}

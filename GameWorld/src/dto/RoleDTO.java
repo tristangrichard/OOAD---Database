@@ -12,7 +12,7 @@ public class RoleDTO
 	}
 
 	public String getEmail(){return email;}
-	public void setUid(String email){this.email = email;}
+	public void setEmail(String email){this.email = email;}
 
 	public String getRole(){return Role;}
 	public void setRole(String Role){this.Role = Role;}

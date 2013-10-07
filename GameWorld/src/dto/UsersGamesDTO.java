@@ -12,7 +12,7 @@ public class UsersGamesDTO
 	}
 
 	public String getEmail(){return email;}
-	public void setUid(String email){this.email = email;}
+	public void setEmail(String email){this.email = email;}
 
 	public int getGid(){return Gid;}
 	public void setGid(int Gid){this.Gid = Gid;}

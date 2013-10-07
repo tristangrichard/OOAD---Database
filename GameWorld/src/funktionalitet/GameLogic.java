@@ -11,28 +11,35 @@ import daoimpl.MySQLGameDAO;
 import daoimpl.MySQLGameGenreDAO;
 import daoimpl.MySQLGameLangDAO;
 import daoimpl.MySQLGameOSDAO;
+import daoimpl.MySQLGamePubDAO;
+import daoimpl.MySQLUserPubDAO;
 import daoimpl.MySQLUsersGamesDAO;
 import daointerfaces.DALException;
 import daointerfaces.GameGenreIDAO;
 import daointerfaces.GameIDAO;
 import daointerfaces.GameLangIDAO;
 import daointerfaces.GameOSIDAO;
+import daointerfaces.GamePubIDAO;
+import daointerfaces.UserPubIDAO;
 import daointerfaces.UsersGamesIDAO;
 import dto.GameDTO;
 import dto.GameGenreDTO;
 import dto.GameLangDTO;
 import dto.GameOSDTO;
+import dto.GamePubDTO;
+import dto.UserPubDTO;
 import dto.UsersGamesDTO;
 
 public class GameLogic implements IGameLogic {
 
 	private GameIDAO ga;
+	private UserPubIDAO gaPub;
 	private GameLangIDAO gaLa;
 	private GameGenreIDAO gaGen;
 	private GameOSIDAO gaOs;
 	private GameDTO gameDTO;
-	private UsersGamesDTO row;
-	private UsersGamesIDAO myGames;
+	private GamePubDTO row;
+	private GamePubIDAO myGames;
 
 	public GameLogic() throws DALException {
 		try {
@@ -50,7 +57,8 @@ public class GameLogic implements IGameLogic {
 		gaLa = new MySQLGameLangDAO();
 		gaGen = new MySQLGameGenreDAO();
 		gaOs = new MySQLGameOSDAO();
-		myGames = new MySQLUsersGamesDAO();
+		myGames = new MySQLGamePubDAO();
+		gaPub = new MySQLUserPubDAO();
 
 	}
 	public void createGame(String title, String release, String url, String[] genre, String[] language, String[] os, String email, String dev, String pub) throws DALException {
@@ -62,7 +70,9 @@ public class GameLogic implements IGameLogic {
 			ga.create(newGame);
 			gameDTO = ga.getByTitle(title);
 			int Gid = gameDTO.getGid();
-			row = new UsersGamesDTO(email, Gid);
+			UserPubDTO pu = gaPub.get(email);
+			int Pid = pu.getPid();
+			row = new GamePubDTO(Pid, Gid);
 			myGames.create(row);
 			for (String i : genre) {
 				int j = Integer.parseInt(i);
@@ -89,11 +99,13 @@ public class GameLogic implements IGameLogic {
 
 	}
 	public List<GameDTO> listGames(String email) throws DALException {
-		List<UsersGamesDTO> ourGames = new ArrayList<UsersGamesDTO>();
+		List<GamePubDTO> ourGames = new ArrayList<GamePubDTO>();
 		List<GameDTO> games = new ArrayList<GameDTO>();
+		UserPubDTO pub = gaPub.get(email);
+		int Pid = pub.getPid();
 		try 
 		{
-			ourGames = myGames.getListbyEmail(email);
+			ourGames = myGames.getList(Pid);
 			for (int i= 0; i< ourGames.size(); i++)
 			{
 				int a = ourGames.get(i).getGid();
