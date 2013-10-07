@@ -45,7 +45,7 @@ public class MySQLGameDAO extends GameIDAO
 	{
 		try
 		{
-			ResultSet rs = Connector.doQuery("SELECT * FROM Game WHERE Gname = " + Title + ";");
+			ResultSet rs = Connector.doQuery("SELECT * FROM Game WHERE Gname = '" + Title + "';");
 			if(!rs.next()) throw new DALException("Missing entry.");
 			return new GameDTO(rs.getInt("Gid"), rs.getString("Gname"), rs.getString("Released"), rs.getString("Url"));
 		}
