@@ -21,14 +21,10 @@
 			</div>
 		</div>
 	</div>
-	<div id="container">
 
-		<div id="navigation">
+
 			<!-- Site navigation menu -->
 			<ul class="navbar">
-				<li><a href="../index.jsp">Cancel</a>
-				<hr><li><a href="../login/index.jsp">Login</a>
+				<li><a class="btn btn-large btn-success" href="../index.jsp">Cancel >></a>
+				<li><a class="btn btn-large btn-success"href="../login/index.jsp">Login >></a>
 			</ul>
-		</div>
-		<div id="main">
-			<!-- Main content -->
