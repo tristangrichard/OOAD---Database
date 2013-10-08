@@ -47,7 +47,6 @@ public class UserLogic implements IUserLogic{
 
 	@Override
 	public String createUser(String fName, String lName, String birth, String role, String temail, int sex, int lang) throws DALException {
-
 		try {
 			o.get(temail);
 			}catch(DALException e)

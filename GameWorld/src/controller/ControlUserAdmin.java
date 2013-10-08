@@ -2,13 +2,19 @@ package controller;
 
 import java.io.IOException;
 import java.util.*;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+
 import daoimpl.MySQLLangDAO;
+import daoimpl.MySQLPublisherDAO;
 import daointerfaces.DALException;
 import daointerfaces.LangIDAO;
+import daointerfaces.PublisherIDAO;
 import dto.LangDTO;
+import dto.PublisherDTO;
+import dto.UserPubDTO;
 import dto.UsersDTO;
 import funktionalitet.*;
 
@@ -16,8 +22,10 @@ import funktionalitet.*;
 public class ControlUserAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IUserLogic userLogic = null;
+	private IUserPubLogic userPubLogic = null;
 	private UsersDTO user = null;
 	private LangIDAO lang = null;
+	private PublisherIDAO pub = null;
 
 	public ControlUserAdmin() {
 		super();
@@ -48,11 +56,26 @@ public class ControlUserAdmin extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 			}
 		}
-		
+		userPubLogic = (UserPubLogic) application.getAttribute("userPubLogic");
+		if (userPubLogic == null) {
+			try {
+				userPubLogic = new UserPubLogic();
+				application.setAttribute("userPubLogic", userPubLogic);
+			} catch (DALException e) {
+				e.printStackTrace();
+				request.setAttribute("error", e.getMessage());
+			}
+		}
 		lang = (LangIDAO) application.getAttribute("language");
 		if (lang == null) {
 			lang = new MySQLLangDAO();
 			application.setAttribute("language", lang);
+		}
+		
+		pub = (PublisherIDAO) application.getAttribute("publisher");
+		if (pub == null) {
+			pub = new MySQLPublisherDAO();
+			application.setAttribute("publisher", pub);
 		}
 
 		// Create user bean if not already existing.
@@ -72,37 +95,66 @@ public class ControlUserAdmin extends HttpServlet {
 		String action = null;
 		action = request.getParameter("action");
 
-		// All actions are done below.
-		// Action: View operator list.
-		// Redirects to oprList.jsp.
-//		if ("oprList".equals(action)) { 
-//			try {
-//				List<BrugerDTO> oprList = userLogic.getOperatoerList(); // Get the operator list.
-//				request.setAttribute("oprList", oprList); // Assign the operator list to request attribute oprList.
-//				request.getRequestDispatcher("../WEB-INF/opr/oprList.jsp?").forward(request, response); // Sends the request to the actual operator list jsp file.
-//			} catch (DALException e) {
-//				e.printStackTrace();
-//				request.setAttribute("error", e.getMessage());
-//				request.getRequestDispatcher("../WEB-INF/opr/index.jsp?").forward(request, response);
-//			}
-//		} 
-		// Action: Create Operator
-		// Redirects to createOpr.jsp.
-		if ("AddPub".equals(action)) { // Creation of a new operator.
+		// Redirects to createPublisher JSP
+		if ("createPublisher".equals(action)) { // Creation of a new operator.
+			List<PublisherDTO> pubList;
 			List<LangDTO> langList;
 			try {
+				pubList = pub.getList();
 				langList = lang.getList();
+				request.setAttribute("pubList", pubList);
 				request.setAttribute("langList", langList);
-				request.getRequestDispatcher("../WEB-INF/admin/createOpr.jsp?").forward(request, response); 
+				request.getRequestDispatcher("../WEB-INF/admin/createPublisher.jsp?").forward(request, response); 
 			} catch (DALException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				request.setAttribute("error", e.getMessage());
+				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
 			}
 			// Sends the request back to the create operator jsp file if an error is detected.
 		} 
 		// Action: Showing the update operator form.
 		// Redirects to updateOpr.jsp.
-//		else if ("updateOpr".equals(action)) { 
+		else if ("publisherFilled".equals(action)) { 
+			try {
+				String fName = request.getParameter("newFName");
+				String lName = request.getParameter("newLName");
+				String email = request.getParameter("newUserEmail");
+				String birth = request.getParameter("newUserBirth");
+				String sex = request.getParameter("newUserSex");
+				String lang = request.getParameter("newUserLang");
+				String company = request.getParameter("newPub");
+				String role = "game";
+				int tsex = Integer.parseInt(sex);
+				int tlang = Integer.parseInt(lang);
+				int tcompany = Integer.parseInt(company);
+				userLogic.createUser(fName, lName, birth, role, email, tsex, tlang);
+				userPubLogic.createUserPub(email, tcompany);
+				request.setAttribute("message", fName + " was succesfully added to the database");
+				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
+			}catch (DALException e) {
+				request.setAttribute("error", e.getMessage());
+				request.getRequestDispatcher("../WEB-INF/admin/createPublisher.jsp?").forward(request, response);
+			}
+			
+		} else if ("listPublisher".equals(action)) {
+			try {
+				List<UserPubDTO> userPubList = userPubLogic.getList();
+				List<UsersDTO> users = new ArrayList<UsersDTO>();
+				List<PublisherDTO> comp = new ArrayList<PublisherDTO>();
+				for (UserPubDTO i: userPubList) {
+					users.add(userLogic.getUser(i.getEmail()));
+					comp.add(userPubLogic.getPub(i.getPid()));
+				}
+				request.setAttribute("userList", users);
+				request.setAttribute("compList", comp);
+				request.getRequestDispatcher("../WEB-INF/admin/publisherList.jsp?").forward(request, response);
+			} catch (DALException e) {
+				request.setAttribute("error", e.getMessage());
+				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
+			}
+			
+		}
+			
+		
 //			int oprIDToUpdate =  0;
 //			// Setting the oprToUpdate to the current operator if no operator has been selected.
 //			if (request.getParameter("oprIDToUpdate") == null) {

@@ -1,8 +1,9 @@
 <%@include file="header.jsp"%>
-<jsp:useBean id="langList" class="java.util.ArrayList"
-	scope="request" />
+<jsp:useBean id="langList" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="pubList" class="java.util.ArrayList" scope="request" />
 <%@ page import="dto.LangDTO" %>
-<h1>Create User</h1>
+<%@ page import="dto.PublisherDTO" %>
+<h1>Create Publisher</h1>
 <form method="POST" action="index.jsp">
 	<!-- This is for creating -->
 	<table>
@@ -46,11 +47,18 @@
 					<option value= <%= l.getLangid() %> ><%= l.getLang() %></option>
 				<%} %>
 			</select></td>
+			<td>Company:</td>
+			<td><select name="newPub" required>
+			<% for (int i = 0; i< pubList.size(); i++) {
+				PublisherDTO p = (PublisherDTO) pubList.get(i); %>
+					<option value= <%= p.getPid() %> ><%= p.getPublisher() %></option>
+				<%} %>
+			</select></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="right"><input type="hidden" name="action"
-				value="userFilled"><input type="submit"
-				value="Create User"></td>
+				value="publisherFilled"><input type="submit"
+				value="Create Publisher"></td>
 			<td></td>
 		</tr>
 	</table>
