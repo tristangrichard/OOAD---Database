@@ -3,7 +3,7 @@
 <jsp:useBean id="pubList" class="java.util.ArrayList" scope="request" />
 <%@ page import="dto.LangDTO" %>
 <%@ page import="dto.PublisherDTO" %>
-<h1>Create Publisher</h1>
+<h1>Add Publisher</h1>
 <form method="POST" action="index.jsp">
 	<!-- This is for creating -->
 	<table>

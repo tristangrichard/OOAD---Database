@@ -30,6 +30,7 @@
 				<hr>
 				<li><a href="index.jsp?action=createPublisher">Add Publisher</a>
 				<li><a href="index.jsp?action=listPublisher">List Publisher</a>
+				<li><a href="index.jsp?action=listUsers">List Users</a>
 				<hr>
 				<li><a href="../login/logout.jsp">Logout</a>
 			</ul>

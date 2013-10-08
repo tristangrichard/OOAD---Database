@@ -31,11 +31,11 @@ public class MySQLUsersLangDAO extends UsersLangIDAO
 		Connector.doUpdate(update);
 	}
 
-	public UsersLangDTO get(int Uid, int Langid) throws DALException
+	public UsersLangDTO get(String email) throws DALException
 	{
 		try
 		{
-			ResultSet rs = Connector.doQuery("SELECT * FROM UsersLang WHERE Uid = " + Uid + " AND Langid = " + Langid + ";");
+			ResultSet rs = Connector.doQuery("SELECT * FROM UsersLang WHERE email = '" + email + " ';");
 			if(!rs.next()) throw new DALException("Missing entry.");
 			return new UsersLangDTO(rs.getString("email"), rs.getInt("Langid"));
 		}

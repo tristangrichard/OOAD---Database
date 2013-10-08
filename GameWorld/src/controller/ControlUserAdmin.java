@@ -9,13 +9,19 @@ import javax.servlet.http.*;
 
 import daoimpl.MySQLLangDAO;
 import daoimpl.MySQLPublisherDAO;
+import daoimpl.MySQLRoleDAO;
+import daoimpl.MySQLUsersLangDAO;
 import daointerfaces.DALException;
 import daointerfaces.LangIDAO;
 import daointerfaces.PublisherIDAO;
+import daointerfaces.RoleIDAO;
+import daointerfaces.UsersLangIDAO;
 import dto.LangDTO;
 import dto.PublisherDTO;
+import dto.RoleDTO;
 import dto.UserPubDTO;
 import dto.UsersDTO;
+import dto.UsersLangDTO;
 import funktionalitet.*;
 
 @WebServlet("/control")
@@ -26,6 +32,8 @@ public class ControlUserAdmin extends HttpServlet {
 	private UsersDTO user = null;
 	private LangIDAO lang = null;
 	private PublisherIDAO pub = null;
+	private UsersLangIDAO userLang = null;
+	private RoleIDAO userRole = null;
 
 	public ControlUserAdmin() {
 		super();
@@ -71,11 +79,21 @@ public class ControlUserAdmin extends HttpServlet {
 			lang = new MySQLLangDAO();
 			application.setAttribute("language", lang);
 		}
+		userLang = (UsersLangIDAO) application.getAttribute("userlanguage");
+		if (userLang == null) {
+			userLang = new MySQLUsersLangDAO();
+			application.setAttribute("userlanguage", userLang);
+		}
 		
 		pub = (PublisherIDAO) application.getAttribute("publisher");
 		if (pub == null) {
 			pub = new MySQLPublisherDAO();
 			application.setAttribute("publisher", pub);
+		}
+		userRole = (RoleIDAO) application.getAttribute("role");
+		if (userRole == null) {
+			userRole = new MySQLRoleDAO();
+			application.setAttribute("role", userRole);
 		}
 
 		// Create user bean if not already existing.
@@ -152,8 +170,58 @@ public class ControlUserAdmin extends HttpServlet {
 				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
 			}
 			
-		}
-			
+		} else if ("listUsers".equals(action)) {
+			try {
+				List<UsersDTO> userList = userLogic.getUserList();
+				request.setAttribute("userList", userList);
+				request.getRequestDispatcher("../WEB-INF/admin/userList.jsp?").forward(request, response);
+			} catch (DALException e) {
+				request.setAttribute("error", e.getMessage());
+				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
+			}
+		} else if ("updateUser".equals(action)) {
+			try {
+				String userEmail = request.getParameter("userToUpdate");
+				UsersDTO user1 = userLogic.getUser(userEmail);
+				UsersLangDTO userLangRow = userLang.get(userEmail);
+				List<LangDTO> langu = lang.getList();
+				RoleDTO role = userRole.get(userEmail);
+				request.setAttribute("role", role);
+				request.setAttribute("userLang", userLangRow);
+				request.setAttribute("langList", langu);
+				request.setAttribute("user1", user1);
+				request.getRequestDispatcher("../WEB-INF/admin/updateUser.jsp?").forward(request, response);
+			} catch (DALException e) {
+				request.setAttribute("error", e.getMessage());
+				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
+			}
+		} else if ("updateOprFilled".equals(action)) {
+			// Getting all the details from the filled form.
+			try {
+				String fName = request.getParameter("newFName");
+				String lName = request.getParameter("newLName");
+				String email = request.getParameter("newUserEmail");
+				String birth = request.getParameter("newUserBirth");
+				String sex = request.getParameter("newUserSex");
+				String lang = request.getParameter("newUserLang");
+				String role = request.getParameter("newUserRole");
+				String pass1 = request.getParameter("updOprPass1");
+				String pass2 = request.getParameter("updOprPass2");
+				int iSex = Integer.parseInt(sex);
+				int iLang = Integer.parseInt(lang);	
+				userLogic.updateOprAdmin(fName, lName, birth, email, iSex, iLang, role, pass1, pass2);
+				request.setAttribute("message", "User with email: " + email + " successfully updated.");
+				request.getRequestDispatcher("index.jsp?action=oprList").forward(request, response);
+			} catch (DALException e) {
+				e.printStackTrace();
+				request.setAttribute("error", e.getMessage());
+				request.getRequestDispatcher("index.jsp?action=updateOpr").forward(request, response);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				request.setAttribute("error", "Attribute oprIDToUpdate could not be parsed as an integer.");
+				request.getRequestDispatcher("index.jsp?action=updateOpr").forward(request, response);
+			}
+		} 
 		
 //			int oprIDToUpdate =  0;
 //			// Setting the oprToUpdate to the current operator if no operator has been selected.

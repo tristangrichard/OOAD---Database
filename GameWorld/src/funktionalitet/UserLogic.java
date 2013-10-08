@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 import connector.Connector;
 
 public class UserLogic implements IUserLogic{	
@@ -16,6 +15,7 @@ public class UserLogic implements IUserLogic{
 	private UsersDTO user;
 	private UsersLangIDAO l;
 	private RoleIDAO r;
+	private RoleDTO newRole;
 
 	public UserLogic() throws DALException {
 		try {
@@ -51,11 +51,9 @@ public class UserLogic implements IUserLogic{
 			o.get(temail);
 			}catch(DALException e)
 			{
-				String DOB = processCPR(birth);
+				String DOB = processBirth(birth);
 				String email = processEmail(temail);
-				Boolean bSex = false;
-				if (sex == 1)
-					bSex = true;
+				Boolean bSex = getSex(sex);
 				String newPass;
 				do {
 					newPass = createPass();
@@ -75,27 +73,26 @@ public class UserLogic implements IUserLogic{
 	}
 
 	@Override
-	public void updateOpr(int oprID, String oprName, String cpr, String oldPassword, String newPassword, String newPassword2, String newRolle) throws DALException {
-		String email = null;
+	public void updateOpr(String fName, String lName, String birth, String email, int sex, int lang, String oldPassword, String newPassword, String newPassword2) throws DALException {
 		try {
 			user = o.get(email);
 		} catch (DALException e) {
-			throw new DALException("The specified operator does not exist.");
+			throw new DALException("The specified user does not exist.");
 		}
 		if (!(user.getPass().equals(oldPassword))) { // eventuelt exception handling
 			throw new DALException("Old password is not correct.");
 		}
-		updateOprAdmin(oprID, oprName, cpr, newPassword, newPassword2, newRolle);
+		RoleDTO role = r.get(email);
+		updateOprAdmin(fName, lName, birth, email, sex, lang, role.getRole(), newPassword, newPassword2);
 	}
 
 	@Override
-	public void updateOprAdmin(int oprID, String oprName, String cpr, String newPassword, String newPassword2, String newRolle) throws DALException {
-		String email = null;
+	public void updateOprAdmin(String fName, String lName, String birth, String email, int sex, int lang, String role, String newPassword, String newPassword2) throws DALException {
 		try {
 			user = o.get(email);
 		}
 		catch (DALException e) {
-			throw new DALException("The specified operator does not exist.");
+			throw new DALException("The specified user does not exist.");
 		}
 		if (newPassword.equals("")) {
 			newPassword = user.getPass();
@@ -103,10 +100,13 @@ public class UserLogic implements IUserLogic{
 		}
 		if (newPassword.equals(newPassword2)) {
 			if (controlPassword(newPassword)) {
-				cpr = processCPR(cpr);
-				String ini = initGen(oprName);
-//				UsersDTO opr = new BrugerDTO(oprID, oprName, ini, cpr, newPassword, newRolle);
-//				o.update(opr);
+				email = processEmail(email);
+				birth = processBirth(birth);
+				Boolean bSex = getSex(sex);
+				UsersDTO user = new UsersDTO(fName, lName, birth, newPassword, email, bSex);
+				o.update(user);
+				newRole = new RoleDTO(email,role);
+				r.update(newRole);
 			} else {
 				throw new DALException("The new password is invalid.");
 			}
@@ -128,7 +128,7 @@ public class UserLogic implements IUserLogic{
 	}
 
 	@Override
-	public List<UsersDTO> getOperatoerList() throws DALException {
+	public List<UsersDTO> getUserList() throws DALException {
 		return o.getList();
 	}
 
@@ -142,7 +142,7 @@ public class UserLogic implements IUserLogic{
 		return Pass;
 	}
 
-	private String processCPR(String birth) throws DALException {
+	private String processBirth(String birth) throws DALException {
 		String tempbirth = null;
 		Pattern pBirth = Pattern.compile("\\d{2}-\\d{2}-\\d{4}");
 		Matcher m = pBirth.matcher(birth);
@@ -187,4 +187,14 @@ public class UserLogic implements IUserLogic{
 		}
 		return ini;
 	}
+	private boolean getSex(int sex){
+		Boolean bSex = false;
+		if (sex == 1)
+			bSex = true;
+		return bSex;
+	}
+
+
+
+
 }

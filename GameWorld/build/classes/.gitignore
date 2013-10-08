@@ -1,7 +1,5 @@
-/connector
-/daoimpl
-/Test
-/funktionalitet
 /controller
+/daoimpl
 /daointerfaces
 /dto
+/funktionalitet

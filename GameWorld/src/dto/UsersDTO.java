@@ -18,6 +18,9 @@ public class UsersDTO
 		this.email = email;
 		this.sex = sex;
 	}
+	public UsersDTO() {
+		super();
+	}
 
 	public String getFname(){return Fname;}
 	public void setFname(String Fname){this.Fname = Fname;}

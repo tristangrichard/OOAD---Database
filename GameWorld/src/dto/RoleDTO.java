@@ -10,7 +10,8 @@ public class RoleDTO
 		this.email = email;
 		this.Role = Role;
 	}
-
+	public RoleDTO() {}
+	
 	public String getEmail(){return email;}
 	public void setEmail(String email){this.email = email;}
 

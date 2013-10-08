@@ -20,22 +20,22 @@ public class MySQLRoleDAO extends RoleIDAO
 		String create = "INSERT INTO Role(email, Role) VALUES ('" + row.getEmail() + "', '" + row.getRole() + "');";
 		Connector.doUpdate(create);
 	}
-	public void delete(int Uid) throws DALException
+	public void delete(String email) throws DALException
 	{
-		String delete = "DELETE FROM Role WHERE Uid = " + Uid + ";";
+		String delete = "DELETE FROM Role WHERE email = '" + email + "';";
 		Connector.doUpdate(delete);
 	}
 	public void update(RoleDTO row) throws DALException
 	{
-		String update = "UPDATE Role SET Uid = " + row.getEmail() + ", Role = '" + row.getRole() + "' WHERE email = " + row.getEmail() + ";";
+		String update = "UPDATE Role SET email = '" + row.getEmail() + "', Role = '" + row.getRole() + "' WHERE email = '" + row.getEmail() + "';";
 		Connector.doUpdate(update);
 	}
 
-	public RoleDTO get(int Uid) throws DALException
+	public RoleDTO get(String email) throws DALException
 	{
 		try
 		{
-			ResultSet rs = Connector.doQuery("SELECT * FROM Role WHERE Uid = " + Uid + ";");
+			ResultSet rs = Connector.doQuery("SELECT * FROM Role WHERE email = '" + email + "';");
 			if(!rs.next()) throw new DALException("Missing entry.");
 			return new RoleDTO(rs.getString("email"), rs.getString("Role"));
 		}
