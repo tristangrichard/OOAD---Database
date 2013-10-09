@@ -2,21 +2,35 @@
 <jsp:useBean id="gameList" class="java.util.ArrayList" scope="request" />
 <%@ page import="dto.GameDTO"%>
 <h1>Add new game</h1>
+<script>
+	function confirmComplete() {
+		var answer = confirm("Are you sure you want to add this game?");
+		if (answer == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
 <form method="POST" action="index.jsp">
 	<!-- This is for creating -->
 	<table>
 		<td>Select game</td>
 		<td><select name="gameToAdd">
-				<% for (int i = 0; i< gameList.size(); i++) {
-				GameDTO g = (GameDTO) gameList.get(i); %>
-				<option value=<%= g.getGid() %>><%= g.getGname() %></option>
-				<%} %>
-			</select>
-		</td>
+				<%
+					for (int i = 0; i < gameList.size(); i++) {
+						GameDTO g = (GameDTO) gameList.get(i);
+				%>
+				<option value=<%=g.getGid()%>><%=g.getGname()%></option>
+				<%
+					}
+				%>
+		</select></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="right"><input type="hidden" name="action"
-				value="gameToAdd"><input type="submit" value="Add Game"></td>
+				value="gameToAdd"><input type="submit" value="Add Game"
+				onclick="{return confirmComplete();}"></td>
 			<td></td>
 		</tr>
 	</table>

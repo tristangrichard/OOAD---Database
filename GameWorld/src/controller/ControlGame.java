@@ -174,7 +174,7 @@ public class ControlGame extends HttpServlet {
 				request.getRequestDispatcher("../WEB-INF/game/ourGames.jsp").forward(request, response); // Sends the request to the actual user list jsp file.
 			} catch (DALException e) {
 				request.setAttribute("error", e.getMessage());
-				request.getRequestDispatcher("index.jsp").forward(request, response);
+				request.getRequestDispatcher("../WEB-INF/game/index.jsp?").forward(request, response);
 
 			}
 			
