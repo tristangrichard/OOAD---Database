@@ -180,6 +180,11 @@ public class ControlUserAdmin extends HttpServlet {
 		} else if ("listUsers".equals(action)) {
 			try {
 				List<UsersDTO> userList = userLogic.getUserList();
+				List<String> roles = new ArrayList<String>();
+				for (UsersDTO i: userList) {
+					roles.add(userRole.get(i.getEmail()).getRole());
+				}
+				request.setAttribute("roles", roles);
 				request.setAttribute("userList", userList);
 				request.getRequestDispatcher("../WEB-INF/admin/userList.jsp?").forward(request, response);
 			} catch (DALException e) {
@@ -239,7 +244,17 @@ public class ControlUserAdmin extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("index.jsp?action=updateOpr").forward(request, response);
 			}
-		} 
+		} else if ("deactivateUser".equals(action)) {
+			String userEmail =request.getParameter("userToDeactivate");
+			try {
+				userLogic.deactivateUser(userEmail);
+				request.setAttribute("message", userEmail + " was succesfully deactivated");
+				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
+			} catch (DALException e) {
+				request.setAttribute("error", userEmail + " did not get deactivated");
+				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
+			}
+		}
 
 		//			int oprIDToUpdate =  0;
 		//			// Setting the oprToUpdate to the current operator if no operator has been selected.

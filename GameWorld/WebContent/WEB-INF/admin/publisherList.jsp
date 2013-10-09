@@ -10,7 +10,9 @@
 	<% for (int i = 0; i< userList.size(); i++) {
 		UsersDTO user = (UsersDTO) userList.get(i);
 		PublisherDTO comp = (PublisherDTO) compList.get(i); %>
-		<tr><td> <%= user.getFname()+" "+user.getLname() %></td><td> <%= comp.getPublisher() %></td></tr>
+		<tr><td> <%= user.getFname()+" "+user.getLname() %></td><td> <%= comp.getPublisher() %></td>
+		<td><a href="index.jsp?action=updateUser&amp;userToUpdate=<%= user.getEmail() %>">Edit</a></td>
+		</tr>
 		<%}%>
 	</table>
 </form>

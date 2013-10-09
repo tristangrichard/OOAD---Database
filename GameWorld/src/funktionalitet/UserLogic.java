@@ -146,14 +146,10 @@ public class UserLogic implements IUserLogic{
 	}
 
 	@Override
-	public void deleteOpr(int currentUser, int oprID) throws DALException {
-		String email = null;
-		if (isAdmin(currentUser) && !isAdmin(oprID)) {
-			UsersDTO opr = o.get(email);
-		//	opr.setRole("inaktiv");
-		//	o.update(opr);
-		} else {
-			throw new DALException("Operator could not be deleted.");
+	public void deactivateUser(String email) throws DALException {
+		newRole = new RoleDTO(email,"inactive");
+		if (true) {
+			r.update(newRole);
 		}
 	}
 
