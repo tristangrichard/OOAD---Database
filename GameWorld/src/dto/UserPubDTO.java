@@ -10,6 +10,7 @@ public class UserPubDTO
 		this.email = email;
 		this.Pid = Pid;
 	}
+	public UserPubDTO(){}
 
 	public String getEmail(){return email;}
 	public void setEmail(String email){this.email = email;}

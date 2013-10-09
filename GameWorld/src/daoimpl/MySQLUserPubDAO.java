@@ -27,7 +27,7 @@ public class MySQLUserPubDAO extends UserPubIDAO
 	}
 	public void update(UserPubDTO row) throws DALException
 	{
-		String update = "UPDATE UserPub SET email = '" + row.getEmail() + "', Pid = " + row.getPid() + " WHERE email = '" + row.getEmail() + "' AND Pid = " + row.getPid() + ";";
+		String update = "UPDATE UserPub SET email = '" + row.getEmail() + "', Pid = " + row.getPid() + " WHERE email = '" + row.getEmail() + "';";
 		Connector.doUpdate(update);
 	}
 

@@ -16,6 +16,8 @@ public class UserLogic implements IUserLogic{
 	private UsersLangIDAO l;
 	private RoleIDAO r;
 	private RoleDTO newRole;
+	private UserPubDTO userPub;
+	private UserPubIDAO p;
 
 	public UserLogic() throws DALException {
 		try {
@@ -32,6 +34,7 @@ public class UserLogic implements IUserLogic{
 		o = new MySQLUsersDAO();
 		l = new MySQLUsersLangDAO();
 		r = new MySQLRoleDAO();
+		p = new MySQLUserPubDAO();
 
 	}
 	
@@ -107,6 +110,33 @@ public class UserLogic implements IUserLogic{
 				o.update(user);
 				newRole = new RoleDTO(email,role);
 				r.update(newRole);
+			} else {
+				throw new DALException("The new password is invalid.");
+			}
+		} else {
+			throw new DALException("The two passwords do not match.");
+		}
+	}
+	public void updatePubAdmin(String fName, String lName, String birth, String email, int sex, int lang, String role, String newPassword, String newPassword2, int Pid) throws DALException {
+		try {
+			user = o.get(email);
+		}
+		catch (DALException e) {
+			throw new DALException("The specified user does not exist.");
+		}
+		if (newPassword.equals("")) {
+			newPassword = user.getPass();
+			newPassword2 = user.getPass();
+		}
+		if (newPassword.equals(newPassword2)) {
+			if (controlPassword(newPassword)) {
+				email = processEmail(email);
+				birth = processBirth(birth);
+				Boolean bSex = getSex(sex);
+				UsersDTO user = new UsersDTO(fName, lName, birth, newPassword, email, bSex);
+				o.update(user);
+				userPub = new UserPubDTO(email, Pid);
+				p.update(userPub);
 			} else {
 				throw new DALException("The new password is invalid.");
 			}
