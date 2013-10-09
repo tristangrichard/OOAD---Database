@@ -3,6 +3,7 @@ package funktionalitet;
 import daoimpl.*;
 import daointerfaces.*;
 import dto.*;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -76,7 +77,7 @@ public class UserLogic implements IUserLogic{
 	}
 
 	@Override
-	public void updateOpr(String fName, String lName, String birth, String email, int sex, int lang, String oldPassword, String newPassword, String newPassword2) throws DALException {
+	public void updateOpr(String fName, String lName, String birth, String oldEmail, String email, int sex, int lang, String oldPassword, String newPassword, String newPassword2) throws DALException {
 		try {
 			user = o.get(email);
 		} catch (DALException e) {
@@ -86,13 +87,13 @@ public class UserLogic implements IUserLogic{
 			throw new DALException("Old password is not correct.");
 		}
 		RoleDTO role = r.get(email);
-		updateOprAdmin(fName, lName, birth, email, sex, lang, role.getRole(), newPassword, newPassword2);
+		updateOprAdmin(fName, lName, birth,oldEmail, email, sex, lang, role.getRole(), newPassword, newPassword2);
 	}
 
 	@Override
-	public void updateOprAdmin(String fName, String lName, String birth, String email, int sex, int lang, String role, String newPassword, String newPassword2) throws DALException {
+	public void updateOprAdmin(String fName, String lName, String birth,String oldEmail, String email, int sex, int lang, String role, String newPassword, String newPassword2) throws DALException {
 		try {
-			user = o.get(email);
+			user = o.get(oldEmail);
 		}
 		catch (DALException e) {
 			throw new DALException("The specified user does not exist.");
@@ -107,7 +108,7 @@ public class UserLogic implements IUserLogic{
 				birth = processBirth(birth);
 				Boolean bSex = getSex(sex);
 				UsersDTO user = new UsersDTO(fName, lName, birth, newPassword, email, bSex);
-				o.update(user);
+				o.update(oldEmail, user);
 				newRole = new RoleDTO(email,role);
 				r.update(newRole);
 			} else {
@@ -117,9 +118,9 @@ public class UserLogic implements IUserLogic{
 			throw new DALException("The two passwords do not match.");
 		}
 	}
-	public void updatePubAdmin(String fName, String lName, String birth, String email, int sex, int lang, String role, String newPassword, String newPassword2, int Pid) throws DALException {
+	public void updatePubAdmin(String fName, String lName, String birth, String oldEmail, String email, int sex, int lang, String role, String newPassword, String newPassword2, int Pid) throws DALException {
 		try {
-			user = o.get(email);
+			user = o.get(oldEmail);
 		}
 		catch (DALException e) {
 			throw new DALException("The specified user does not exist.");
@@ -134,8 +135,8 @@ public class UserLogic implements IUserLogic{
 				birth = processBirth(birth);
 				Boolean bSex = getSex(sex);
 				UsersDTO user = new UsersDTO(fName, lName, birth, newPassword, email, bSex);
-				o.update(user);
-				userPub = new UserPubDTO(email, Pid);
+				o.update(oldEmail,user);
+				userPub = new UserPubDTO(oldEmail, Pid);
 				p.update(userPub);
 			} else {
 				throw new DALException("The new password is invalid.");
@@ -147,10 +148,16 @@ public class UserLogic implements IUserLogic{
 
 	@Override
 	public void deactivateUser(String email) throws DALException {
+		RoleDTO currentRole = r.get(email);
 		newRole = new RoleDTO(email,"inactive");
-		if (true) {
+		if (currentRole.getRole().equalsIgnoreCase("user")) {
 			r.update(newRole);
-		}
+		} else if( r.countAdmin() > 1 && currentRole.getRole().equalsIgnoreCase("administrator")){
+			r.update(newRole);
+		} else if(currentRole.getRole().equalsIgnoreCase("game")){
+			newRole = new RoleDTO(email,"inactivePub");
+			r.update(newRole);
+		}else throw new DALException("Unable to deactivate the last admin");
 	}
 
 	@Override

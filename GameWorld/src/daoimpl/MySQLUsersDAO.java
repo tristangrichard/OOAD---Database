@@ -25,9 +25,9 @@ public class MySQLUsersDAO extends UsersIDAO
 		String delete = "DELETE FROM Users WHERE email = '" + email + "';";
 		Connector.doUpdate(delete);
 	}
-	public void update(UsersDTO row) throws DALException
+	public void update(String oldEmail, UsersDTO row) throws DALException
 	{
-		String update = "UPDATE Users SET Fname = '" + row.getFname() + "', Lname = '" + row.getLname() + "', DOB = '" + row.getDob() + "', pass = '" + row.getPass() + "', email = '" + row.getEmail() + "', sex = " + row.getSex() + " WHERE email = '" + row.getEmail() + "';";
+		String update = "UPDATE Users SET Fname = '" + row.getFname() + "', Lname = '" + row.getLname() + "', DOB = '" + row.getDob() + "', pass = '" + row.getPass() + "', email = '" + row.getEmail() + "', sex = " + row.getSex() + " WHERE email = '" + oldEmail + "';";
 		Connector.doUpdate(update);
 	}
 	public UsersDTO get(String email) throws DALException

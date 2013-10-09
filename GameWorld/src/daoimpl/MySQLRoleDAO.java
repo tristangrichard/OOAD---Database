@@ -55,4 +55,15 @@ public class MySQLRoleDAO extends RoleIDAO
 		}
 		catch(SQLException e){throw new DALException(e);}
 	}
+	@Override
+	public int countAdmin() throws DALException {
+		ResultSet rs = Connector.doQuery("SELECT count(*) AS admin FROM Role WHERE role = 'administrator';");
+		int i = 0;
+		try {
+			while (rs.next()) {
+				i++;
+			}
+			return i;
+		} catch (SQLException e){throw new DALException(e);}
+	}
 }

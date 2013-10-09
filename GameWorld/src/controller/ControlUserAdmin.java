@@ -2,11 +2,9 @@ package controller;
 
 import java.io.IOException;
 import java.util.*;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
 import daoimpl.MySQLLangDAO;
 import daoimpl.MySQLPublisherDAO;
 import daoimpl.MySQLRoleDAO;
@@ -202,7 +200,7 @@ public class ControlUserAdmin extends HttpServlet {
 				request.setAttribute("userLang", userLangRow);
 				request.setAttribute("langList", langu);
 				request.setAttribute("user1", user1);
-				if (role.getRole().equalsIgnoreCase("user") || role.getRole().equalsIgnoreCase("administrator")) {
+				if (role.getRole().equalsIgnoreCase("user") || role.getRole().equalsIgnoreCase("administrator") || role.getRole().equalsIgnoreCase("inactive")) {
 					request.getRequestDispatcher("../WEB-INF/admin/updateUser.jsp?").forward(request, response);
 				} else {
 					UserPubDTO comp = userPub.get(userEmail);
@@ -220,6 +218,7 @@ public class ControlUserAdmin extends HttpServlet {
 			try {
 				String fName = request.getParameter("newFName");
 				String lName = request.getParameter("newLName");
+				String oldEmail = request.getParameter("oldEmail");
 				String email = request.getParameter("newUserEmail");
 				String birth = request.getParameter("newUserBirth");
 				String sex = request.getParameter("newUserSex");
@@ -229,20 +228,19 @@ public class ControlUserAdmin extends HttpServlet {
 				String pass2 = request.getParameter("updOprPass2");
 				int iSex = Integer.parseInt(sex);
 				int iLang = Integer.parseInt(lang);	
-				if (role.equalsIgnoreCase("user") || role.equalsIgnoreCase("administrator")) {
-					userLogic.updateOprAdmin(fName, lName, birth, email, iSex, iLang, role, pass1, pass2);
+				if (role.equalsIgnoreCase("user") || role.equalsIgnoreCase("administrator") || role.equalsIgnoreCase("inactive")) {
+					userLogic.updateOprAdmin(fName, lName, birth, oldEmail, email, iSex, iLang, role, pass1, pass2);
 					request.setAttribute("message", "User with email: " + email + " successfully updated.");
 				} else {
 					String publisher = request.getParameter("newPub");
 					int iPublisher = Integer.parseInt(publisher);
-					userLogic.updatePubAdmin(fName, lName, birth, email, iSex, iLang, role, pass1, pass2, iPublisher);
+					userLogic.updatePubAdmin(fName, lName, birth, oldEmail, email, iSex, iLang, role, pass1, pass2, iPublisher);
 					request.setAttribute("message", "User with email: " + email + " successfully updated.");
 				}
 				request.getRequestDispatcher("index.jsp?action=updateUser").forward(request, response);
 			} catch (DALException e) {
-				e.printStackTrace();
 				request.setAttribute("error", e.getMessage());
-				request.getRequestDispatcher("index.jsp?action=updateOpr").forward(request, response);
+				request.getRequestDispatcher("index.jsp?action=updateUser").forward(request, response);
 			}
 		} else if ("deactivateUser".equals(action)) {
 			String userEmail =request.getParameter("userToDeactivate");
@@ -251,11 +249,10 @@ public class ControlUserAdmin extends HttpServlet {
 				request.setAttribute("message", userEmail + " was succesfully deactivated");
 				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
 			} catch (DALException e) {
-				request.setAttribute("error", userEmail + " did not get deactivated");
+				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
 			}
-		}
-		else { 
+		} else { 
 			request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
 		}
 	}

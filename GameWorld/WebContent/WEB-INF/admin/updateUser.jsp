@@ -63,7 +63,8 @@
 		<tr>
 			<td colspan="2" align="right"><input type="hidden" name="action"
 				value="updateOprFilled"> <input type="hidden"
-				name="userToUpdate" value="<%=user1.getEmail()%>"> <input
+				name="userToUpdate" value="<%=user1.getEmail()%>"><input type="hidden"
+				name="oldEmail" value="<%=user1.getEmail()%>"> <input
 				type="submit" value="Update Operator"></td>
 			<td></td>
 		</tr>

@@ -11,9 +11,9 @@
 		<% for (int i = 0; i< userList.size(); i++) {
 		UsersDTO user = (UsersDTO) userList.get(i); %>
 		<tr><td> <a href="index.jsp?action=updateUser&amp;userToUpdate=<%= user.getEmail() %>"><%= user.getFname()+" "+user.getLname() %></a></td><td><%= user.getEmail() %></td>
-		<% if (!roles.get(i).toString().equalsIgnoreCase("inactive")){ %>
-		<td><a href="index.jsp?action=deactivateUser&amp;userToDeactivate=<%= user.getEmail() %>">Deactivate</a></td><%} %>
-		</tr>
+		<td><% if (!roles.get(i).toString().equalsIgnoreCase("inactive") && !roles.get(i).toString().equalsIgnoreCase("inactivePub")){ %>
+		<a href="index.jsp?action=deactivateUser&amp;userToDeactivate=<%= user.getEmail() %>">Deactivate</a><%} else out.print("Deactivated");%>
+		</tr></td>
 		<%}%>
 
 	</table>
