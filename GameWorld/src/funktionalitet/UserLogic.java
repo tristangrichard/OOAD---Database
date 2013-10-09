@@ -136,6 +136,8 @@ public class UserLogic implements IUserLogic{
 				Boolean bSex = getSex(sex);
 				UsersDTO user = new UsersDTO(fName, lName, birth, newPassword, email, bSex);
 				o.update(oldEmail,user);
+				newRole = new RoleDTO(email,role);
+				r.update(newRole);
 				userPub = new UserPubDTO(oldEmail, Pid);
 				p.update(userPub);
 			} else {
