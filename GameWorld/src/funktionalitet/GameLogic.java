@@ -63,19 +63,13 @@ public class GameLogic implements IGameLogic {
 		gaPub = new MySQLUserPubDAO();
 
 	}
-	public void createGame(String title, String release, String url, String[] genre, String[] language, String[] os, String dev, String pub) throws DALException {
+	public void createGame(String title, String release, String url, String[] genre, String[] language, String[] os, String[] dev, String[] pub) throws DALException {
 		try{
 			ga.getByTitle(title);
 		}catch (DALException e){
 			String passedUrl = processUrl(url);
 			gameDTO = ga.getByTitle(title);
 			int Gid = gameDTO.getGid();
-			int tempPub = Integer.parseInt(pub);
-			rowPub = new GamePubDTO(tempPub, Gid);
-			gamePub.create(rowPub);
-			int tempDev = Integer.parseInt(dev);
-			rowDev = new GameDevDTO(tempDev, Gid);
-			gameDev.create(rowDev);
 			GameDTO newGame = new GameDTO(0, title, release, passedUrl);
 			ga.create(newGame);
 			for (String i : genre) {
@@ -88,12 +82,20 @@ public class GameLogic implements IGameLogic {
 				GameLangDTO temp = new GameLangDTO(Gid,j);
 				gaLa.create(temp);
 			}
-			for (String i : os)
-				System.out.println(i);
 			for (String i : os) {
 				int j = Integer.parseInt(i);
 				GameOSDTO temp = new GameOSDTO(j, Gid);
 				gaOs.create(temp);
+			}
+			for (String i : dev) {
+				int j = Integer.parseInt(i);
+				rowPub = new GamePubDTO(j, Gid);
+				gamePub.create(rowPub);
+			}
+			for (String i : pub) {
+				int j = Integer.parseInt(i);
+				rowDev = new GameDevDTO(j, Gid);
+				gameDev.create(rowDev);
 			}
 			return;
 		}

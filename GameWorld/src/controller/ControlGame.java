@@ -140,8 +140,8 @@ public class ControlGame extends HttpServlet {
 				String title = request.getParameter("newTitle");
 				String release = request.getParameter("newRelease");
 				String url = request.getParameter("newUrl");
-				String pub = request.getParameter("newPub");
-				String dev = request.getParameter("newDev");
+				String[] pub = request.getParameterValues("newPub");
+				String[] dev = request.getParameterValues("newDev");
 				gameLogic.createGame(title, release, url, genre, lang, operating, dev, pub);
 				request.setAttribute("message", title + " was succesfully added to our databse!");
 				request.getRequestDispatcher("../WEB-INF/game/index.jsp?").forward(request, response);

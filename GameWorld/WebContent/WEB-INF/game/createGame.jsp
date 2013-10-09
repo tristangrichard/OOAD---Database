@@ -55,7 +55,7 @@
 				<%} %>
 			</select></td>
 			<td>Developer:</td>
-			<td><select name="newDev" required>
+			<td><select name="newDev" required multiple="multiple">
 			<% for (int i = 0; i< devList.size(); i++) {
 				DeveloperDTO d = (DeveloperDTO) devList.get(i); %>
 					<option value= <%= d.getDid() %> ><%= d.getDeveloper() %></option>
@@ -71,7 +71,7 @@
 				<%} %>
 			</select></td>
 			<td>Publisher:</td>
-			<td><select name="newPub" required>
+			<td><select name="newPub" required multiple="multiple">
 			<% for (int i = 0; i< pubList.size(); i++) {
 				PublisherDTO p = (PublisherDTO) pubList.get(i); %>
 					<option value= <%= p.getPid() %> ><%= p.getPublisher() %></option>
