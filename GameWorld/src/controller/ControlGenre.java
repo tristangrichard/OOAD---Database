@@ -20,7 +20,7 @@ public class ControlGenre extends HttpServlet {
 	private IGenreLogic genreLogic = null;
 	private UsersDTO user = null;
 	private IUserLogic u = null;
-	
+
 	public ControlGenre() {
 		super();
 	}
@@ -101,8 +101,5 @@ public class ControlGenre extends HttpServlet {
 			}
 
 		}else request.getRequestDispatcher("../WEB-INF/genre/index.jsp?").forward(request, response);
-
-
-
 	}
 }

@@ -2,7 +2,6 @@ package funktionalitet;
 
 import java.sql.SQLException;
 import java.util.List;
-
 import connector.Connector;
 import daoimpl.MySQLPublisherDAO;
 import daoimpl.MySQLUserPubDAO;

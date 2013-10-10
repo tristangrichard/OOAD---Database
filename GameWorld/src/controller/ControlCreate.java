@@ -63,9 +63,7 @@ public class ControlCreate extends HttpServlet {
 				request.setAttribute("langList", langList);
 				request.getRequestDispatcher("../WEB-INF/create/createOpr.jsp?").forward(request, response); // Sends the request to the actual operator list jsp file.
 			} catch (DALException e) {
-				e.printStackTrace();
-				request.setAttribute("error", e.getMessage());
-				
+				request.setAttribute("error", e.getMessage());	
 			}
 		}else if ("userFilled".equals(action)) {
 			// Getting all the details from the filled form.

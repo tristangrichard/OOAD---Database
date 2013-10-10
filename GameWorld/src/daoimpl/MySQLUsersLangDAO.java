@@ -27,7 +27,7 @@ public class MySQLUsersLangDAO extends UsersLangIDAO
 	}
 	public void update(UsersLangDTO row) throws DALException
 	{
-		String update = "UPDATE UsersLang SET Uid = " + row.getEmail() + ", Langid = " + row.getLangid() + " WHERE email = " + row.getEmail() + " AND Langid = " + row.getLangid() + ";";
+		String update = "UPDATE UsersLang SET email ='" + row.getEmail() + "', Langid = " + row.getLangid() + " WHERE email = '" + row.getEmail() + "';";
 		Connector.doUpdate(update);
 	}
 

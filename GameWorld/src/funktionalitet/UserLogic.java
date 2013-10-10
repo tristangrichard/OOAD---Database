@@ -3,12 +3,10 @@ package funktionalitet;
 import daoimpl.*;
 import daointerfaces.*;
 import dto.*;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import connector.Connector;
 
 public class UserLogic implements IUserLogic{	
@@ -19,6 +17,7 @@ public class UserLogic implements IUserLogic{
 	private RoleDTO newRole;
 	private UserPubDTO userPub;
 	private UserPubIDAO p;
+	private UsersLangDTO newLang;
 
 	public UserLogic() throws DALException {
 		try {
@@ -43,13 +42,6 @@ public class UserLogic implements IUserLogic{
 		this.o = dao;
 	}
 
-	@Override
-	public boolean isAdmin(int id) throws DALException {
-		return "administrator".equals("administrator");
-
-	}
-
-	@Override
 	public String createUser(String fName, String lName, String birth, String role, String temail, int sex, int lang) throws DALException {
 		try {
 			o.get(temail);
@@ -76,21 +68,19 @@ public class UserLogic implements IUserLogic{
 		
 	}
 
-	@Override
 	public void updateOpr(String fName, String lName, String birth, String oldEmail, String email, int sex, int lang, String oldPassword, String newPassword, String newPassword2) throws DALException {
 		try {
-			user = o.get(email);
+			user = o.get(oldEmail);
 		} catch (DALException e) {
 			throw new DALException("The specified user does not exist.");
 		}
 		if (!(user.getPass().equals(oldPassword))) { // eventuelt exception handling
 			throw new DALException("Old password is not correct.");
 		}
-		RoleDTO role = r.get(email);
+		RoleDTO role = r.get(oldEmail);
 		updateOprAdmin(fName, lName, birth,oldEmail, email, sex, lang, role.getRole(), newPassword, newPassword2);
 	}
 
-	@Override
 	public void updateOprAdmin(String fName, String lName, String birth,String oldEmail, String email, int sex, int lang, String role, String newPassword, String newPassword2) throws DALException {
 		try {
 			user = o.get(oldEmail);
@@ -111,6 +101,8 @@ public class UserLogic implements IUserLogic{
 				o.update(oldEmail, user);
 				newRole = new RoleDTO(email,role);
 				r.update(newRole);
+				newLang = new UsersLangDTO(email, lang);
+				l.update(newLang);
 			} else {
 				throw new DALException("The new password is invalid.");
 			}
@@ -118,6 +110,7 @@ public class UserLogic implements IUserLogic{
 			throw new DALException("The two passwords do not match.");
 		}
 	}
+	
 	public void updatePubAdmin(String fName, String lName, String birth, String oldEmail, String email, int sex, int lang, String role, String newPassword, String newPassword2, int Pid) throws DALException {
 		try {
 			user = o.get(oldEmail);
@@ -148,7 +141,6 @@ public class UserLogic implements IUserLogic{
 		}
 	}
 
-	@Override
 	public void deactivateUser(String email) throws DALException {
 		RoleDTO currentRole = r.get(email);
 		newRole = new RoleDTO(email,"inactive");
@@ -162,12 +154,10 @@ public class UserLogic implements IUserLogic{
 		}else throw new DALException("Unable to deactivate the last admin");
 	}
 
-	@Override
 	public List<UsersDTO> getUserList() throws DALException {
 		return o.getList();
 	}
 
-	@Override
 	public UsersDTO getUser(String email) throws DALException {
 		return o.get(email);
 	}
@@ -188,6 +178,7 @@ public class UserLogic implements IUserLogic{
 		}
 		return tempbirth;
 	}
+	
 	private String processEmail(String email) throws DALException {
 		String tempEmail = null;
 		Pattern pEmail = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
@@ -206,22 +197,6 @@ public class UserLogic implements IUserLogic{
 		return m.matches();
 	}
 
-	private String initGen(String oprName) throws DALException {
-		Pattern pInitials = Pattern.compile("(?=^.{2,20}$)^(\\w)\\w*(?: \\w*)* (\\w)\\w*$");
-		Pattern pChars = Pattern.compile("[^\\w ]");
-		String ini;
-		Matcher m;
-		m = pChars.matcher(oprName);
-		if (m.find()) { throw new DALException("Name can only contain a-z, A-Z and spaces"); }
-		if (oprName.length() > 20 || oprName.length() < 2) { throw new DALException("Name must be between 2 - 20 characters in length."); }
-		m = pInitials.matcher(oprName);
-		if (m.matches()) {
-			ini = m.group(1) + m.group(2);
-		} else {
-			throw new DALException("Name needs to be two seperate words.");
-		}
-		return ini;
-	}
 	private boolean getSex(int sex){
 		Boolean bSex = false;
 		if (sex == 1)
