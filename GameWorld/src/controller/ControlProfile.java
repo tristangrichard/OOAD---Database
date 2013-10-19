@@ -143,7 +143,7 @@ public class ControlProfile extends HttpServlet {
 				int iLang = Integer.parseInt(lang);	
 				userLogic.updateOpr(fName, lName, birth, userEmail, newEmail, iSex, iLang, oldPass, pass1, pass2);
 				request.setAttribute("message", "User with email: " + newEmail + " successfully updated.");
-				request.getRequestDispatcher("index.jsp?").forward(request, response);
+				request.getRequestDispatcher("../WEB-INF/profile/index.jsp?").forward(request, response);
 			} catch (DALException e) {
 				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("index.jsp?action=updateUser").forward(request, response);
