@@ -115,7 +115,7 @@ public class Test_User_Game_Lists {
 			try{																	
 				error = false;						//database updating
 				gidao.update(dto);
-				if (dto.getGname() != gidao.get(dto.getGid()).getGname()){
+				if (dto.getGname() != gidao.getById(dto.getGid()).getGname()){
 					error = true;
 				}
 			}																		

@@ -29,11 +29,21 @@ public class MySQLLangDAO extends LangIDAO
 		Connector.doUpdate(update);
 	}
 
-	public LangDTO get(int Langid) throws DALException
+	public LangDTO getById(int Langid) throws DALException
 	{
 		try
 		{
 			ResultSet rs = Connector.doQuery("SELECT * FROM Lang WHERE Langid = " + Langid + ";");
+			if(!rs.next()) throw new DALException("Missing entry.");
+			return new LangDTO(rs.getInt("Langid"), rs.getString("Lang"));
+		}
+		catch(SQLException e){throw new DALException(e);}
+	}
+	public LangDTO getByLang(String lang) throws DALException
+	{
+		try
+		{
+			ResultSet rs = Connector.doQuery("SELECT * FROM Lang WHERE Lang = '" + lang + "';");
 			if(!rs.next()) throw new DALException("Missing entry.");
 			return new LangDTO(rs.getInt("Langid"), rs.getString("Lang"));
 		}

@@ -60,7 +60,7 @@ public class Test_Publisher_Genre {
 		error = false;	
 		for(int i = 0 ; i<3; i++){
 			try{	
-				gdto = gidao.get(303+i);
+				gdto = gidao.getById(303+i);
 				gdto.setGenre("Adventure"+2*i);													
 				gidao.update(gdto);
 			}																		
@@ -107,7 +107,7 @@ public class Test_Publisher_Genre {
 		error = false;	
 		for(int i = 0 ; i<3; i++){
 			try{	
-				pdto = pidao.get(404+i);
+				pdto = pidao.getById(404+i);
 				pdto.setPublisher("CriterionTest"+2*i);													
 				pidao.update(pdto);
 			}																		

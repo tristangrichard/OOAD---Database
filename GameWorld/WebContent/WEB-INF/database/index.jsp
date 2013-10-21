@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-<title>User Administration</title>
+<title>Genre Administration</title>
 <link rel="stylesheet" href="../css/style1.css">
 
 </head>
@@ -22,19 +22,26 @@
 		<div id="navigation">
 			<!-- Site navigation menu -->
 			<ul class="navbar">
-				<li><a href="../index.jsp">Back</a>
+				<li><a href="../index.jsp">Home</a>
 					<hr>
-				<li><a href="index.jsp?action=createPublisher">Add
-						Publisher</a>
-				<li><a href="index.jsp?action=listPublisher">List Publisher</a>
-				<li><a href="index.jsp?action=listUsers">List Users</a>
+				<li><a href="index.jsp?action=createGenre">Create genre</a>
+				<li><a href="index.jsp?action=listGenre">List genre</a>
+					<hr>
+				<li><a href="index.jsp?action=createLang">Create Language</a>
+				<li><a href="index.jsp?action=listLang">List Language</a>
+					<hr>
+				<li><a href="index.jsp?action=createDev">Create Developer</a>
+				<li><a href="index.jsp?action=listDev">List Developer</a>
+					<hr>
+				<li><a href="index.jsp?action=createPub">Create Publisher</a>
+				<li><a href="index.jsp?action=listPub">List Publisher</a>
 					<hr>
 				<li><a href="../login/logout.jsp">Logout</a>
 			</ul>
 		</div>
 		<div id="main">
 			<!-- Main content -->
-			<h1>User administration</h1>
+			<h1>Database</h1>
 			<p></p>
 		</div>
 		<div id="footer">Gruppe 8</div>

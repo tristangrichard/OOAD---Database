@@ -31,23 +31,32 @@ public class MySQLPublisherDAO extends PublisherIDAO
 		Connector.doUpdate(update);
 	}
 
-	public PublisherDTO get(int Pid) throws DALException
+	public PublisherDTO getById(int pId) throws DALException
 	{
 		try
 		{
-			ResultSet rs = Connector.doQuery("SELECT * FROM Publisher WHERE Pid = " + Pid + ";");
+			ResultSet rs = Connector.doQuery("SELECT * FROM Publisher WHERE Pid = " + pId + ";");
 			if(!rs.next()) throw new DALException("Missing entry.");
 			return new PublisherDTO(rs.getInt("Pid"), rs.getString("Publisher"), rs.getString("Founded"));
 		}
 		catch(SQLException e){throw new DALException(e);}
 	}
-
+	public PublisherDTO getByPub(String pub) throws DALException
+	{
+		try
+		{
+			ResultSet rs = Connector.doQuery("SELECT * FROM Publisher WHERE Publisher = '" + pub + "';");
+			if(!rs.next()) throw new DALException("Missing entry.");
+			return new PublisherDTO(rs.getInt("Pid"), rs.getString("Publisher"), rs.getString("Founded"));
+		}
+		catch(SQLException e){throw new DALException(e);}
+	}
 	public List<PublisherDTO> getList() throws DALException
 	{
 		try
 		{
 			List<PublisherDTO> results = new ArrayList<PublisherDTO>();
-			ResultSet rs = Connector.doQuery("SELECT * FROM Publisher;");
+			ResultSet rs = Connector.doQuery("SELECT * FROM Publisher ORDER BY Publisher;");
 			if(!rs.next()) throw new DALException("Missing table: Publisher");
 			do results.add(new PublisherDTO(rs.getInt("Pid"), rs.getString("Publisher"), rs.getString("Founded")));
 			while(rs.next());

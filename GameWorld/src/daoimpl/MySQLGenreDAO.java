@@ -31,7 +31,7 @@ public class MySQLGenreDAO extends GenreIDAO
 		Connector.doUpdate(update);
 	}
 
-	public GenreDTO get(int Genreid) throws DALException
+	public GenreDTO getById(int Genreid) throws DALException
 	{
 		try
 		{
@@ -41,6 +41,17 @@ public class MySQLGenreDAO extends GenreIDAO
 		}
 		catch(SQLException e){throw new DALException(e);}
 	}
+	public GenreDTO getByGenre(String Genre) throws DALException
+	{
+		try
+		{
+			ResultSet rs = Connector.doQuery("SELECT * FROM Genre WHERE Genre = '" + Genre + "';");
+			if(!rs.next()) throw new DALException("Missing entry.");
+			return new GenreDTO(rs.getInt("Genreid"), rs.getString("Genre"));
+		}
+		catch(SQLException e){throw new DALException(e);}
+	}
+	
 
 	public List<GenreDTO> getList() throws DALException
 	{

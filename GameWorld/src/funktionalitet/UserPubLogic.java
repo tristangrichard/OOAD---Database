@@ -43,7 +43,7 @@ public class UserPubLogic implements IUserPubLogic {
 	}
 
 	public PublisherDTO getPub(int Pid) throws DALException {
-		return pub.get(Pid);
+		return pub.getById(Pid);
 	}
 
 }

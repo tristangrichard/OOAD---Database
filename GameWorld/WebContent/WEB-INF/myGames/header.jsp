@@ -26,7 +26,7 @@
 		<div id="navigation">
 			<!-- Site navigation menu -->
 			<ul class="navbar">
-				<li><a href="javascript:history.back(-1);">Back</a>
+				<li><a href="index.jsp?">Back</a>
 				<hr>
 				<li><a href="index.jsp?action=List">My Games</a>
 				<li><a href="index.jsp?action=Add">Add new game</a>

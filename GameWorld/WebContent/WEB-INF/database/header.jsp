@@ -26,10 +26,7 @@
 		<div id="navigation">
 			<!-- Site navigation menu -->
 			<ul class="navbar">
-				<li><a href="javascript:history.back(-1);">Back</a>
-				<hr>
-				<li><a href="index.jsp?action=createGenre">Create genre</a>
-				<li><a href="index.jsp?action=listGenre">List genre</a>
+				<li><a href="index.jsp?">Back</a>
 				<hr>
 				<li><a href="../login/logout.jsp">Logout</a>
 			</ul>

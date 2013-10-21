@@ -26,7 +26,7 @@
 		<div id="navigation">
 			<!-- Site navigation menu -->
 			<ul class="navbar">
-				<li><a href="javascript:history.back(-1);">Back</a>
+				<li><a href="index.jsp?">Back</a>
 				<hr>
 				<li><a href="index.jsp?action=createPublisher">Add Publisher</a>
 				<li><a href="index.jsp?action=listPublisher">List Publisher</a>

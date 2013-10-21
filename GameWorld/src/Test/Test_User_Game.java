@@ -123,7 +123,7 @@ public class Test_User_Game {
 		gdto.setReleased("01-01-2001");
 		try {
 			gidao.update(gdto);
-			if (old != gidao.get(gdto.getGid())){//compares old to updated GameDTO
+			if (old != gidao.getById(gdto.getGid())){//compares old to updated GameDTO
 				error = true;
 				System.out.println("update game failed");}
 			else{}
@@ -148,7 +148,7 @@ public class Test_User_Game {
 			System.out.println("delete game failed");
 		}
 		try {
-			gidao.get(gdto.getGid());
+			gidao.getById(gdto.getGid());
 		} catch (DALException e) {
 		}
 		finally{

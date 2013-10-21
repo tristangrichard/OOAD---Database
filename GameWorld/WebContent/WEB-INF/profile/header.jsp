@@ -26,7 +26,7 @@
 		<div id="navigation">
 			<!-- Site navigation menu -->
 			<ul class="navbar">
-				<li><a href="javascript:history.back(-1);">Back</a>
+				<li><a href="index.jsp?">Back</a>
 				<hr><% if (request.getUserPrincipal() != null) {if (request.isUserInRole("user")) {%>
 				<li><a href="index.jsp?action=updateUser">Update Profile</a><%} if (request.isUserInRole("game")) {%> 
 				<li><a href="index.jsp?action=updatePub">Update Profile</a><%} }%>

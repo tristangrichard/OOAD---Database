@@ -31,11 +31,21 @@ public class MySQLDeveloperDAO extends DeveloperIDAO
 		Connector.doUpdate(update);
 	}
 
-	public DeveloperDTO get(int Did) throws DALException
+	public DeveloperDTO getById(int dId) throws DALException
 	{
 		try
 		{
-			ResultSet rs = Connector.doQuery("SELECT * FROM Developer WHERE Did = " + Did + ";");
+			ResultSet rs = Connector.doQuery("SELECT * FROM Developer WHERE Did = " + dId + ";");
+			if(!rs.next()) throw new DALException("Missing entry.");
+			return new DeveloperDTO(rs.getInt("Did"), rs.getString("Developer"), rs.getString("Founded"));
+		}
+		catch(SQLException e){throw new DALException(e);}
+	}
+	public DeveloperDTO getByDev(String dev) throws DALException
+	{
+		try
+		{
+			ResultSet rs = Connector.doQuery("SELECT * FROM Developer WHERE Developer = '" + dev + "';");
 			if(!rs.next()) throw new DALException("Missing entry.");
 			return new DeveloperDTO(rs.getInt("Did"), rs.getString("Developer"), rs.getString("Founded"));
 		}
@@ -47,7 +57,7 @@ public class MySQLDeveloperDAO extends DeveloperIDAO
 		try
 		{
 			List<DeveloperDTO> results = new ArrayList<DeveloperDTO>();
-			ResultSet rs = Connector.doQuery("SELECT * FROM Developer;");
+			ResultSet rs = Connector.doQuery("SELECT * FROM Developer ORDER BY Developer;");
 			if(!rs.next()) throw new DALException("Missing table: Developer");
 			do results.add(new DeveloperDTO(rs.getInt("Did"), rs.getString("Developer"), rs.getString("Founded")));
 			while(rs.next());
