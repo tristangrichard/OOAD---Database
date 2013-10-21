@@ -31,8 +31,8 @@
 	<tr>
 			<td>Release date:</td>
 			<td><input type="text" name="newRelease"
-				value="<% if (request.getParameter("newUrl") != null)
-				out.print(request.getParameter("newUrl")); 
+				value="<% if (request.getParameter("newRelease") != null)
+				out.print(request.getParameter("newRelease")); 
 				else out.print("DD-MM-YYYY"); %>"
 				onclick="this.select()"></td>
 			<td class="expl"></td>

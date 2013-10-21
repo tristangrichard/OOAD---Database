@@ -68,10 +68,10 @@ public class GameLogic implements IGameLogic {
 			ga.getByTitle(title);
 		}catch (DALException e){
 			String passedUrl = processUrl(url);
-			gameDTO = ga.getByTitle(title);
-			int Gid = gameDTO.getGid();
 			GameDTO newGame = new GameDTO(0, title, release, passedUrl);
 			ga.create(newGame);
+			newGame = ga.getByTitle(title);
+			int Gid = newGame.getGid();
 			for (String i : genre) {
 				int j = Integer.parseInt(i);
 				GameGenreDTO temp = new GameGenreDTO(Gid,j);
@@ -89,13 +89,13 @@ public class GameLogic implements IGameLogic {
 			}
 			for (String i : dev) {
 				int j = Integer.parseInt(i);
-				rowPub = new GamePubDTO(j, Gid);
-				gamePub.create(rowPub);
+				rowDev = new GameDevDTO(j, Gid);
+				gameDev.create(rowDev);
 			}
 			for (String i : pub) {
 				int j = Integer.parseInt(i);
-				rowDev = new GameDevDTO(j, Gid);
-				gameDev.create(rowDev);
+				rowPub = new GamePubDTO(j, Gid);
+				gamePub.create(rowPub);
 			}
 			return;
 		}

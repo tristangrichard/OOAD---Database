@@ -30,7 +30,6 @@ public class MySQLGameDAO extends GameIDAO
 		String update = "UPDATE Game SET Gid = " + row.getGid() + ", Gname = '" + row.getGname() + "', Released = '" + row.getReleased() + "', Url = '" + row.getUrl() + "' WHERE Gid = " + row.getGid() + ";";
 		Connector.doUpdate(update);
 	}
-
 	public GameDTO getById(int Gid) throws DALException
 	{
 		try
