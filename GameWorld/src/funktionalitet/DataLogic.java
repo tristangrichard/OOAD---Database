@@ -49,6 +49,7 @@ public class DataLogic implements IDataLogic {
 		}catch(DALException e){
 			GenreDTO row = new GenreDTO(0,genre);
 			gen.create(row);
+			return;
 		}
 		throw new DALException("Genre already exists!");
 	}
@@ -63,6 +64,7 @@ public class DataLogic implements IDataLogic {
 		} catch (DALException e){
 			LangDTO row = new LangDTO(0,language);
 			lang.create(row);
+			return;
 		}
 		throw new DALException("Language already exists!");
 	}
@@ -77,6 +79,7 @@ public class DataLogic implements IDataLogic {
 		}catch (DALException e){
 			DeveloperDTO row = new DeveloperDTO(0,deve,con);
 			dev.create(row);
+			return;
 		}
 		throw new DALException("Developer already exists!");
 	}
@@ -89,8 +92,9 @@ public class DataLogic implements IDataLogic {
 		try{
 			pub.getByPub(pube);
 		}catch (DALException e) {
-		PublisherDTO row = new PublisherDTO(0,pube,con);
-		pub.create(row);
+			PublisherDTO row = new PublisherDTO(0,pube,con);
+			pub.create(row);
+			return;
 		}
 		throw new DALException("Publisher already exists!");
 	}

@@ -88,7 +88,7 @@ public class ControlDatabase extends HttpServlet {
 				String genre = request.getParameter("newGenre");
 				dataLogic.createGenre(genre);
 				request.setAttribute("message", genre +" succesfully added");
-				request.getRequestDispatcher("../WEB-INF/genre/index.jsp").forward(request, response);
+				request.getRequestDispatcher("../WEB-INF/database/index.jsp").forward(request, response);
 			} catch (DALException e) {
 				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("../WEB-INF/database/createGenre.jsp").forward(request, response);
