@@ -60,8 +60,6 @@
 					var answer = confirm("Are you sure you deactivate your profile?");
 					if (answer == true) {
 						window.location.href = "index.jsp?action=deactivateUser";
-						//response.sendRedirect("../WEB-INF/profile/index.jsp?action=deactivateUser");
-						//request.getRequestDispatcher("../WEB-INF/profile/index.jsp?action=deactivateUser").forward(request, response);
 					} else {
 						return false;
 					}
