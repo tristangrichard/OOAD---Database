@@ -34,7 +34,7 @@
 		<div id="main">
 			<!-- Main content -->
 			<h1>Game administration</h1>
-			<p></p>
+			<p>From here you can add games to the database!</p>
 		</div>
 		<div id="footer">Gruppe 8</div>
 	</div>

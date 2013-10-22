@@ -33,7 +33,7 @@
 		<div id="main">
 			<!-- Main content -->
 			<h1>My Games</h1>
-			<p></p>
+			<p>From here you can manage your games!</p>
 		</div>
 		<div id="footer">Gruppe 8</div>
 	</div>

@@ -34,8 +34,7 @@
 		<div id="navigation">
 			<!-- Site navigation menu -->
 			<ul class="navbar">
-				<li><a href="index.jsp">Home</a><hr> <% if (request.getUserPrincipal() != null) {
-					if (request.isUserInRole("administrator")) {%>
+			<% if (request.getUserPrincipal() != null) { if (request.isUserInRole("administrator")) {%>
 				<li><a href="admin/index.jsp">User Administration</a>
 				<li><a href="database/index.jsp">Database Administration</a> <% } if (request.isUserInRole("game") || request.isUserInRole("administrator")) { %>
 				<li><a href="game/index.jsp">Game Administration</a> <% } if (request.isUserInRole("user") || request.isUserInRole("administrator")) { %>

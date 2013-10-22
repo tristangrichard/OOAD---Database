@@ -33,7 +33,6 @@ public class ControlProfile extends HttpServlet {
 	private UserPubIDAO userPub = null;
 	private UsersLangIDAO userLang = null;
 	private RoleIDAO userRole = null;
-	private RoleDTO role = null;
 
 	public ControlProfile() {
 		super();
@@ -152,8 +151,10 @@ public class ControlProfile extends HttpServlet {
 			String userEmail = user.getEmail();
 			try {
 				userLogic.deactivateUser(userEmail);
-				request.setAttribute("message", userEmail + " was succesfully deactivated");
-				request.getRequestDispatcher("../WEB-INF/profile/index.jsp?").forward(request, response);
+				session.invalidate();
+				request.setAttribute("action", null);
+				request.logout();
+				response.sendRedirect("../index.jsp");
 			} catch (DALException e) {
 				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("../WEB-INF/profile/index.jsp?").forward(request, response);

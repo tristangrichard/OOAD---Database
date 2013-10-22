@@ -36,7 +36,7 @@
 		<div id="main">
 			<!-- Main content -->
 			<h1>User administration</h1>
-			<p></p>
+			<p>From here you can manage your profile!</p>
 		</div>
 		<div id="footer">Gruppe 8</div>
 	</div>
