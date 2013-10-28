@@ -37,7 +37,8 @@
 				<li><a href="database/index.jsp">Database Administration</a> <% } if (request.isUserInRole("game") || request.isUserInRole("administrator")) { %>
 				<li><a href="game/index.jsp">Game Administration</a> <% } if (request.isUserInRole("user") || request.isUserInRole("administrator")) { %>
 				<li><a href="mygames/index.jsp">My Games</a><% } if (request.isUserInRole("game") || request.isUserInRole("administrator") || request.isUserInRole("user")) { %>
-				<li><a href="profile/index.jsp?action=updateUser">My Profile</a><%} %>
+				<li><a href="profile/index.jsp?action=updateUser">My Profile</a>
+				<li><a href="stat/index.jsp">Statistics</a><%} %>
 				<hr><li><a href="login/logout.jsp">Logout</a> <% } else { %>
 				<li><a href="login/index.jsp">Login</a> <% } if (!request.isUserInRole("game") && !request.isUserInRole("administrator") && !request.isUserInRole("user")) { %>
 				<hr><li><a href="create/index.jsp?action=List">Create User</a> <%} %>
