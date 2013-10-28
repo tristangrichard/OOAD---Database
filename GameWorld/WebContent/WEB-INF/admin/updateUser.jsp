@@ -1,11 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <jsp:useBean id="user1" class="dto.UsersDTO" scope="request" />
 <jsp:useBean id="role" class="dto.RoleDTO" scope="request" />
 <jsp:useBean id="userLang" class="dto.UsersLangDTO" scope="request" />
 <jsp:useBean id="langList" class="java.util.ArrayList" scope="request" />
 <%@ page import="dto.LangDTO" %>
 <%@ page import="dto.UsersDTO" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>User Administration</title>
+<link rel="stylesheet" href="../css/style1.css">
 
-<%@include file="header.jsp"%>
+</head>
+
+<body>
+	<div id="header">
+		<h1 id="headerh1">GameWorld</h1>
+		<div id="messagecontainer">
+			<div class="error">
+				${error}
+			</div>
+			<div class="message">
+				${message}
+			</div>
+		</div>
+	</div>
+	<div id="container">
+
+		<div id="navigation">
+			<!-- Site navigation menu -->
+			<ul class="navbar">
+				<li><a href="index.jsp?">Back</a>
+				<hr>
+				<li><a href="../login/logout.jsp">Logout</a>
+			</ul>
+		</div>
+		<div id="main">
+			<!-- Main content -->
 <h1>Update User</h1>
 <form method="POST" action="index.jsp">
 	<!-- This is for Updating -->
@@ -74,4 +107,10 @@
 	least three of the following four categories: small letters ('a' -
 	'z'), capital letters ('A' - 'Z'), digits ('0' - '9') and any of the
 	following special characters: ('.', '-', '_', '+', '!', '?', '=').</p>
-<%@include file="footer.jsp"%>
+</div>
+		<div id="footer">
+			Gruppe 8
+		</div>
+	</div>
+</body>
+</html>
