@@ -55,8 +55,9 @@ public class ControlCreate extends HttpServlet {
 		// Getting the action parameter.
 		String action = null;
 		action = request.getParameter("action");
-		// Action: Log outs the current user.
-		// Redirects to index.jsp.
+		
+		// Get needed lists to create user
+		// redirects to createOpr.jsp
 		if ("List".equals(action)) { 
 			try {
 				List<LangDTO> langList = new ArrayList<LangDTO>(l.getList());
@@ -65,7 +66,10 @@ public class ControlCreate extends HttpServlet {
 			} catch (DALException e) {
 				request.setAttribute("error", e.getMessage());	
 			}
-		}else if ("userFilled".equals(action)) {
+		}
+		// Form filled
+		// Create new user
+		else if ("userFilled".equals(action)) {
 			// Getting all the details from the filled form.
 			try {
 				String fName = request.getParameter("newFName");

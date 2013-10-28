@@ -118,6 +118,7 @@ public class ControlUserAdmin extends HttpServlet {
 		String action = null;
 		action = request.getParameter("action");
 
+		// Get data ready for next action
 		// Redirects to createPublisher JSP
 		if ("createPublisher".equals(action)) { // Creation of a new operator.
 			List<PublisherDTO> pubList;
@@ -134,8 +135,7 @@ public class ControlUserAdmin extends HttpServlet {
 			}
 			// Sends the request back to the create operator jsp file if an error is detected.
 		} 
-		// Action: Showing the update operator form.
-		// Redirects to updateOpr.jsp.
+		// Publisher form Filled
 		else if ("publisherFilled".equals(action)) { 
 			try {
 				String fName = request.getParameter("newFName");
@@ -157,8 +157,9 @@ public class ControlUserAdmin extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("../WEB-INF/admin/createPublisher.jsp?").forward(request, response);
 			}
-
-		} else if ("listPublisher".equals(action)) {
+		}
+		// Generate a list of publisher users
+		else if ("listPublisher".equals(action)) {
 			try {
 				List<UserPubDTO> userPubList = userPubLogic.getList();
 				List<UsersDTO> users = new ArrayList<UsersDTO>();
@@ -175,7 +176,9 @@ public class ControlUserAdmin extends HttpServlet {
 				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
 			}
 
-		} else if ("listUsers".equals(action)) {
+		}
+		//Generate a list of all users
+		else if ("listUsers".equals(action)) {
 			try {
 				List<UsersDTO> userList = userLogic.getUserList();
 				List<String> roles = new ArrayList<String>();
@@ -189,7 +192,10 @@ public class ControlUserAdmin extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
 			}
-		} else if ("updateUser".equals(action)) {
+		} 
+		// Get data ready for next action
+		// Redirect to updateuser.jsp or updatepublisher.jsp
+		else if ("updateUser".equals(action)) {
 			try {
 				String userEmail = request.getParameter("userToUpdate");
 				RoleDTO role = userRole.get(userEmail);
@@ -213,7 +219,9 @@ public class ControlUserAdmin extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("../WEB-INF/admin/index.jsp?").forward(request, response);
 			}
-		} else if ("updateOprFilled".equals(action)) {
+		} 
+		// User form has been filled and updates
+		else if ("updateOprFilled".equals(action)) {
 			// Getting all the details from the filled form.
 			try {
 				String fName = request.getParameter("newFName");
@@ -242,7 +250,9 @@ public class ControlUserAdmin extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("index.jsp?action=updateUser").forward(request, response);
 			}
-		} else if ("deactivateUser".equals(action)) {
+		}
+		// Deactivates selected user
+		else if ("deactivateUser".equals(action)) {
 			String userEmail =request.getParameter("userToDeactivate");
 			try {
 				userLogic.deactivateUser(userEmail);

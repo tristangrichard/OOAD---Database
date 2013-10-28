@@ -34,9 +34,9 @@ public class MySQLUsersDAO extends UsersIDAO
 	{
 		try
 		{
-			ResultSet rs = Connector.doQuery("SELECT * FROM Users WHERE email = '" + email + "';");
+			ResultSet rs = Connector.doQuery("SELECT *,DATE_FORMAT(DOB,'%d/%m/%Y') as DOB1 FROM Users WHERE email = '" + email + "';");
 			if(!rs.next()) throw new DALException("Missing entry.");
-			return new UsersDTO(rs.getString("Fname"), rs.getString("Lname"), rs.getString("DOB"), rs.getString("pass"), rs.getString("email"), rs.getBoolean("sex"));
+			return new UsersDTO(rs.getString("Fname"), rs.getString("Lname"), rs.getString("DOB1"), rs.getString("pass"), rs.getString("email"), rs.getBoolean("sex"));
 		}
 		catch(SQLException e){throw new DALException(e);}
 	}
@@ -46,9 +46,9 @@ public class MySQLUsersDAO extends UsersIDAO
 		try
 		{
 			List<UsersDTO> results = new ArrayList<UsersDTO>();
-			ResultSet rs = Connector.doQuery("SELECT * FROM Users;");
+			ResultSet rs = Connector.doQuery("SELECT *,DATE_FORMAT(DOB,'%d/%m/%Y') as DOB1 FROM Users;");
 			if(!rs.next()) throw new DALException("Missing table: Users");
-			do results.add(new UsersDTO(rs.getString("Fname"), rs.getString("Lname"), rs.getString("DOB"), rs.getString("pass"), rs.getString("email"), rs.getBoolean("sex")));
+			do results.add(new UsersDTO(rs.getString("Fname"), rs.getString("Lname"), rs.getString("DOB1"), rs.getString("pass"), rs.getString("email"), rs.getBoolean("sex")));
 			while(rs.next());
 			return results;
 		}

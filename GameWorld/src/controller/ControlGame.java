@@ -114,7 +114,9 @@ public class ControlGame extends HttpServlet {
 		String action = null;
 		action = request.getParameter("action");
 
-		if ("CreateGame".equals(action)) { // Create Game page redirect.
+		// Gather data to be able to create a game
+		// Redirects to createGame.jsp
+		if ("CreateGame".equals(action)) { 
 			try {
 				List<LangDTO> langList = new ArrayList<LangDTO>(lan.getList());
 				List<GenreDTO> genreList = new ArrayList<GenreDTO>(gen.getList());

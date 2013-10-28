@@ -104,6 +104,7 @@ public class UserLogic implements IUserLogic{
 		catch (DALException e) {
 			throw new DALException("The specified user does not exist.");
 		}
+		String DOB = processBirth(birth);
 		if (newPassword.equals("")) {
 			newPassword = user.getPass();
 			newPassword2 = user.getPass();
@@ -113,7 +114,7 @@ public class UserLogic implements IUserLogic{
 				email = processEmail(email);
 				birth = processBirth(birth);
 				Boolean bSex = getSex(sex);
-				UsersDTO user = new UsersDTO(fName, lName, birth, newPassword, email, bSex);
+				UsersDTO user = new UsersDTO(fName, lName, DOB, newPassword, email, bSex);
 				o.update(oldEmail, user);
 				newRole = new RoleDTO(email,role);
 				r.update(newRole);
@@ -134,6 +135,7 @@ public class UserLogic implements IUserLogic{
 		catch (DALException e) {
 			throw new DALException("The specified user does not exist.");
 		}
+		String DOB = processBirth(birth);
 		if (newPassword.equals("")) {
 			newPassword = user.getPass();
 			newPassword2 = user.getPass();
@@ -143,7 +145,7 @@ public class UserLogic implements IUserLogic{
 				email = processEmail(email);
 				birth = processBirth(birth);
 				Boolean bSex = getSex(sex);
-				UsersDTO user = new UsersDTO(fName, lName, birth, newPassword, email, bSex);
+				UsersDTO user = new UsersDTO(fName, lName, DOB, newPassword, email, bSex);
 				o.update(oldEmail,user);
 				newRole = new RoleDTO(email,role);
 				r.update(newRole);
@@ -187,10 +189,10 @@ public class UserLogic implements IUserLogic{
 
 	private String processBirth(String birth) throws DALException {
 		String tempbirth = null;
-		Pattern pBirth = Pattern.compile("\\d{2}-\\d{2}-\\d{4}");
+		Pattern pBirth = Pattern.compile("\\d{2}(.|-|/)\\d{2}(.|-|/)\\d{4}");
 		Matcher m = pBirth.matcher(birth);
 		if (m.matches()) {
-			tempbirth = birth;
+			tempbirth = birth.substring(6,10)+"-"+birth.substring(3,5)+"-"+ birth.substring(0,2);
 		} else {
 			throw new DALException("Invalid date of birth.");
 		}

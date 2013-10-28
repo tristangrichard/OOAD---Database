@@ -23,7 +23,7 @@
 			<!-- Site navigation menu -->
 			<ul class="navbar">
 				<li><a href="../index.jsp">Back</a>
-				<li><a href="profile/index.jsp?action=updateUser">Update Profile</a>
+				<li><a href="index.jsp?action=updateUser">Update Profile</a>
 					<hr>
 				<li><a href="../login/logout.jsp">Logout</a>
 			</ul>

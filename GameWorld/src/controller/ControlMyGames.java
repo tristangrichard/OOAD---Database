@@ -83,8 +83,9 @@ public class ControlMyGames extends HttpServlet {
 		// Getting the action parameter.
 		String action = null;
 		action = request.getParameter("action");
-		// Action: Log outs the current user.
-		// Redirects to index.jsp.
+		
+		// Gather list of owned game
+		// Redirect to myGames.jsp
 		if ("List".equals(action)) { 
 			try {
 				List<GameDTO> gameList = new ArrayList<GameDTO>(myGames.getMyGames(user.getEmail()));
@@ -108,7 +109,10 @@ public class ControlMyGames extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("index.jsp?action=Add").forward(request, response);
 			}
-		}else if ("Add".equals(action)) { 
+		}
+		// Get list of games in database
+		// Redirect to addGame.jsp
+		else if ("Add".equals(action)) { 
 			try {
 				List<GameDTO> gameList = new ArrayList<GameDTO>(games.getList());
 				request.setAttribute("gameList", gameList);
@@ -118,7 +122,10 @@ public class ControlMyGames extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 
 			}
-		}else if ("gameToAdd".equals(action)) { 
+		}
+		// Add selected game to account
+		// Redirect to addGame.jsp
+		else if ("gameToAdd".equals(action)) { 
 			try {
 				String gameToAdd = (String) request.getParameter("gameToAdd");
 				int g = Integer.parseInt(gameToAdd);
