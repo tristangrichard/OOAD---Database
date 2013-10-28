@@ -136,19 +136,11 @@ public class ControlDatabase extends HttpServlet {
 		}
 		// Developer administration
 		else if ("createDev".equals(action)) { 
-			List<LangDTO> langList = new ArrayList<LangDTO>();
-			try {
-				langList = dataLogic.getListLang();
-			} catch (DALException e) {
-				request.setAttribute("error", e.getMessage());
-				request.getRequestDispatcher("../WEB-INF/database/index.jsp").forward(request, response);
-			}
-			request.setAttribute("langList", langList);
-			request.getRequestDispatcher("../WEB-INF/database/createDev.jsp").forward(request, response);
+				request.getRequestDispatcher("../WEB-INF/database/createDev.jsp").forward(request, response);
 		}else if ("devFilled".equals(action)) { 
 			try {
 				String dev = request.getParameter("newDev");
-				String con = request.getParameter("newLang");
+				String con = request.getParameter("newcon");
 				dataLogic.createDev(dev,con);
 				request.setAttribute("message", dev +" succesfully added");
 				request.getRequestDispatcher("../WEB-INF/database/index.jsp").forward(request, response);
@@ -172,19 +164,11 @@ public class ControlDatabase extends HttpServlet {
 		}
 		// Publisher administration
 		else if ("createPub".equals(action)) { 
-			List<LangDTO> langList = new ArrayList<LangDTO>();
-			try {
-				langList = dataLogic.getListLang();
-			} catch (DALException e) {
-				request.setAttribute("error", e.getMessage());
-				request.getRequestDispatcher("../WEB-INF/database/index.jsp").forward(request, response);
-			}
-			request.setAttribute("langList", langList);
-			request.getRequestDispatcher("../WEB-INF/database/createPub.jsp").forward(request, response);
+				request.getRequestDispatcher("../WEB-INF/database/createPub.jsp").forward(request, response);
 		}else if ("pubFilled".equals(action)) { 
 			try {
 				String pub = request.getParameter("newPub");
-				String con = request.getParameter("newLang");
+				String con = request.getParameter("newCon");
 				dataLogic.createPub(pub, con);
 				request.setAttribute("message", pub +" succesfully added");
 				request.getRequestDispatcher("../WEB-INF/database/index.jsp").forward(request, response);

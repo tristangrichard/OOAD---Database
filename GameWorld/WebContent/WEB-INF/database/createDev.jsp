@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:useBean id="langList" class="java.util.ArrayList" scope="request" />
-<%@ page import="dto.LangDTO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 <head>
@@ -44,21 +42,11 @@
 							onclick="this.select()"></td>
 					</tr>
 					<tr>
-						<td>Nationality:</td>
-						<td><select name="newLang">
-								<%
-									for (int i = 0; i < langList.size(); i++) {
-										LangDTO l = (LangDTO) langList.get(i);
-								%>
-								<option value=<%=l.getLang()%>
-									<%if (l.getLang().equalsIgnoreCase(
-						request.getParameter("newLang"))) {
-					out.print("selected");
-				}%>><%=l.getLang()%></option>
-								<%
-									}
-								%>
-						</select></td>
+						<td>Country:</td>
+						<td><input type="text" name="newFName" required
+				value="<% if (request.getParameter("newCon") != null)
+				out.print(request.getParameter("newCon"));%>"
+				onclick="this.select()"></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="right"><input type="hidden"
