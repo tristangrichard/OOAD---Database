@@ -1,26 +1,23 @@
 package Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import daoimpl.MySQLGameDAO;
 import daoimpl.MySQLUsersDAO;
 import daoimpl.MySQLUsersGamesDAO;
-import daointerfaces.DALException;
 import daointerfaces.GameIDAO;
 import daointerfaces.UsersGamesIDAO;
 import daointerfaces.UsersIDAO;
 import dto.GameDTO;
-import dto.RaavareDTO;
 import dto.UsersDTO;
 import dto.UsersGamesDTO;
 
 public class Test_User_Game_Lists {
 
 	private boolean error = false;
-	List<UsersDTO> ulist = new ArrayList<UsersDTO>();
-	List<UsersGamesDTO> uglist = new ArrayList<UsersGamesDTO>();
-	List<GameDTO> glist = new ArrayList<GameDTO>();
+	ArrayList<UsersDTO> ulist = new ArrayList<UsersDTO>();
+	ArrayList<UsersGamesDTO> uglist = new ArrayList<UsersGamesDTO>();
+	ArrayList<GameDTO> glist = new ArrayList<GameDTO>();
 
 	//////////////////////////////////////////////////////////////////////////
 	//Framework for tests													//
@@ -41,21 +38,23 @@ public class Test_User_Game_Lists {
 		UsersGamesIDAO ugidao = new MySQLUsersGamesDAO();
 
 		// sets up fictional user, games, usergame for testing DB with
-		UsersDTO bdto = new UsersDTO("Test", "Testesen", "11-3-2001", "passtest", "test@test.mail",true);
-		GameDTO gdto = new GameDTO(101, "MODERNWARFARETEST", "11-3-2001");
-		UsersGamesDTO ugdto = new UsersGamesDTO("test@test.mail", 101);
+		//UsersDTO bdto = new UsersDTO("Test", "Testesen", "11-3-2001", "passtest", "test@test1.mail",true);
+		//GameDTO gdto = new GameDTO(101, "MODERNWARFARETEST", "11-3-2001", "not used");
+		//UsersGamesDTO ugdto = new UsersGamesDTO("test@test.mail", 101);
 
-		createUGL(uidao,bdto, gidao, gdto, ugidao, ugdto);
+		createUGL(uidao, gidao, ugidao);
 		updateUL(uidao);
+		updateGL(gidao);
+		cleanUGList(ugidao);
 		cleanUserList(uidao);
 		cleanGameList(gidao);
-		cleanUGList(ugidao);
 	}
 
 	//sets the 3 lists, and creates in databases.
-	public void createUGL(UsersIDAO uidao, UsersDTO bdto, GameIDAO gidao, GameDTO gdto, UsersGamesIDAO ugidao, UsersGamesDTO ugdto){
-
+	public void createUGL(UsersIDAO uidao, GameIDAO gidao, UsersGamesIDAO ugidao){
+		error = false;	
 		for (int i = 0 ; i < 10 ; i++){
+			UsersDTO bdto = new UsersDTO("Test", "Testesen", "11-3-2001", "passtest", "test@test1.mail",true);
 			bdto.setFname("Test"+i);				//user
 			bdto.setLname("Testesen"+i);
 			bdto.setDob("11-3-"+ 2001+i);
@@ -63,39 +62,38 @@ public class Test_User_Game_Lists {
 			bdto.setEmail("test"+i+"@test.mail");
 			ulist.add(bdto);
 
+			GameDTO gdto = new GameDTO(101, "MODERNWARFARETEST", "11-3-2001", "not used");
 			gdto.setGid(101+i);						//game
 			gdto.setGname("MODERNWARFARETEST"+i);
 			gdto.setReleased("11-3-"+ 2001+i);
 			glist.add(gdto);
 
-			ugdto.setUid(bdto.getEmail());			//usergame
-			ugdto.setGid(gdto.getGid());;
+			UsersGamesDTO ugdto = new UsersGamesDTO("test@test.mail", 101);
+			ugdto.setEmail("test"+i+"@test.mail");			//usergame
+			ugdto.setGid(101+i);;
 			uglist.add(ugdto);
 
-			try{																	
-				error = false;						//database creation
+			try{					//database creation												
 				uidao.create(bdto);
 				gidao.create(gdto);
 				ugidao.create(ugdto);
-
 			}																		
 			catch(Exception e){
-				System.out.print("create usergamelists in DB failed");
 				error = true;															
-			}																		
-			finally {TestLauncher.printProgress(error);}	
+			}	
 		}
+		if (error = true){System.out.println("create usergamelists in DB failed");}
+		TestLauncher.printProgress(error);
 	}
 
-	public void updateUL(UsersIDAO uidao){		//update user list in DB
 
+	public void updateUL(UsersIDAO uidao){		//update user list in DB
+		error = false;	
 		for (UsersDTO dto : ulist){
 			dto.setFname("testnewFname");
-
-			try{																	
-				error = false;						//database updating
-				uidao.update(dto);
-				if (dto.getFname() != uidao.get(dto.getEmail()).getFname()){
+			try{								//database updating
+				uidao.update(dto.getEmail(), dto);
+				if (!dto.getFname().equals(uidao.get(dto.getEmail()).getFname())){
 					error = true;
 				}
 			}																		
@@ -103,81 +101,73 @@ public class Test_User_Game_Lists {
 				System.out.print("update users in DB failed");
 				error = true;															
 			}	
-			finally{TestLauncher.printProgress(error);}
 		}
+		TestLauncher.printProgress(error);
 	}
 
 	public void updateGL(GameIDAO gidao){		//update game list in DB
-
+		error = false;
 		for (GameDTO dto : glist){
 			dto.setGname("testnewGname");
-
-			try{																	
-				error = false;						//database updating
+			try{								//database updating
 				gidao.update(dto);
-				if (dto.getGname() != gidao.getById(dto.getGid()).getGname()){
+				if (!dto.getGname().equals(gidao.getById(dto.getGid()).getGname())){
 					error = true;
 				}
 			}																		
 			catch(Exception e){
 				System.out.print("update games in DB failed");
 				error = true;															
-			}	
-			finally{TestLauncher.printProgress(error);}
+			}			
 		}
+		TestLauncher.printProgress(error);
 	}
 
 	public void cleanUserList(UsersIDAO uidao){
+		error = false;
 		for (UsersDTO dto : ulist){
 			try{																	
-				error = false;						//database deletion
+										//database deletion
 				uidao.delete(dto.getEmail());
-				ulist.remove(dto);
 			}																		
 			catch(Exception e){		
 				System.out.print("delete user in DB failed");
 				error = true;															
 			}
-			finally{
-				TestLauncher.printProgress(error);	
-				}
-			}
 		}
+		TestLauncher.printProgress(error);	
+	}
 
-		public void cleanGameList(GameIDAO gidao){
-			for (GameDTO dto : glist){
-				try{																	
-					error = false;						//database deletion
-					gidao.delete(dto.getGid());
-					glist.remove(dto);
-				}																		
-				catch(Exception e){		
-					System.out.print("delete game in DB failed");
-					error = true;															
-				}	
-				finally{
-					TestLauncher.printProgress(error);	
-					}
-				}	
-			}
+	public void cleanGameList(GameIDAO gidao){
+		error = false;
+		for (GameDTO dto : glist){
+			try{								//database deletion
+				gidao.delete(dto.getGid());
+			}																		
+			catch(Exception e){		
+				System.out.print("delete game in DB failed");
+				error = true;															
+			}	
+		}
+		TestLauncher.printProgress(error);		
+	}
 
-			public void cleanUGList(UsersGamesIDAO ugidao){
-				for (UsersGamesDTO dto : uglist){
-					try{																	
-						error = false;						//database deletion
-						ugidao.delete(dto.getEmail(), dto.getGid());
-						uglist.remove(dto);
-					}																		
-					catch(Exception e){		
-						System.out.print("delete usersgames in DB failed");
-						error = true;															
-					}	
-					finally{
-						TestLauncher.printProgress(error);	
-						}
-					}	
-				}
-			}
+	public void cleanUGList(UsersGamesIDAO ugidao){
+		error = false;
+		for (UsersGamesDTO dto : uglist){
+			
+			try{											//database deletion
+				ugidao.delete(dto.getEmail(), dto.getGid());
+				
+			}																		
+			catch(Exception e){		
+				System.out.print("delete usersgames in DB failed");
+				error = true;															
+			}	
+		}
+		TestLauncher.printProgress(error);
+	}
+}
 
 
 

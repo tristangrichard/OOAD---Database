@@ -30,12 +30,14 @@ public class Test_User_Game {
 		GameIDAO gidao = new MySQLGameDAO();
 		// sets up fictional user for testing DB with
 		UsersDTO bdto = new UsersDTO("Test", "Testesen", "11-3-2001", "passtest", "test@test.mail",true);
-		GameDTO gdto = new GameDTO(10001, "MODERNWARFARETEST", "11-3-2001");
+		GameDTO gdto = new GameDTO(10001, "MODERNWARFARETEST", "11-3-2001", "not used");
 
 		create(uidao,bdto);
+		createDuplicate(uidao,bdto);
 		update(uidao,bdto);
 		delete(uidao,bdto);
 		createG(gidao,gdto);
+		createGduplicate(gidao,gdto);
 		updateG(gidao,gdto);
 		deleteG(gidao,gdto);
 	}
@@ -43,16 +45,34 @@ public class Test_User_Game {
 	//////////////////////////////////////////////////////////////////////////	
 	//simple user creation test
 	public void create(UsersIDAO uidao, UsersDTO bdto){
+		error = false;
 		try {
 			uidao.create(bdto);
 		} catch (DALException e) {
 			error = true;
 			System.out.println("create user failed");
 		}
-		finally{
-			{TestLauncher.printProgress(error);	
-			}
-			error = false;	}
+			TestLauncher.printProgress(error);	
+		error = false;
+	}
+	//////////////////////////////////////////////////////////////////////////	
+	//simple user creation test, same email
+	public void createDuplicate(UsersIDAO uidao, UsersDTO bdto){
+		error = false;
+		boolean temp = true;
+		try {
+			uidao.create(bdto);
+		} catch (DALException e) {
+			error = false;
+			temp = false;
+		}
+		if (temp){
+			error = true;
+			System.out.println("create duplicate, succeeded, which is wrong");
+		}
+		TestLauncher.printProgress(error);	
+		error = false;
+
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -64,7 +84,7 @@ public class Test_User_Game {
 		bdto.setLname("Testesten1");
 		bdto.setPass("pass");
 		try {
-			uidao.update(bdto);
+			uidao.update(old.getEmail(), bdto);
 			if (old == uidao.get(bdto.getEmail())){//compares old to updated UsersDTO
 				error = true;
 				System.out.println("update user failed");}
@@ -113,24 +133,44 @@ public class Test_User_Game {
 			}
 		}
 	}
+	//////////////////////////////////////////////////////////////////////////	
+	//simple game creation test, of duplicate
+	public void createGduplicate(GameIDAO gidao, GameDTO gdto){
+		boolean temp = true;
+		error = false;
+		try {
+			gidao.create(gdto);
+		} catch (DALException e) {
+			error = false;
+			temp = false;
+		}
+		if (temp){
+			error = true;
+			System.out.println("duplicate game creation succeeded, which is wrong");
+		}
+		TestLauncher.printProgress(error);	
+		error = false;
+	}
 
 	//////////////////////////////////////////////////////////////////////////
 	//simple game update test
 	public void updateG(GameIDAO gidao, GameDTO gdto){
 		error = false;
-		GameDTO old = gdto;
+		GameDTO old = new GameDTO(10001, "MODERNWARFARETEST", "11-3-2001", "not used");
 		gdto.setGname("GameTest");
 		gdto.setReleased("01-01-2001");
 		try {
 			gidao.update(gdto);
-			if (old != gidao.getById(gdto.getGid())){//compares old to updated GameDTO
+			String oldname = old.getGname();
+			String newname = gidao.getById(gdto.getGid()).getGname();
+			if (oldname.equals(newname)){		//compares old to updated GameDTO
 				error = true;
-				System.out.println("update game failed");}
+				System.out.println("update game failed0");}
 			else{}
 		}
 		catch (DALException e) {
 			error = true;
-			System.out.println("update game failed");
+			System.out.println("update game failed1");
 		}
 		finally{
 			{TestLauncher.printProgress(error);	
