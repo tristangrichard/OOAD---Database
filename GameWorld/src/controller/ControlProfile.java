@@ -2,11 +2,14 @@ package controller;
 
 import java.io.IOException;
 import java.util.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
+
 import daoimpl.MySQLLangDAO;
 import daoimpl.MySQLPublisherDAO;
 import daoimpl.MySQLRoleDAO;
+import daoimpl.MySQLUserPubDAO;
 import daoimpl.MySQLUsersLangDAO;
 import daointerfaces.DALException;
 import daointerfaces.LangIDAO;
@@ -83,6 +86,11 @@ public class ControlProfile extends HttpServlet {
 			userRole = new MySQLRoleDAO();
 			application.setAttribute("role", userRole);
 		}
+		userPub = (UserPubIDAO) application.getAttribute("userPub");
+		if (userPub == null) {
+			userPub = new MySQLUserPubDAO();
+			application.setAttribute("userPub", userPub);
+		}
 
 		// Create user bean if not already existing.
 		user = (UsersDTO) session.getAttribute("user");
@@ -101,7 +109,7 @@ public class ControlProfile extends HttpServlet {
 		String action = null;
 		action = request.getParameter("action");
 
-
+		// Prepare update pages. Gets information about the user
 		if ("updateUser".equals(action)) {
 			String userEmail = user.getEmail();
 			try {
@@ -126,7 +134,9 @@ public class ControlProfile extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("../WEB-INF/profile/index.jsp?").forward(request, response);
 			}
-		} else if ("updateOprFilled".equals(action)) {
+		}
+		// User updates profile
+		else if ("updateOprFilled".equals(action)) {
 			String userEmail = user.getEmail();
 			try {
 				String fName = request.getParameter("newFName");
@@ -147,7 +157,34 @@ public class ControlProfile extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 				request.getRequestDispatcher("index.jsp?action=updateUser").forward(request, response);
 			}
-		} else if ("deactivateUser".equals(action)) {
+		}
+		// Userpub updates profile
+		else if ("updatePubFilled".equals(action)) {
+			String userEmail = user.getEmail();
+			try {
+				String fName = request.getParameter("newFName");
+				String lName = request.getParameter("newLName");
+				String newEmail = request.getParameter("newUserEmail");
+				String birth = request.getParameter("newUserBirth");
+				String sex = request.getParameter("newUserSex");
+				String lang = request.getParameter("newUserLang");
+				String oldPass = request.getParameter("oldPass");
+				String pass1 = request.getParameter("updOprPass1");
+				String pass2 = request.getParameter("updOprPass2");
+				String newPub = request.getParameter("newPub");
+				int Pid = Integer.parseInt(newPub);
+				int iSex = Integer.parseInt(sex);
+				int iLang = Integer.parseInt(lang);	
+				userLogic.updatePub(fName, lName, birth, userEmail, newEmail, iSex, iLang, oldPass, pass1, pass2, Pid);
+				request.setAttribute("message", "User with email: " + newEmail + " successfully updated.");
+				request.getRequestDispatcher("../WEB-INF/profile/index.jsp?").forward(request, response);
+			} catch (DALException e) {
+				request.setAttribute("error", e.getMessage());
+				request.getRequestDispatcher("index.jsp?action=updateUser").forward(request, response);
+			}
+		}
+		// User deactivates profile
+		else if ("deactivateUser".equals(action)) {
 			String userEmail = user.getEmail();
 			try {
 				userLogic.deactivateUser(userEmail);

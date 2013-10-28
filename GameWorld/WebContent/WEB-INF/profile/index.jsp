@@ -24,18 +24,12 @@
 			<ul class="navbar">
 				<li><a href="../index.jsp">Back</a>
 					<hr>
-					<% if (request.getUserPrincipal() != null) {if (request.isUserInRole("user")) {%>
-				<li><a href="index.jsp?action=updateUser">Update Profile</a>
-					<%} if (request.isUserInRole("game")) {%>
-				<li><a href="index.jsp?action=updatePub">Update Profile</a>
-					<%} }%>
-					<hr>
 				<li><a href="../login/logout.jsp">Logout</a>
 			</ul>
 		</div>
 		<div id="main">
 			<!-- Main content -->
-			<h1>User administration</h1>
+			<h1>My Profile</h1>
 			<p>From here you can manage your profile!</p>
 		</div>
 		<div id="footer">Gruppe 8</div>

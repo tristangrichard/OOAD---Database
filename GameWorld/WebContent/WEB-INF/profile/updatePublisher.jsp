@@ -39,6 +39,16 @@
 		<div id="main">
 			<!-- Main content -->
 			<h1>Update User</h1>
+			<script>
+				function confirmComplete() {
+					var answer = confirm("Are you sure you deactivate your profile?");
+					if (answer == true) {
+						window.location.href = "index.jsp?action=deactivateUser";
+					} else {
+						return false;
+					}
+				}
+			</script>
 			<form method="POST" action="index.jsp">
 				<!-- This is for Updating -->
 				<table>
@@ -140,14 +150,11 @@
 						</select></td>
 					</tr>
 					<tr>
-						<td><a href="index.jsp?action=deactivateUser">Deactivate
-								Profile</a></td>
 						<td colspan="2" align="right"><input type="hidden"
-							name="action" value="updateOprFilled"> <input
+							name="action" value="updatePubFilled"> <input
 							type="hidden" name="userToUpdate" value="<%=user1.getEmail()%>">
-							<input type="hidden" name="oldEmail"
-							value="<%=user1.getEmail()%>"> <input type="submit"
-							value="Update Operator"></td>
+							<input type="submit"value="Update Operator"></td>
+						<td colspan="4" align="right"> <input type="button" value="Deactivate Profile" onclick="{return confirmComplete();}"></td>
 
 					</tr>
 				</table>

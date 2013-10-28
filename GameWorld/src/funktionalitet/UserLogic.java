@@ -3,10 +3,12 @@ package funktionalitet;
 import daoimpl.*;
 import daointerfaces.*;
 import dto.*;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import connector.Connector;
 
 public class UserLogic implements IUserLogic{	
@@ -80,6 +82,20 @@ public class UserLogic implements IUserLogic{
 		RoleDTO role = r.get(oldEmail);
 		updateOprAdmin(fName, lName, birth,oldEmail, email, sex, lang, role.getRole(), newPassword, newPassword2);
 	}
+	@Override
+	public void updatePub(String fName, String lName, String birth, String oldEmail, String email, int sex, int lang, String oldPassword, String newPassword, String newPassword2, int Pid) throws DALException {
+		try {
+			user = o.get(oldEmail);
+		} catch (DALException e) {
+			throw new DALException("The specified user does not exist.");
+		}
+		if (!(user.getPass().equals(oldPassword))) { // eventuelt exception handling
+			throw new DALException("Old password is not correct.");
+		}
+		RoleDTO role = r.get(oldEmail);
+		updatePubAdmin(fName, lName, birth, oldEmail, email, sex, lang, role.getRole(), newPassword, newPassword2, Pid);
+		
+	}
 
 	public void updateOprAdmin(String fName, String lName, String birth,String oldEmail, String email, int sex, int lang, String role, String newPassword, String newPassword2) throws DALException {
 		try {
@@ -133,6 +149,8 @@ public class UserLogic implements IUserLogic{
 				r.update(newRole);
 				userPub = new UserPubDTO(oldEmail, Pid);
 				p.update(userPub);
+				newLang = new UsersLangDTO(oldEmail, lang);
+				l.update(newLang);
 			} else {
 				throw new DALException("The new password is invalid.");
 			}
@@ -203,8 +221,4 @@ public class UserLogic implements IUserLogic{
 			bSex = true;
 		return bSex;
 	}
-
-
-
-
 }

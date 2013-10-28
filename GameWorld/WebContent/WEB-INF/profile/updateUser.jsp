@@ -30,24 +30,6 @@
 			<ul class="navbar">
 				<li><a href="index.jsp?">Back</a>
 					<hr>
-					<%
-						if (request.getUserPrincipal() != null) {
-							if (request.isUserInRole("user")) {
-					%>
-
-					<li><a href="index.jsp?action=updateUser">Update Profile</a>
-					<%
-						}
-							if (request.isUserInRole("game")) {
-					%> 
-				
-				<li><a href="index.jsp?action=updatePub">Update Profile</a>
-					<%
-						}
-						}
-					%>
-				<hr>
-				
 				<li><a href="../login/logout.jsp">Logout</a>
 			
 			</ul>
@@ -71,37 +53,25 @@
 		<tr>
 			<td>First Name:</td>
 			<td><input type="text" name="newFName" required="required"
-									value="<%if (request.getParameter("userFName") != null)
-				out.print(request.getParameter("userFName"));
-			else
-				out.print(user1.getFname());%>"
+									value="<%= user1.getFname()%>"
 									onclick="this.select()"></td>
 		</tr>
 		<tr>
 			<td>Last Name:</td>
 			<td><input type="text" name="newLName" required="required"
-									value="<%if (request.getParameter("userLName") != null)
-				out.print(request.getParameter("userLName"));
-			else
-				out.print(user1.getLname());%>"
+									value="<%=user1.getLname()%>"
 									onclick="this.select()"></td>
 		</tr>
 		<tr>
 			<td>email:</td>
 			<td><input type="email" name="newUserEmail" required="required"
-									value="<%if (request.getParameter("newUserEmail") != null)
-				out.print(request.getParameter("newUserEmail"));
-			else
-				out.print(user1.getEmail());%>"
+									value="<%=user1.getEmail()%>"
 									onclick="this.select()"></td>
 		</tr>
 		<tr>
 			<td>Date of Birth:</td>
 			<td><input type="text" name="newUserBirth" required="required"
-									value="<%if (request.getParameter("newUserBirth") != null)
-				out.print(request.getParameter("newUserBirth"));
-			else
-				out.print(user1.getDob());%>"
+									value="<%= user1.getDob()%>"
 									onclick="this.select()"></td>
 		</tr>
 		<tr>
