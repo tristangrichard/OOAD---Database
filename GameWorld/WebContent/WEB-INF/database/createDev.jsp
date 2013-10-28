@@ -26,8 +26,8 @@
 			<ul class="navbar">
 				<li><a href="index.jsp?">Back</a>
 				<li><a href="index.jsp?action=listDev">List Developer</a>
-				<li><a href="../
-				login/logout.jsp">Logout</a>
+				<hr>
+				<li><a href="../login/logout.jsp">Logout</a>
 			</ul>
 		</div>
 		<div id="main">

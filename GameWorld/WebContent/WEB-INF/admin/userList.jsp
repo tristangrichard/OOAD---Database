@@ -10,10 +10,12 @@
 	<table class="list">
 		<% for (int i = 0; i< userList.size(); i++) {
 		UsersDTO user = (UsersDTO) userList.get(i); %>
-		<tr><td> <a href="index.jsp?action=updateUser&amp;userToUpdate=<%= user.getEmail() %>"><%= user.getFname()+" "+user.getLname() %></a></td><td><%= user.getEmail() %></td>
+		<tr><td><%= user.getFname()+" "+user.getLname() %></td><td><%= user.getEmail() %></td>
+		<td><a href="index.jsp?action=updateUser&amp;userToUpdate=<%= user.getEmail() %>">Edit</a> </td>
 		<td><% if (!roles.get(i).toString().equalsIgnoreCase("inactive") && !roles.get(i).toString().equalsIgnoreCase("inactivePub")){ %>
-		<a href="index.jsp?action=deactivateUser&amp;userToDeactivate=<%= user.getEmail() %>">Deactivate</a><%} else out.print("Deactivated");%>
-		</tr></td>
+		<a href="index.jsp?action=deactivateUser&amp;userToDeactivate=<%= user.getEmail() %>">Deactivate</a><%} else out.print("Deactivated");%></td>
+		
+		</tr>
 		<%}%>
 
 	</table>
