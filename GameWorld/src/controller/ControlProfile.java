@@ -151,6 +151,8 @@ public class ControlProfile extends HttpServlet {
 				int iSex = Integer.parseInt(sex);
 				int iLang = Integer.parseInt(lang);	
 				userLogic.updateOpr(fName, lName, birth, userEmail, newEmail, iSex, iLang, oldPass, pass1, pass2);
+				user = userLogic.getUser(newEmail);
+				session.setAttribute("user", user);
 				request.setAttribute("message", "User with email: " + newEmail + " successfully updated.");
 				request.getRequestDispatcher("../WEB-INF/profile/index.jsp?").forward(request, response);
 			} catch (DALException e) {
@@ -176,6 +178,8 @@ public class ControlProfile extends HttpServlet {
 				int iSex = Integer.parseInt(sex);
 				int iLang = Integer.parseInt(lang);	
 				userLogic.updatePub(fName, lName, birth, userEmail, newEmail, iSex, iLang, oldPass, pass1, pass2, Pid);
+				user = userLogic.getUser(newEmail);
+				session.setAttribute("user", user);
 				request.setAttribute("message", "User with email: " + newEmail + " successfully updated.");
 				request.getRequestDispatcher("../WEB-INF/profile/index.jsp?").forward(request, response);
 			} catch (DALException e) {
