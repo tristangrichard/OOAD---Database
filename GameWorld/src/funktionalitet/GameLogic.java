@@ -36,7 +36,6 @@ public class GameLogic implements IGameLogic {
 	private GameLangIDAO gaLa;
 	private GameGenreIDAO gaGen;
 	private GameOSIDAO gaOs;
-	private GameDTO gameDTO;
 	private GamePubDTO rowPub;
 	private GamePubIDAO gamePub;
 	private GameDevDTO rowDev;
