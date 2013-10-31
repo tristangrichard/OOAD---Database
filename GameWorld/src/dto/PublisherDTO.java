@@ -4,13 +4,13 @@ public class PublisherDTO
 {
 	private int Pid;
 	private String Publisher;
-	private String Founded;
+	private String country;
 
 	public PublisherDTO(int Pid, String Publisher, String Founded)
 	{
 		this.Pid = Pid;
 		this.Publisher = Publisher;
-		this.Founded = Founded;
+		this.country = Founded;
 	}
 
 	public int getPid(){return Pid;}
@@ -19,7 +19,7 @@ public class PublisherDTO
 	public String getPublisher(){return Publisher;}
 	public void setPublisher(String Publisher){this.Publisher = Publisher;}
 
-	public String getFounded(){return Founded;}
-	public void setFounded(String Founded){this.Founded = Founded;}
+	public String getFounded(){return country;}
+	public void setFounded(String Founded){this.country = Founded;}
 }
 

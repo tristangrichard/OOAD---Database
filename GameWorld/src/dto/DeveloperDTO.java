@@ -4,13 +4,13 @@ public class DeveloperDTO
 {
 	private int Did;
 	private String Developer;
-	private String Founded;
+	private String country;
 
 	public DeveloperDTO(int Did, String Developer, String Founded)
 	{
 		this.Did = Did;
 		this.Developer = Developer;
-		this.Founded = Founded;
+		this.country = Founded;
 	}
 
 	public int getDid(){return Did;}
@@ -19,7 +19,7 @@ public class DeveloperDTO
 	public String getDeveloper(){return Developer;}
 	public void setDeveloper(String Developer){this.Developer = Developer;}
 
-	public String getFounded(){return Founded;}
-	public void setFounded(String Founded){this.Founded = Founded;}
+	public String getFounded(){return country;}
+	public void setFounded(String Founded){this.country = Founded;}
 }
 
