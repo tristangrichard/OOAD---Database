@@ -24,7 +24,6 @@
 	<div id="container">
       <form class="form-signin" method="POST" action="j_security_check">
         <h2 class="form-signin-heading">GameWorld</h2>
-        <%System.out.println("this is our userPrincipal "+request.getUserPrincipal() != null); %>
 			<% if (request.getUserPrincipal() != null) { if (request.isUserInRole("administrator")) {%>
 				<br><a class="btn btn-large btn-primary"href="admin/index.jsp">User Administration</a>
 				<br><a class="btn btn-large btn-primary"href="database/index.jsp">Database Administration</a> <% } if (request.isUserInRole("game") || request.isUserInRole("administrator")) { %>
