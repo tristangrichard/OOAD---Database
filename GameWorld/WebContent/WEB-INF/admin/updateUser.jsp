@@ -11,28 +11,32 @@
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>User Administration</title>
-<link rel="stylesheet" href="../css/style1.css">
+<link rel="stylesheet" href="../css/style.css">
 
 </head>
 
 <body>
-	<div id="messagecontainer">
-		<div class="error">${error}</div>
-		<div class="message">${message}</div>
-	</div>
-
-	<div id="container">
-
-		<div id="navigation">
-			<!-- Site navigation menu -->
-			<ul class="navbar">
-				<li><a href="index.jsp?">Back</a>
-					<hr>
-				<li><a href="../login/logout.jsp">Logout</a>
-			</ul>
+<div class="container">
+		<h1 id="headerh1">GameWorld</h1>
+		<div id="messagecontainer">
+			<div class="error">${error}</div>
+			<div class="message">${message}</div>
 		</div>
-		<div id="main">
-			<!-- Main content -->
+		<div class="row">
+			<div class="span2">
+				<a class="btn btn-primary1 btn-large" href="index.jsp?">Back</a> 
+				<a class="btn btn-primary1 btn-large" href="../login/logout.jsp">Logout</a>
+			</div>
+			<div class="span9">
+				<!-- Main content -->
+				<h2>User administration</h2>
+				<p></p>
+			</div>
+		</div>
+	</div>
+		<div class="container">
+		<div class="row">
+			<div class="span13">
 			<h1>Update User</h1>
 			<form method="POST" action="index.jsp">
 				<!-- This is for Updating -->
@@ -125,11 +129,11 @@
 			}%>>administrator</option>
 					</select></td>
 					<tr>
-						<td colspan="2" align="right"><input type="hidden"
-							name="action" value="updateOprFilled"> <input
-							type="hidden" name="userToUpdate" value="<%=user1.getEmail()%>"><input
-							type="hidden" name="oldEmail" value="<%=user1.getEmail()%>">
-							<input type="submit" value="Update Operator"></td>
+						<td colspan="2" align="right">
+						<input type="hidden" name="action" value="updateOprFilled"> 
+						<input type="hidden" name="userToUpdate" value="<%=user1.getEmail()%>">
+						<input type="hidden" name="oldEmail" value="<%=user1.getEmail()%>">
+						<input class="btn btn-primary1 btn-large" type="submit" value="Update Operator"></td>
 						<td></td>
 					</tr>
 				</table>
@@ -138,6 +142,7 @@
 				least three of the following four categories: small letters ('a' -
 				'z'), capital letters ('A' - 'Z'), digits ('0' - '9') and any of the
 				following special characters: ('.', '-', '_', '+', '!', '?', '=').</p>
+		</div>
 		</div>
 		<div class="footer">Gruppe 8</div>
 	</div>

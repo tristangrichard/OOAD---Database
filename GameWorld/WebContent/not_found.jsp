@@ -7,23 +7,27 @@
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>GameWorld</title>
-<link rel="stylesheet" href="../css/style1.css">
-
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.form-signin {
+	max-width: 300px;
+}
+</style>
 </head>
-
 <body>
 	<div id="messagecontainer">
-			<div class="error">${error}</div>
-			<div class="message">${message}</div>
+		<div class="error">${error}</div>
+		<div class="message">${message}</div>
 	</div>
-
-	<div id="container">
-		<div id="main">
-			<!-- Main content -->
-			<h1>Page not found </h1>
+	<div class="container">
+		<form class="form-signin">
+			<h2 class="form-signin-heading">GameWorld</h2>
+			<h1>Page not found</h1>
 			<p>The requested page does not exist.</p>
-			<p><a href="../index.jsp">Go back</a></p>
-		</div>
+			<p>
+				<a class="btn btn-large btn-primary" href="../index.jsp">Go back</a>
+			</p>
+		</form>
 		<div class="footer">Gruppe 8</div>
 	</div>
 </body>

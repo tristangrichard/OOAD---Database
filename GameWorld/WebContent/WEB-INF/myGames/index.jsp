@@ -5,35 +5,31 @@
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>GameWorld</title>
-<link rel="stylesheet" href="../css/style1.css">
+<link rel="stylesheet" href="../css/style.css">
 
 </head>
 
 <body>
-	<div id="messagecontainer">
+<div class="container">
+		<h1 id = "headerh1">GameWorld</h1>
+		<div id="messagecontainer">
 			<div class="error">${error}</div>
 			<div class="message">${message}</div>
-	</div>
-
-	<div id="container">
-
-		<div id="navigation">
-			<!-- Site navigation menu -->
-			<ul class="navbar">
-				<li><a href="../index.jsp">Back</a>
-					<hr>
-				<li><a href="index.jsp?action=List">My Games</a>
-				<li><a href="index.jsp?action=Add">Add new game</a>
-					<hr>
-				<li><a href="../login/logout.jsp">Logout</a>
-			</ul>
 		</div>
-		<div id="main">
-			<!-- Main content -->
-			<h1>My Games</h1>
-			<p>From here you can manage your games!</p>
+		<div class="row">
+			<div class="span2">
+				<a class="btn btn-primary1 btn-large" href="../index.jsp?">Home</a>
+				<a class="btn btn-primary1 btn-large" href="index.jsp?action=List">My Games</a>
+				<a class="btn btn-primary1 btn-large" href="index.jsp?action=Add">Add new game</a>
+				<a class="btn btn-primary1 btn-large" href="../login/logout.jsp">Logout</a>
+			</div>
+			<div class="span9">
+				<!-- Main content -->
+				<h2>My Games</h2>
+				<p>From here you can manage your games!</p>
+			</div>
 		</div>
-		<div class="footer">Gruppe 8</div>
 	</div>
+	<div class="footer">Gruppe 8</div>
 </body>
 </html>

@@ -7,22 +7,27 @@
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>GameWorld</title>
-<link rel="stylesheet" href="../css/style1.css">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.form-signin {
+	max-width: 300px;
+}
+</style>
 </head>
 <body>
 	<div id="messagecontainer">
-			<div class="error">${error}</div>
-			<div class="message">${message}</div>
+		<div class="error">${error}</div>
+		<div class="message">${message}</div>
 	</div>
-	<div id="container">
-		<div id="main">
-			<!-- Main content -->
-			<h1>Login error - GAME OVER!!!</h1>
+	<div class="container">
+		<form class="form-signin">
+			<h2 class="form-signin-heading">GameWorld</h2>
+			<h1>Login error!</h1>
 			<p>Login failed.</p>
 			<p>
-				<a href="index.jsp">Try again</a>
+				<a class="btn btn-large btn-primary" href="../index.jsp">Try again</a>
 			</p>
-		</div>
+		</form>
 		<div class="footer">Gruppe 8</div>
 	</div>
 </body>

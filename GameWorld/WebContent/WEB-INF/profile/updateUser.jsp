@@ -11,28 +11,32 @@
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>My Profile</title>
-<link rel="stylesheet" href="../css/style1.css">
+<link rel="stylesheet" href="../css/style.css">
 
 </head>
 
 <body>
-	<div id="messagecontainer">
-		<div class="error">${error}</div>
-		<div class="message">${message}</div>
-	</div>
-
-	<div id="container">
-
-		<div id="navigation">
-			<!-- Site navigation menu -->
-			<ul class="navbar">
-				<li><a href="index.jsp?">Back</a>
-					<hr>
-				<li><a href="../login/logout.jsp">Logout</a>
-			</ul>
+<div class="container">
+		<h1 id = "headerh1">GameWorld</h1>
+		<div id="messagecontainer">
+			<div class="error">${error}</div>
+			<div class="message">${message}</div>
 		</div>
-		<div id="main">
-			<!-- Main content -->
+		<div class="row">
+			<div class="span2">
+				<a class="btn btn-primary1 btn-large" href="index.jsp?">Back</a>
+				<a class="btn btn-primary1 btn-large" href="../login/logout.jsp">Logout</a>
+			</div>
+			<div class="span9">
+				<!-- Main content -->
+				<h2>My Profile</h2>
+				<p>From here you can update your profile</p>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="span13">
 			<h1>Update User</h1>
 			<script>
 				function confirmComplete() {
@@ -113,11 +117,11 @@
 						<td></td>
 					</tr>
 					<tr>
-						<td colspan="2" align="right"><input type="hidden"
-							name="action" value="updateOprFilled"> <input
-							type="submit" value="Update Profile"></td>
-						<td colspan="4" align="right"><input type="button"
-							value="Deactivate Profile" onclick="{return confirmComplete();}"></td>
+						<td colspan="2" align="right">
+						<input type="hidden" name="action" value="updateOprFilled"> 
+						<input class="btn btn-primary1 btn-large" type="submit" value="Update Profile"></td>
+						<td colspan="4" align="right">
+						<input class="btn btn-primary1 btn-large" type="button" value="Deactivate Profile" onclick="{return confirmComplete();}"></td>
 					</tr>
 				</table>
 			</form>
@@ -125,7 +129,6 @@
 				least three of the following four categories: small letters ('a' -
 				'z'), capital letters ('A' - 'Z'), digits ('0' - '9') and any of the
 				following special characters: ('.', '-', '_', '+', '!', '?', '=').</p>
-
 		</div>
 		<div class="footer">Gruppe 8</div>
 	</div>

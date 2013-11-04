@@ -5,44 +5,37 @@
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>Genre Administration</title>
-<link rel="stylesheet" href="../css/style1.css">
+<link rel="stylesheet" href="../css/style.css">
 
 </head>
 
 <body>
-	<div id="messagecontainer">
+	<div class="container">
+		<h1 id = "headerh1">GameWorld</h1>
+		<div id="messagecontainer">
 			<div class="error">${error}</div>
 			<div class="message">${message}</div>
+		</div>
+		<div class="row">
+			<div class="span2">
+				<a class="btn btn-primary1 btn-large" href="../index.jsp?">Home</a>
+				<a class="btn btn-primary1 btn-large" href="../login/logout.jsp">Logout</a>
+			</div>
+			
+		<div class="span9">
+				<!-- Main content -->
+				<h2>Database administration</h2>
+				<a class="btn btn-primary1 btn-large" href="index.jsp?action=createGenre">Create genre</a> 
+				<a class="btn btn-primary1 btn-large" href="index.jsp?action=createDev">Create Developer</a>
+				<a class="btn btn-primary1 btn-large" href="index.jsp?action=createLang">Create Language</a> 
+				<a class="btn btn-primary1 btn-large" href="index.jsp?action=createPub">Create Publisher</a>
+				<a class="btn btn-primary1 btn-large" href="index.jsp?action=listGenre">List <br> genre</a>
+				<a class="btn btn-primary1 btn-large" href="index.jsp?action=listDev">List Developer</a>
+				<a class="btn btn-primary1 btn-large" href="index.jsp?action=listLang">List Language</a> 
+				<a class="btn btn-primary1 btn-large" href="index.jsp?action=listPub">List Publisher</a> 
+			</div>
+		</div>
 	</div>
-
-	<div id="container">
-
-		<div id="navigation">
-			<!-- Site navigation menu -->
-			<ul class="navbar">
-				<li><a href="../index.jsp">Home</a>
-					<hr>
-				<li><a href="index.jsp?action=createGenre">Create genre</a>
-				<li><a href="index.jsp?action=listGenre">List genre</a>
-					<hr>
-				<li><a href="index.jsp?action=createLang">Create Language</a>
-				<li><a href="index.jsp?action=listLang">List Language</a>
-					<hr>
-				<li><a href="index.jsp?action=createDev">Create Developer</a>
-				<li><a href="index.jsp?action=listDev">List Developer</a>
-					<hr>
-				<li><a href="index.jsp?action=createPub">Create Publisher</a>
-				<li><a href="index.jsp?action=listPub">List Publisher</a>
-					<hr>
-				<li><a href="../login/logout.jsp">Logout</a>
-			</ul>
-		</div>
-		<div id="main">
-			<!-- Main content -->
-			<h1>Database</h1>
-			<p></p>
-		</div>
 		<div class="footer">Gruppe 8</div>
-	</div>
 </body>
 </html>
