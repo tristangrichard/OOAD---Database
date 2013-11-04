@@ -14,14 +14,6 @@
 	height:30px;
 	text-align:center;
 }
-#navigation {
-	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	float: left;
-	width: 180px;
-	text-align: center;
-}
 .graph {
 	display: inline-block;
 	height: 200px;
