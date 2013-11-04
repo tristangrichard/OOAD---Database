@@ -9,13 +9,11 @@
 </head>
 
 <body>
-	<div id="header">
-		<h1 id="headerh1">Game Administration</h1>
-		<div id="messagecontainer">
+	<div id="messagecontainer">
 			<div class="error">${error}</div>
 			<div class="message">${message}</div>
-		</div>
 	</div>
+
 	<div id="container">
 
 		<div id="navigation">
@@ -36,7 +34,7 @@
 			<h1>Game administration</h1>
 			<p>From here you can add games to the database!</p>
 		</div>
-		<div id="footer">Gruppe 8</div>
+		<div class="footer">Gruppe 8</div>
 	</div>
 </body>
 </html>

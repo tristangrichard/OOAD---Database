@@ -7,6 +7,21 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+ 
+ #messagecontainer {
+	margin-left: auto;
+	margin-right: auto;
+	height:30px;
+	text-align:center;
+}
+#navigation {
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	float: left;
+	width: 180px;
+	text-align: center;
+}
 .graph {
 	display: inline-block;
 	height: 200px;
@@ -126,6 +141,7 @@ body {
 
 .form-signin .form-signin-heading,.form-signin .checkbox {
 	margin-bottom: 10px;
+	text-align:center;
 }
 
 .form-signin input[type="text"],.form-signin input[type="password"] {

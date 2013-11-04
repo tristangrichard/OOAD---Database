@@ -3,37 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 <head>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-<title>GameWorld</title>
-<link rel="stylesheet" href="../css/style1.css">
-
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<title>GameWorld</title>
+	<link rel="stylesheet" href="../css/style.css">
 </head>
-
 <body>
-	<div id="header">
-		<h1 id="headerh1">GameWorld</h1>
-		<div id="messagecontainer">
-			<jsp:useBean id="error" class="java.lang.String" scope="request" />
-			<jsp:useBean id="message" class="java.lang.String" scope="request" />
-			<div class="error">
-				<%
-					if (error != null)
-						out.println(error);
-				%>
-			</div>
-			<div class="message">
-				<%
-					if (message != null)
-						out.println(message);
-				%>
-			</div>
-		</div>
+	<div id="messagecontainer">
+			<div class="error">${error}</div>
+			<div class="message">${message}</div>
 	</div>
-	<div id="container">
-		<div id="main">
-			<!-- Main content -->
-			<h1>Login</h1>
-			<form method="POST" action="j_security_check">
+	<div id="container" class="form-signin" >
+		<form method="POST" action="j_security_check">
+			  <h2 class="form-signin-heading">GameWorld</h2>
+			<h1 align="center">Login</h1>
+			
 				<table>
 					<tr>
 						<td align="left">Email:</td>
@@ -46,7 +29,7 @@
 							onclick="this.select()"></td>
 					</tr>
 					<tr>
-						<th colspan="2" align="right"><input type="submit"
+						<th colspan="2" align="right"><input class="btn btn-large btn-primary" type="submit"
 							name="handling" value="Login"></th>
 					</tr>
 				</table>
@@ -61,7 +44,6 @@
 			<p>Game: info@ea.dk</p>
 			<p>User: ST92@dtu.dk</p>
 		</div>
-		<div id="footer">Gruppe 8</div>
-	</div>
+		<div class="footer">Gruppe 8</div>
 </body>
 </html>
