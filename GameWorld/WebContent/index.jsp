@@ -1,26 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:useBean id="error" class="java.lang.String" scope="request" />
 <jsp:useBean id="message" class="java.lang.String" scope="request" />
-<DTD HTML 4.01//EN">
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>GameWorld</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
-				<%
-					if (error != null)
-						out.println(error);
-				%>
-			</div>
-			<div class="message">
-				<%
-					if (message != null)
-						out.println(message);
-				%>
-			</div>
+<body>
+		<div id="messagecontainer">
+			<div class="error">${error}</div>
+			<div class="message">${message}</div>
 		</div>
-	</div>
 	<div id="container">
       <form class="form-signin" method="POST" action="j_security_check">
         <h2 class="form-signin-heading">GameWorld</h2>
