@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>GameWorld</title>
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/style.css">
 <style>
 .form-signin {
 	max-width: 300px;
@@ -25,7 +25,7 @@
 			<h1>Page not found</h1>
 			<p>The requested page does not exist.</p>
 			<p>
-				<a class="btn btn-large btn-primary" href="../index.jsp">Go back</a>
+				<a class="btn btn-large btn-primary" href="index.jsp">Go back</a>
 			</p>
 		</form>
 		<div class="footer">Gruppe 8</div>

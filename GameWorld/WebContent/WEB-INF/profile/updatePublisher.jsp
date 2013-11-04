@@ -166,6 +166,7 @@
 				'z'), capital letters ('A' - 'Z'), digits ('0' - '9') and any of the
 				following special characters: ('.', '-', '_', '+', '!', '?', '=').</p>
 		</div>
+		</div>
 		<div class="footer">Gruppe 8</div>
 	</div>
 </body>

@@ -15,6 +15,9 @@ public class ControlStat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IUserLogic userLogic = null;
 	private UsersDTO user = null;
+	private boolean graphBars = false;
+	private boolean graphSevBars = false;
+	private boolean graphSevLines = false;
 
 
 	public ControlStat() {
@@ -66,7 +69,11 @@ public class ControlStat extends HttpServlet {
 			if ("**".equals(action)) {
 			
 			}
-			else {request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);}
+			else {
+				request.setAttribute("graphBars", false);
+				request.setAttribute("graphSevBars", false);
+				request.setAttribute("graphSevLines", false);
+				request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);}
 		
 	}
 }
