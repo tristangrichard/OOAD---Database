@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:useBean id="gameList" class="java.util.ArrayList" scope="request" />
 <jsp:useBean id="langList" class="java.util.ArrayList" scope="request" />
+
 <%@ page import="dto.LangDTO"%>
 <%@ page import="dto.GameDTO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
@@ -96,10 +97,14 @@
 			</div>
 		</div>
 	</div>
-<!--<%// if(graphBars.booleanValue()){ %><jsp:include page="graphBars.jsp"/><%//}%>
-	<%// if(graphSevBars.booleanValue()){ %><jsp:include page="graphSevBars.jsp"/><%//}%>
-	<%// if(graphSevLines.booleanValue()){ %><jsp:include page="graphSevLines.jsp"/><%//}%>
- -->	
+	<%Boolean condition = (Boolean)request.getAttribute("graphBars");
+	if(condition){ %><jsp:include page="graphBars.jsp"/><%}%>
+	<%Boolean condition2 = (Boolean)request.getAttribute("graphSevBars");
+	if(condition2){ %><jsp:include page="graphSevBars.jsp"/><%}%>
+	<%Boolean condition3 = (Boolean)request.getAttribute("graphSevLines");
+	if(condition3){ %><jsp:include page="graphSevLines.jsp"/><%}%>
+
+
 	<div class="footer">Gruppe 8</div>
 </body>
 </html>

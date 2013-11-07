@@ -1,3 +1,4 @@
+<html>
 	<!--  Purely test data meant for understanding  ------------------------------------------------------------------------>
 	<%
 		int[] names = new int[20];
