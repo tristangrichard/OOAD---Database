@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:useBean id="gameList" class="java.util.ArrayList" scope="request" />
+<jsp:useBean id="langList" class="java.util.ArrayList" scope="request" />
+<%@ page import="dto.LangDTO"%>
+<%@ page import="dto.GameDTO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 <head>
@@ -26,7 +29,70 @@
 				<!-- Main content -->
 				<h2>Statistics</h2>
 			<p>From here you can generate statistics!</p>
-			<a class="btn btn-large btn-primary" href="index.jsp?action=mostPopular">20 Most Popular games</a>
+			<form method="POST" action="index.jsp">
+			<table>
+			<tr><td>Game</td><td>Sex</td><td>Language</td><td>From</td><td>To</td></tr>
+			<tr>
+			<td>
+			<select name="statGame" style="width:150px">
+								<option value=null>Any</option>
+								<%
+									for (int i = 0; i < gameList.size(); i++) {
+										GameDTO g = (GameDTO) gameList.get(i);
+								%>
+								<option value=<%=g.getGid()%>><%=g.getGname()%></option>
+								<%
+									}
+								%>
+			</select></td>
+			<td>
+			<select name="statSex" style="width:75px">
+								<option value=null>Any</option>
+								<option value=1>Male</option>
+								<option value=0>Female</option>
+			</select>
+			</td>
+			<td>
+			<select name="statLang" style="width:100px">
+								<option value=null>Any</option>
+								<%
+									for (int i = 0; i < langList.size(); i++) {
+										LangDTO l = (LangDTO) langList.get(i);
+								%>
+								<option value=<%=l.getLangid()%>><%=l.getLang()%></option>
+								<%
+									}
+								%>
+			</select>
+			<td>
+				<select name="statMin" style="width:75px">
+								<option value=null>Any</option>
+								<%
+									for (int i = 0; i < 100; i++) {
+								%>
+								<option value=<%=i%>><%=i%></option>
+								<%
+									}
+								%>
+				</select>
+			<td>
+				<select name="statMax" style="width:75px">
+								<option value=null>Any</option>
+								<%
+									for (int i = 0; i < 100; i++) {
+								%>
+								<option value=<%=i%>><%=i%></option>
+								<%
+									}
+								%>
+				</select>
+			</td>
+			<td colspan="2" align="right">
+			<input type="hidden" name="action" value="getNumberOfPlayers">
+			<input class="btn btn-primary1 btn-large" type="submit" value="Get number of players"></td>
+			</tr>
+			</table>
+			</form>
 			</div>
 		</div>
 	</div>

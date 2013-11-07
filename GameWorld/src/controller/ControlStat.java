@@ -1,11 +1,19 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import daoimpl.MySQLGameDAO;
+import daoimpl.MySQLLangDAO;
 import daointerfaces.DALException;
+import daointerfaces.GameIDAO;
+import daointerfaces.LangIDAO;
+import dto.GameDTO;
+import dto.LangDTO;
 import dto.UsersDTO;
 import funktionalitet.*;
 
@@ -15,9 +23,9 @@ public class ControlStat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IUserLogic userLogic = null;
 	private UsersDTO user = null;
-	private boolean graphBars = false;
-	private boolean graphSevBars = false;
-	private boolean graphSevLines = false;
+	private IStat statLogic = null;
+	private LangIDAO lan = null;
+	private GameIDAO games = null;
 
 
 	public ControlStat() {
@@ -49,7 +57,17 @@ public class ControlStat extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 			}
 		}
-		
+		statLogic = (StatLogic) application.getAttribute("statLogic");
+		if (statLogic == null) {
+			try {
+				statLogic = new StatLogic();
+				application.setAttribute("statLogic", statLogic);
+			} catch (DALException e) {
+				e.printStackTrace();
+				request.setAttribute("error", e.getMessage());
+			}
+		}
+
 		// Create user bean if not already existing.
 		user = (UsersDTO) session.getAttribute("user");
 		if (user == null) {
@@ -61,19 +79,41 @@ public class ControlStat extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("error", e.getMessage());
 			}
-		}	
-			// Getting the action parameter.
-			String action = null;
-			action = request.getParameter("action");
-			
-			if ("**".equals(action)) {
-			
-			}
-			else {
+		}
+		lan = (MySQLLangDAO) application.getAttribute("LangDAO");
+		if (lan == null) {
+			lan = new MySQLLangDAO();
+			application.setAttribute("LangDAO", lan);
+		}
+		games = (MySQLGameDAO) session.getAttribute("games");
+		if (games == null) {
+			games = new MySQLGameDAO();
+			application.setAttribute("games", games);
+		}
+		// Getting the action parameter.
+		String action = null;
+		action = request.getParameter("action");
+
+		if ("getNumberofPlayers".equals(action)) {
+
+		}
+		else {
+			List<GameDTO> gameList;
+			List<LangDTO> langList;
+			try {
+				gameList = new ArrayList<GameDTO>(games.getList());
+				langList = new ArrayList<LangDTO>(lan.getList());
+				request.setAttribute("gameList", gameList);
+				request.setAttribute("langList", langList);
 				request.setAttribute("graphBars", false);
 				request.setAttribute("graphSevBars", false);
 				request.setAttribute("graphSevLines", false);
-				request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);}
-		
+				request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
+			} catch (DALException e) {
+				request.setAttribute("error", e.getMessage());
+				e.printStackTrace();
+				request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
+			}
+		}
 	}
 }

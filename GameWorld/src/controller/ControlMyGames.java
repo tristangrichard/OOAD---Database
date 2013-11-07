@@ -118,7 +118,6 @@ public class ControlMyGames extends HttpServlet {
 				request.setAttribute("gameList", gameList);
 				request.getRequestDispatcher("../WEB-INF/myGames/addGame.jsp").forward(request, response); // Sends the request to the actual operator list jsp file.
 			} catch (DALException e) {
-				e.printStackTrace();
 				request.setAttribute("error", e.getMessage());
 
 			}
