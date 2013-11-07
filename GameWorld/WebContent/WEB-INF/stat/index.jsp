@@ -46,7 +46,7 @@
 								%>
 			</select></td>
 			<td>
-			<select name="statSex" style="width:75px">
+			<select name="statSex" style="width:80px">
 								<option value=null>Any</option>
 								<option value=1>Male</option>
 								<option value=0>Female</option>
