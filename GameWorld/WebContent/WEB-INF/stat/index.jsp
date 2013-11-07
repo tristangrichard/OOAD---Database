@@ -21,7 +21,7 @@
 		</div>
 		<div class="row">
 			<div class="span2">
-				<a class="btn btn-primary1 btn-large" href="index.jsp?">Back</a>
+				<a class="btn btn-primary1 btn-large" href="../index.jsp?">Home</a>
 				<a class="btn btn-primary1 btn-large" href="index.jsp?action=stat">Get Stat</a>
 				<a class="btn btn-primary1 btn-large" href="../login/logout.jsp">Logout</a>
 			</div>
