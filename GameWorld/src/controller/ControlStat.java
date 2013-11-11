@@ -149,7 +149,6 @@ public class ControlStat extends HttpServlet {
 			int[] array = new int[rank];
 			for(int i = 0 ; i<rankList.size() ; i ++){
 				RankDTO rankdto = rankList.get(i);
-				System.out.println("numbers "+rankdto.getCount()+" and name"+rankdto.getGname());
 				names[i] = rankdto.getGname();
 				array[i] = rankdto.getCount();
 			}
