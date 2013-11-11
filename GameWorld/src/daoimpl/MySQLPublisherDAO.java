@@ -12,7 +12,7 @@ import daointerfaces.PublisherIDAO;
 import daointerfaces.DALException;
 
 
-public class MySQLPublisherDAO extends PublisherIDAO
+public class MySQLPublisherDAO implements PublisherIDAO
 {
 
 	public void create(PublisherDTO row) throws DALException

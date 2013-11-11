@@ -4,11 +4,11 @@ import java.util.List;
 
 import dto.GameGenreDTO;
 
-abstract public class GameGenreIDAO
+public interface GameGenreIDAO
 {
-	abstract public void create(GameGenreDTO row) throws DALException;
-	abstract public void delete(int Gid, int Genreid) throws DALException;
-	abstract public void update(GameGenreDTO row) throws DALException;
-	abstract public GameGenreDTO get(int Gid, int Genreid) throws DALException;
-	abstract public List<GameGenreDTO> getList() throws DALException;
+	public void create(GameGenreDTO row) throws DALException;
+	public void delete(int Gid, int Genreid) throws DALException;
+	public void update(GameGenreDTO row) throws DALException;
+	public GameGenreDTO get(int Gid, int Genreid) throws DALException;
+	public List<GameGenreDTO> getList() throws DALException;
 }

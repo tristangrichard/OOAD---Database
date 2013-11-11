@@ -116,7 +116,6 @@ public class ControlStat extends HttpServlet {
 			if (!game.equalsIgnoreCase("null")){
 				try {
 					names = games.getById(Integer.parseInt(game)).getGname();
-					System.out.println(names);
 				} catch (NumberFormatException e) {
 					request.setAttribute("error", e.getMessage());
 				} catch (DALException e) {
@@ -146,7 +145,6 @@ public class ControlStat extends HttpServlet {
 				request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
 			} catch (DALException e) {
 				request.setAttribute("error", e.getMessage());
-				e.printStackTrace();
 				request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
 			}
 		}

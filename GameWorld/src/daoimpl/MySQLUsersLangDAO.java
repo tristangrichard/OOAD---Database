@@ -12,7 +12,7 @@ import daointerfaces.UsersLangIDAO;
 import daointerfaces.DALException;
 
 
-public class MySQLUsersLangDAO extends UsersLangIDAO
+public class MySQLUsersLangDAO implements UsersLangIDAO
 {
 
 	public void create(UsersLangDTO row) throws DALException

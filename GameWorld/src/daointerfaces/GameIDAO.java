@@ -4,12 +4,12 @@ import java.util.List;
 
 import dto.GameDTO;
 
-abstract public class GameIDAO
+public interface GameIDAO
 {
-	abstract public void create(GameDTO row) throws DALException;
-	abstract public void delete(int Gid) throws DALException;
-	abstract public void update(GameDTO row) throws DALException;
-	abstract public GameDTO getById(int Gid) throws DALException;
-	abstract public GameDTO getByTitle(String Title) throws DALException;
-	abstract public List<GameDTO> getList() throws DALException;
+	public void create(GameDTO row) throws DALException;
+	public void delete(int Gid) throws DALException;
+	public void update(GameDTO row) throws DALException;
+	public GameDTO getById(int Gid) throws DALException;
+	public GameDTO getByTitle(String Title) throws DALException;
+	public List<GameDTO> getList() throws DALException;
 }

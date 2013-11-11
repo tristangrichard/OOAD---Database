@@ -12,7 +12,7 @@ import daointerfaces.GameIDAO;
 import daointerfaces.DALException;
 
 
-public class MySQLGameDAO extends GameIDAO
+public class MySQLGameDAO implements GameIDAO
 {
 
 	public void create(GameDTO row) throws DALException

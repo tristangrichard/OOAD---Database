@@ -12,7 +12,7 @@ import daointerfaces.UserPubIDAO;
 import daointerfaces.DALException;
 
 
-public class MySQLUserPubDAO extends UserPubIDAO
+public class MySQLUserPubDAO implements UserPubIDAO
 {
 
 	public void create(UserPubDTO row) throws DALException

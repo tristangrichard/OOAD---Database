@@ -12,7 +12,7 @@ import daointerfaces.GenreIDAO;
 import daointerfaces.DALException;
 
 
-public class MySQLGenreDAO extends GenreIDAO
+public class MySQLGenreDAO implements GenreIDAO
 {
 
 	public void create(GenreDTO row) throws DALException

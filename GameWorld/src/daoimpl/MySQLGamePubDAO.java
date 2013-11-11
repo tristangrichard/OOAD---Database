@@ -12,7 +12,7 @@ import daointerfaces.GamePubIDAO;
 import daointerfaces.DALException;
 
 
-public class MySQLGamePubDAO extends GamePubIDAO
+public class MySQLGamePubDAO implements GamePubIDAO
 {
 
 	public void create(GamePubDTO row) throws DALException

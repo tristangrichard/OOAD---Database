@@ -12,7 +12,7 @@ import daointerfaces.OSIDAO;
 import daointerfaces.DALException;
 
 
-public class MySQLOSDAO extends OSIDAO
+public class MySQLOSDAO implements OSIDAO
 {
 
 	public void create(OSDTO row) throws DALException

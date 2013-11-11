@@ -12,7 +12,7 @@ import daointerfaces.RoleIDAO;
 import daointerfaces.DALException;
 
 
-public class MySQLRoleDAO extends RoleIDAO
+public class MySQLRoleDAO implements RoleIDAO
 {
 
 	public void create(RoleDTO row) throws DALException

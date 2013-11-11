@@ -4,12 +4,12 @@ import java.util.List;
 
 import dto.DeveloperDTO;
 
-abstract public class DeveloperIDAO
+public interface DeveloperIDAO
 {
-	abstract public void create(DeveloperDTO row) throws DALException;
-	abstract public void delete(int dId) throws DALException;
-	abstract public void update(DeveloperDTO row) throws DALException;
-	abstract public DeveloperDTO getById(int dId) throws DALException;
-	abstract public DeveloperDTO getByDev(String dev) throws DALException;
-	abstract public List<DeveloperDTO> getList() throws DALException;
+	public void create(DeveloperDTO row) throws DALException;
+	public void delete(int dId) throws DALException;
+	public void update(DeveloperDTO row) throws DALException;
+	public DeveloperDTO getById(int dId) throws DALException;
+	public DeveloperDTO getByDev(String dev) throws DALException;
+	public List<DeveloperDTO> getList() throws DALException;
 }
