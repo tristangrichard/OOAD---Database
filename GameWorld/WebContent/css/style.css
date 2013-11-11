@@ -37,7 +37,7 @@
 	padding: 3px 7px 2px 7px;
 }
 .bar {
-	width: 76px;
+	width: 80px;
 	display: inline-block;
 	background-color: #aeaeae;
 	position: relative;
@@ -61,7 +61,7 @@
 }
 
 .bar0 {
-	width: 36px;
+	width: 80px;
 	display: inline-block;
 	background-color: #aeaeae;
 	position: relative;
@@ -85,7 +85,7 @@
 }
 
 .bar1 {
-	width: 36px;
+	width: 80px;
 	display: inline-block;
 	background-color: #aeaeae;
 	position: relative;
@@ -180,7 +180,7 @@
 	vertical-align:top;
 	margin-top:0%;
 	padding-left:18px;
-	width: 22px;
+	width: 15px;
 	display: inline-block;
 }
 
@@ -201,17 +201,17 @@
 }
 
 .names {
-	width: 78px;
+	width: 80px;
 	float: left;
 	text-align: center;
 	display: inline;
-	margin-left: 1px
+	margin-left: 4px
 }
 
 .space {
 	padding-left:18px;
 	display: inline;
-	width: 30px;
+	width: 15px;
 	float: left;
 }
 

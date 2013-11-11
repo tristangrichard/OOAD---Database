@@ -149,7 +149,16 @@ public class ControlStat extends HttpServlet {
 				names[i] = rankdto.getGname();
 				array[i] = rankdto.getCount();
 			}
-			
+			List<GameDTO> gameList = null;
+			List<LangDTO> langList = null;
+			try {
+				gameList = new ArrayList<GameDTO>(games.getList());
+				langList = new ArrayList<LangDTO>(lan.getList());
+			} catch (DALException e) {
+				request.setAttribute("error", e.getMessage());
+			}
+			request.setAttribute("gameList", gameList);
+			request.setAttribute("langList", langList);
 			request.setAttribute("array", array);
 			request.setAttribute("names", names);	
 			request.setAttribute("graphBars", true);

@@ -30,7 +30,7 @@
 		if(current>=max){max=current;}
 	}
 	 %>
-		<div class="values" style="margin-left:<%=400-(array.length*40.2) %>px;">
+		<div class="values" style="margin-left:<%=400-(array.length*42) %>px;">
 			<div class="valueMax"><%if (max > 0){out.print(max);} else{ out.print("1"); }%></div>
 			<div class="value"style="height:25px"></div>
 			<div class="value"><%if (max < 10){} else{ out.print((max/4)*3); }%></div>
@@ -44,11 +44,10 @@
 	<!---------------------------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------------------------->
 	<!--  This defines the width of the graphing table  -------------------------------------------------------------------->
-	<div class="graph" style="width:<%=array.length*80.7%>px;">
+	<div class="graph" style="width:<%=array.length*84%>px;">
 	<!---------------------------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------------------------->
 	<!--  This plots the bars on the graph  -------------------------------------------------------------------------------->	
-			<div class="barspace"></div>
 			<%for (int i = 0; i < array.length; i++) {	%>
 			<div style="height: <%if(max != 0){ out.print(200*(array[i])/max); }%>px;" class="bar"></div>
 			<%}%>
@@ -56,7 +55,7 @@
 	<!---------------------------------------------------------------------------------------------------------------------->
 	<!--  This plots the data set values on the X-axis under the bars  ----------------------------------------------------->
 		</div><br>
-	<div class="space" style="margin-left:<%=400-(array.length*40.2) %>px;">.</div>
+	<div class="space" style="margin-left:<%=400-(array.length*42) %>px;">.</div>
 	<%for (int i =0;i<names.length;i++){%>
 	<div class="names"><%=names[i]%></div>
 	<%}	%><br>
