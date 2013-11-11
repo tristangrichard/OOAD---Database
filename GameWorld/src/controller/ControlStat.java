@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.*;
@@ -94,8 +95,42 @@ public class ControlStat extends HttpServlet {
 		String action = null;
 		action = request.getParameter("action");
 
-		if ("getNumberofPlayers".equals(action)) {
+		if ("countPlayers".equals(action)) {
+			String game = request.getParameter("statGame");
+			String sex = request.getParameter("statSex");
+			String lang = request.getParameter("statLang");
+			String min = request.getParameter("statMin");
+			String max = request.getParameter("statMax");
+			int i = 0;
+			List<GameDTO> gameList = null;
+			List<LangDTO> langList = null;
+			try {
+				i = statLogic.countPLayers(game, sex, lang, min, max);
+				gameList = new ArrayList<GameDTO>(games.getList());
+				langList = new ArrayList<LangDTO>(lan.getList());
+			} catch (DALException e) {
+				request.setAttribute("error", e.getMessage());
+			}
 
+			String names = null;
+			if (!game.equalsIgnoreCase("null")){
+				try {
+					names = games.getById(Integer.parseInt(game)).getGname();
+					System.out.println(names);
+				} catch (NumberFormatException e) {
+					request.setAttribute("error", e.getMessage());
+				} catch (DALException e) {
+					request.setAttribute("error", e.getMessage());
+				}
+			}else {names = "All";}
+			request.setAttribute("array", i);
+			request.setAttribute("names", names);
+			request.setAttribute("gameList", gameList);
+			request.setAttribute("langList", langList);
+			request.setAttribute("graphBars", true);
+			request.setAttribute("graphSevBars", false);
+			request.setAttribute("graphSevLines", false);
+			request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
 		}
 		else {
 			List<GameDTO> gameList;

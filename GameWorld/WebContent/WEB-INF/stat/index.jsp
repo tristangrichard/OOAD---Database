@@ -89,7 +89,7 @@
 				</select>
 			</td>
 			<td colspan="2" align="right">
-			<input type="hidden" name="action" value="getNumberOfPlayers">
+			<input type="hidden" name="action" value="countPlayers">
 			<input class="btn btn-primary1 btn-large" type="submit" value="Get number of players"></td>
 			</tr>
 			</table>

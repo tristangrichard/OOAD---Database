@@ -456,7 +456,8 @@ body {
 	line-height: 20px;
 	color: #333333;
 	background-color: #909090;
-	background: url("img/ASUS.jpg") center;
+	background: url("img/main.png") center;
+	background-size: cover;
 }
 
 a {
