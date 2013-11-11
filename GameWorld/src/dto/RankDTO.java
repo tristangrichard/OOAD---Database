@@ -9,6 +9,6 @@ public class RankDTO
 		this.count = count;
 		this.gName = gName;
 	}
-	int getCount(){return count;}
-	String getGname(){return gName;}
+	public int getCount(){return count;}
+	public String getGname(){return gName;}
 }

@@ -15,6 +15,7 @@ import daointerfaces.GameIDAO;
 import daointerfaces.LangIDAO;
 import dto.GameDTO;
 import dto.LangDTO;
+import dto.RankDTO;
 import dto.UsersDTO;
 import funktionalitet.*;
 
@@ -101,27 +102,27 @@ public class ControlStat extends HttpServlet {
 			String lang = request.getParameter("statLang");
 			String min = request.getParameter("statMin");
 			String max = request.getParameter("statMax");
-			int i = 0;
+			int[] i = {0};
 			List<GameDTO> gameList = null;
 			List<LangDTO> langList = null;
 			try {
-				i = statLogic.countPLayers(game, sex, lang, min, max);
+				i[0] = statLogic.countPLayers(game, sex, lang, min, max);
 				gameList = new ArrayList<GameDTO>(games.getList());
 				langList = new ArrayList<LangDTO>(lan.getList());
 			} catch (DALException e) {
 				request.setAttribute("error", e.getMessage());
 			}
 
-			String names = null;
+			String[] names = {"All"};
 			if (!game.equalsIgnoreCase("null")){
 				try {
-					names = games.getById(Integer.parseInt(game)).getGname();
+					names[0] = games.getById(Integer.parseInt(game)).getGname();
 				} catch (NumberFormatException e) {
 					request.setAttribute("error", e.getMessage());
 				} catch (DALException e) {
 					request.setAttribute("error", e.getMessage());
 				}
-			}else {names = "All";}
+			}
 			request.setAttribute("array", i);
 			request.setAttribute("names", names);
 			request.setAttribute("gameList", gameList);
@@ -131,6 +132,36 @@ public class ControlStat extends HttpServlet {
 			request.setAttribute("graphSevLines", false);
 			request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
 		}
+		System.out.println(action);
+		
+		if("rankGames".equals(action)){
+			String trank = request.getParameter("popular");
+			int rank = Integer.parseInt(trank);
+			List<RankDTO> rankList = null;
+			try {
+				rankList = statLogic.getMostOwnedGame(rank);
+			} catch (NumberFormatException e) {
+				request.setAttribute("error", e.getMessage());
+			} catch (DALException e) {
+				request.setAttribute("error", e.getMessage());
+			}
+			String[] names = new String[rank];
+			int[] array = new int[rank];
+			for(int i = 0 ; i<rankList.size() ; i ++){
+				RankDTO rankdto = rankList.get(i);
+				System.out.println("numbers "+rankdto.getCount()+" and name"+rankdto.getGname());
+				names[i] = rankdto.getGname();
+				array[i] = rankdto.getCount();
+			}
+			
+			request.setAttribute("array", array);
+			request.setAttribute("names", names);	
+			request.setAttribute("graphBars", true);
+			request.setAttribute("graphSevBars", false);
+			request.setAttribute("graphSevLines", false);
+			request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
+		}
+		
 		else {
 			List<GameDTO> gameList;
 			List<LangDTO> langList;
@@ -148,5 +179,6 @@ public class ControlStat extends HttpServlet {
 				request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
 			}
 		}
+		
 	}
 }

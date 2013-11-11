@@ -26,7 +26,7 @@
 			<div class="span9">
 				<!-- Main content -->
 				<h2>Become our next user</h2>
-				<p></p>
+				<p>Not already a user? <br>Fill in details below to get started fast and easy.</p>
 			</div>
 		</div>
 	</div>
@@ -83,7 +83,7 @@
 						</select></td>
 					</tr>
 					<tr>
-						<td colspan="2" align="right">
+						<td colspan="2" align="left">
 						<input type="hidden" name="action" value="userFilled">
 						<input class="btn btn-primary1 btn-large" type="submit" value="Create User"></td>
 						<td></td>

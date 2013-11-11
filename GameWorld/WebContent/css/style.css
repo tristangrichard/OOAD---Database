@@ -45,7 +45,7 @@
 	padding: 3px 7px 2px 7px;
 }
 .bar {
-	width: 36px;
+	width: 76px;
 	display: inline-block;
 	background-color: #aeaeae;
 	position: relative;
@@ -209,7 +209,7 @@
 }
 
 .names {
-	width: 39px;
+	width: 78px;
 	float: left;
 	text-align: center;
 	display: inline;

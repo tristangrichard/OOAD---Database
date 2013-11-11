@@ -1,6 +1,7 @@
 package funktionalitet;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -58,9 +59,10 @@ public class StatLogic implements IStat {
 	}
 
 	@Override
-	public List<RankDTO> getMostOwnedGame() throws DALException {
-		
-		return null;
+	public List<RankDTO> getMostOwnedGame(int max) throws DALException {
+		List<RankDTO> list = new ArrayList<RankDTO>();
+		list = stat.rankGames(max);
+		return list;
 	}
 
 }

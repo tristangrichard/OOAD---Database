@@ -1,11 +1,16 @@
 <html>
 	<!--  Purely test data meant for understanding  ------------------------------------------------------------------------>
 	<%
-		int[] red = {50,100,20};
+/* 		int[] red = {50,100,20};
 		int[] green = {100,20,80};
 		int[] orange ={5, 25, 70};
 		String[] modifiedNames = {"samlign1", "samlign2", "samlign3"};
-		String[] datapoint = {"blue", "red", "green", "orange"};
+		String[] datapoint = {"blue", "red", "green", "orange"}; */
+		int[] red = null;
+		int[] green = null;
+		int[] orange = null;
+		String[] modifiedNames = null;
+		String[] datapoint = null;
 	%>
 	
 	

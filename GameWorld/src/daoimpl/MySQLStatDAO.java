@@ -8,6 +8,7 @@ import java.util.List;
 
 import connector.Connector;
 import dto.RankDTO;
+import dto.UsersLangDTO;
 import daointerfaces.DALException;
 import daointerfaces.StatIDAO;
 
@@ -44,5 +45,6 @@ public class MySQLStatDAO implements StatIDAO
 			return rs.getInt(1);
 		} catch(SQLException e){throw new DALException(e);}
 	}
+
 	
 }

@@ -91,7 +91,26 @@
 			<td colspan="2" align="right">
 			<input type="hidden" name="action" value="countPlayers">
 			<input class="btn btn-primary1 btn-large" type="submit" value="Get number of players"></td>
+			</tr></form>
+			<form method="POST" action="index.jsp">
+			<tr><td>Number</td></tr>
+			<tr>			
+			<td><select name="popular" style="width:75px">
+								<%
+									for (int i = 1; i < 11; i++) {
+								%>
+								<option value=<%=i%>><%=i%></option>
+								<%
+									}
+								%>
+				</select>
+			</td>
+			<td colspan="6" align="right">
+			<input type="hidden" name="action" value="rankGames">
+			<input class="btn btn-primary1 btn-large" type="submit" value="Most popular games">
+			</td>
 			</tr>
+			
 			</table>
 			</form>
 			</div>
