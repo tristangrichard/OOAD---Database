@@ -131,10 +131,7 @@ public class ControlStat extends HttpServlet {
 			request.setAttribute("graphSevBars", false);
 			request.setAttribute("graphSevLines", false);
 			request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
-		}
-		System.out.println(action);
-		
-		if("rankGames".equals(action)){
+		}else if("rankGames".equals(action)){
 			String trank = request.getParameter("popular");
 			int rank = Integer.parseInt(trank);
 			List<RankDTO> rankList = null;
@@ -160,7 +157,6 @@ public class ControlStat extends HttpServlet {
 			request.setAttribute("graphSevLines", false);
 			request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
 		}
-		
 		else {
 			List<GameDTO> gameList;
 			List<LangDTO> langList;
