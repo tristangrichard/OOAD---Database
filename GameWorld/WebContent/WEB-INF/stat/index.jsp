@@ -6,11 +6,12 @@
 <%@ page import="dto.GameDTO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
+
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>Statistics</title>
 <link rel="stylesheet" href="../css/style.css">
-
+<style> .span2{height:400px;} .span9{height:400px;}</style>
 </head>
 
 <body>

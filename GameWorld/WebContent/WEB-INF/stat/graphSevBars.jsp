@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList"%>
 <html>
+<style>.bar0{width:36px}.bar1{width:36px}.bar2{width:36px}.bar3{width:36px}</style>
 	<!--  Purely test data meant for understanding  ------------------------------------------------------------------------>
 	<%
  		int[] red = (int[]) request.getAttribute("arrayM");
@@ -25,7 +26,7 @@
 		if(current>=max){max=current;}
 	}
 	 %>
-		<div class="values" style="margin-left:<%=400-(datapoint.length*modifiedNames.length)*20 %>px;">
+		<div class="values" style="margin-left:<%=400-(datapoint.length*modifiedNames.length)*20%>px;">
 			<div class="valueMax"><%=max%></div>
 			<div class="value"style="height:25px"></div>
 			<div class="value"><%=(max/4)*3%></div>
@@ -59,7 +60,7 @@
 	<div class="space" style="margin-left:<%=400-(datapoint.length*modifiedNames.length)*20%>px;">.</div>
 	<%for (int i =0;i<modifiedNames.length;i++){%>
 	<div class="names" style="width:<%=datapoint.length*38+10%>px;"><%=modifiedNames[i]%></div>
-	<%}%><br>
+	<%}%><br><br>
 	<!---------------------------------------------------------------------------------------------------------------------->
 	<!---------------------------------------------------------------------------------------------------------------------->
 	<!--  This plots the names of the comparison data sets, under the bars  ------------------------------------------------>	
