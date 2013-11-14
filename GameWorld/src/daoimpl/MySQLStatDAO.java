@@ -49,6 +49,26 @@ public class MySQLStatDAO implements StatIDAO
 		} catch (SQLException e){throw new DALException(e);}
 		return results;
 	}
+	public List<RankDTO> rankGames(int maxResults, int sex, int language, String minDOB, String maxDOB) throws DALException
+	{
+		ArrayList<RankDTO> results = new ArrayList<RankDTO>();
+		String query = "SELECT Gname, Antal FROM Game NATURAL JOIN" + 
+			"(SELECT COUNT(*) AS Antal, ug.Gid from UsersGames ug JOIN Users u ON (u.Email = ug.Email) JOIN Role r ON (u.Email = r.Email)" + 
+			(language == -1 ? "" : "JOIN UsersLang ul ON (u.Email = ul.Email) ") + 
+			" WHERE r.Role != 'game'" + 
+			(language == -1 ? "" : " AND ul.Langid = '" + language + "'") +
+			(minDOB == null ? "" : " AND u.DOB >= '" + minDOB + "'") +
+			(maxDOB == null ? "" : " AND u.DOB <= '" + maxDOB + "'") +
+			(sex == -1 ? "" : " AND u.Sex = '" + sex + "'") +
+			" GROUP BY ug.Gid) AS C ORDER BY Antal DESC;";
+		ResultSet rs = Connector.doQuery(query);
+		try
+		{
+			for(int i = 0; (i < maxResults) && rs.next(); i++)
+				results.add(new RankDTO(rs.getString(1), rs.getInt(2)));
+		} catch (SQLException e){throw new DALException(e);}
+		return results;
+	}
 	public int countPlayers(int game, int sex, int language, String minDOB, String maxDOB) throws DALException
 	{
 
