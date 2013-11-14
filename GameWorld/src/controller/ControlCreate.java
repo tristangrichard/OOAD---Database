@@ -34,6 +34,7 @@ public class ControlCreate extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application = request.getSession().getServletContext();
+		request.setCharacterEncoding("UTF-8");
 		//HttpSession session = request.getSession();
 
 		userLogic = (UserLogic) application.getAttribute("userLogic");

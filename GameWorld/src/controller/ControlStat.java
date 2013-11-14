@@ -46,6 +46,7 @@ public class ControlStat extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application = request.getSession().getServletContext();
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
 
 		// Create path to user logic
 		userLogic = (UserLogic) application.getAttribute("userLogic");

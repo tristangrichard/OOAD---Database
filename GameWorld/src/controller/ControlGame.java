@@ -53,6 +53,7 @@ public class ControlGame extends HttpServlet {
 
 		ServletContext application = request.getSession().getServletContext();
 		HttpSession session = request.getSession();
+		request.setCharacterEncoding("UTF-8");
 		
 		gameLogic = (GameLogic) application.getAttribute("gameLogic");
 		if (gameLogic == null) {

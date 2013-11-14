@@ -53,7 +53,7 @@ public class ControlUserAdmin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application = request.getSession().getServletContext();
 		HttpSession session = request.getSession();
-
+		request.setCharacterEncoding("UTF-8");
 		// Create logic if not already created.
 		userLogic = (UserLogic) application.getAttribute("userLogic");
 		if (userLogic == null) {

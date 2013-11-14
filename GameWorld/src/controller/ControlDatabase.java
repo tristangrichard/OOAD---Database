@@ -42,6 +42,7 @@ public class ControlDatabase extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application = request.getSession().getServletContext();
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 
 		dataLogic = (DataLogic) application.getAttribute("dataLogic");
