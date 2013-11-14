@@ -11,7 +11,7 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>Statistics</title>
 <link rel="stylesheet" href="../css/style.css">
-<style> .span2{height:400px;} .span9{height:400px;}</style>
+<style> .span2{height:500px;} .span9{height:500px;}</style>
 </head>
 
 <body>
@@ -92,8 +92,12 @@
 			<td colspan="2" align="right">
 			<input type="hidden" name="action" value="countPlayers">
 			<input class="btn btn-primary1 btn-large" type="submit" value="Get number of players"></td>
-			</tr></form>
+			</tr>
+			</table>
+			</form>
+			
 			<form method="POST" action="index.jsp">
+			<table>
 			<tr><td>Number</td></tr>
 			<tr>			
 			<td><select name="popular" style="width:75px">
@@ -111,8 +115,12 @@
 			<input class="btn btn-primary1 btn-large" type="submit" value="Most popular games">
 			</td>
 			</tr>
+			</table>
 			</form>
+			
+			
 			<form method="POST" action="index.jsp">
+			<table>
 			<tr><td>Number</td></tr>
 			<tr>			
 			<td><select name="sexPopular" style="width:75px">
@@ -130,9 +138,74 @@
 			<input class="btn btn-primary1 btn-large" type="submit" value="Most popular games by sex">
 			</td>
 			</tr>
-			
 			</table>
 			</form>
+			
+			
+			<form method="POST" action="index.jsp">
+			<table>
+			<tr><td>Number</td><td>Sex</td><td>Language</td><td>From</td><td>To</td></tr>
+			<tr>			
+			<td><select name="popular" style="width:75px">
+								<%
+									for (int i = 1; i < 11; i++) {
+								%>
+								<option value=<%=i%>><%=i%></option>
+								<%
+									}
+								%>
+			</select></td>
+			<td>
+			<select name="statSex" style="width:80px">
+								<option value=null>Any</option>
+								<option value=1>Male</option>
+								<option value=0>Female</option>
+				</select>
+				</td>
+			<td><select name="statLang" style="width:100px">
+								<option value=null>Any</option>
+								<%
+									for (int i = 0; i < langList.size(); i++) {
+										LangDTO l = (LangDTO) langList.get(i);
+								%>
+								<option value=<%=l.getLangid()%>><%=l.getLang()%></option>
+								<%
+									}
+								%>
+			</select>
+			</td>
+			<td>
+				<select name="statMin" style="width:75px">
+								<option value=null>Any</option>
+								<%
+									for (int i = 0; i < 100; i++) {
+								%>
+								<option value=<%=i%>><%=i%></option>
+								<%
+									}
+								%>
+				</select>
+			</td>
+			<td>
+				<select name="statMax" style="width:75px">
+								<option value=null>Any</option>
+								<%
+									for (int i = 0; i < 100; i++) {
+								%>
+								<option value=<%=i%>><%=i%></option>
+								<%
+									}
+								%>
+				</select>
+			</td>
+			<td colspan="6" align="right">
+			<input type="hidden" name="action" value="rankCountry">
+			<input class="btn btn-primary1 btn-large" type="submit" value="Most popular by country">
+			</td>
+			</tr>
+			</table>
+			</form>
+			
 			</div>
 		</div>
 	</div>

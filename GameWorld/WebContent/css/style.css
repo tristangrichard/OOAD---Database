@@ -449,6 +449,7 @@ body {
 	color: #333333;
 	background-color: #909090;
 	background: url("img/main.png") center;
+	background-attachment : fixed;
 	background-size: cover;
 }
 

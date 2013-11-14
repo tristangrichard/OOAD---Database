@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.*;
@@ -196,6 +195,40 @@ public class ControlStat extends HttpServlet {
 			request.setAttribute("names", names);	
 			request.setAttribute("graphBars", false);
 			request.setAttribute("graphSevBars", true);
+			request.setAttribute("graphSevLines", false);
+			request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
+		}else if("rankCountry".equals(action)){
+			String gameMax = request.getParameter("popular");
+			String sex = request.getParameter("statSex");
+			String country = request.getParameter("statLang");
+			String minDOB = request.getParameter("statMin");
+			String maxDOB = request.getParameter("statMax");
+			List<RankDTO> rankList = null;
+			List<GameDTO> gameList = null;
+			List<LangDTO> langList = null;
+			try {
+				rankList = statLogic.getMostOwnedGame(gameMax, sex, country, minDOB, maxDOB);
+				gameList = new ArrayList<GameDTO>(games.getList());
+				langList = new ArrayList<LangDTO>(lan.getList());
+			} catch (NumberFormatException e) {
+				request.setAttribute("error", e.getMessage());
+			} catch (DALException e) {
+				request.setAttribute("error", e.getMessage());
+			}
+			int size = rankList.size();
+			String[] names = new String[size];
+			int[] array = new int[size];
+			for(int i = 0 ; i<rankList.size() ; i ++){
+				RankDTO rankdto = rankList.get(i);
+				names[i] = rankdto.getGname();
+				array[i] = rankdto.getCount();
+			}
+			request.setAttribute("gameList", gameList);
+			request.setAttribute("langList", langList);
+			request.setAttribute("array", array);
+			request.setAttribute("names", names);
+			request.setAttribute("graphBars", true);
+			request.setAttribute("graphSevBars", false);
 			request.setAttribute("graphSevLines", false);
 			request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
 		}
