@@ -27,13 +27,13 @@
 	}
 	 %>
 		<div class="values" style="margin-left:<%=400-(datapoint.length*modifiedNames.length)*20%>px;">
-			<div class="valueMax"><%=max%></div>
+			<div class="valueMax"><%if (max > 0){out.print(max);} else{ out.print("1"); }%></div>
 			<div class="value"style="height:25px"></div>
-			<div class="value"><%=(max/4)*3%></div>
+			<div class="value"><%if (max < 10){} else{ out.print((max/4)*3); }%></div>
 			<div class="value"style="height:25px"></div>
-			<div class="value"><%=max/2%></div>
+			<div class="value"><%if (max < 10){} else{ out.print(max/2); }%></div>
 			<div class="value"style="height:25px"></div>
-			<div class="value"><%=max/4%></div>
+			<div class="value"><%if (max < 10){} else{ out.print(max/4); }%></div>
 			<div class="value"style="height:25px"></div>
 			<div class="valueMin">0</div>
 		</div>

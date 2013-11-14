@@ -184,7 +184,7 @@ public class ControlStat extends HttpServlet {
 			int[] arrayGirl = new int[rank];
 			for(int i = 0 ; i<rankListMen.size() ; i ++){
 				RankDTO rankdtoMen = rankListMen.get(i);
-				RankDTO rankdtoGirl = rankListMen.get(i);
+				RankDTO rankdtoGirl = rankListGirl.get(i);
 				names[i] = rankdtoMen.getGname();
 				arrayMen[i] = rankdtoMen.getCount();
 				arrayGirl[i] = rankdtoGirl.getCount();
