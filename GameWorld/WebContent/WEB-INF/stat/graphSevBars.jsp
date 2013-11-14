@@ -1,16 +1,12 @@
+<%@ page import="java.util.ArrayList"%>
 <html>
 	<!--  Purely test data meant for understanding  ------------------------------------------------------------------------>
 	<%
-/* 		int[] red = {50,100,20};
-		int[] green = {100,20,80};
-		int[] orange ={5, 25, 70};
-		String[] modifiedNames = {"samlign1", "samlign2", "samlign3"};
-		String[] datapoint = {"blue", "red", "green", "orange"}; */
-		int[] red = null;
-		int[] green = null;
+ 		int[] red = (int[]) request.getAttribute("arrayM");
+		int[] green = (int[]) request.getAttribute("arrayG");
 		int[] orange = null;
-		String[] modifiedNames = null;
-		String[] datapoint = null;
+		String[] modifiedNames = (String[]) request.getAttribute("names");
+		String[] datapoint = {"All", "Men", "Women"};
 	%>
 	
 	
@@ -22,7 +18,10 @@
 	<% 
 	int max = 0;
 	for(int c = 0; c < red.length ; c++) {
-		int current = red[c]+green[c]+orange[c];
+		int current = -1;
+		if (orange != null ){
+		current = red[c]+green[c] +orange[c];
+		}else {current = red[c]+green[c];}
 		if(current>=max){max=current;}
 	}
 	 %>

@@ -64,5 +64,15 @@ public class StatLogic implements IStat {
 		list = stat.rankGames(max);
 		return list;
 	}
+	public List<RankDTO> getMostOwnedGameG(int max) throws DALException {
+		List<RankDTO> list = new ArrayList<RankDTO>();
+		list = stat.rankGamesG(max);
+		return list;
+	}
+	public List<RankDTO> getMostOwnedGameM(int max) throws DALException {
+		List<RankDTO> list = new ArrayList<RankDTO>();
+		list = stat.rankGamesM(max);
+		return list;
+	}
 
 }

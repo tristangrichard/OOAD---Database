@@ -110,6 +110,25 @@
 			<input class="btn btn-primary1 btn-large" type="submit" value="Most popular games">
 			</td>
 			</tr>
+			</form>
+			<form method="POST" action="index.jsp">
+			<tr><td>Number</td></tr>
+			<tr>			
+			<td><select name="sexPopular" style="width:75px">
+								<%
+									for (int i = 1; i < 6; i++) {
+								%>
+								<option value=<%=i%>><%=i%></option>
+								<%
+									}
+								%>
+				</select>
+			</td>
+			<td colspan="6" align="right">
+			<input type="hidden" name="action" value="rankSex">
+			<input class="btn btn-primary1 btn-large" type="submit" value="Most popular games by sex">
+			</td>
+			</tr>
 			
 			</table>
 			</form>
