@@ -2,18 +2,6 @@
 <html>
 	<!--  Purely test data meant for understanding  ------------------------------------------------------------------------>
 	<%
-		//int[] names = new int[20];
-		//	int[] array = new int[20];
-		//	for (int b = 0; b < array.length; b++) {
-		//array[b] = (int) (Math.random() * 200) + 1;
-		//names[b] = (int) (Math.random() * 200) + 1;
-		//	}
-/* 		ArrayList<Integer> array = new ArrayList<Integer>();
-		int a = (Integer) request.getAttribute("array");
-		array.add(a);
-		ArrayList<String> names = new ArrayList<String>();
-		String b = (String) request.getAttribute("names");
-		names.add(b); */
 		String[] names = (String[])request.getAttribute("names");
 		int[] array = (int[])request.getAttribute("array");
 	%>

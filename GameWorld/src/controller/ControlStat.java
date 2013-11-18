@@ -214,17 +214,24 @@ public class ControlStat extends HttpServlet {
 				request.setAttribute("error", e.getMessage());
 			}
 			int size = rankList.size();
-			String[] names = new String[size];
-			int[] array = new int[size];
-			for(int i = 0 ; i<rankList.size() ; i ++){
-				RankDTO rankdto = rankList.get(i);
-				names[i] = rankdto.getGname();
-				array[i] = rankdto.getCount();
+			if (size != 0){
+				String[] names = new String[size];
+				int[] array = new int[size];
+				for(int i = 0 ; i<rankList.size() ; i ++){
+					RankDTO rankdto = rankList.get(i);
+					names[i] = rankdto.getGname();
+					array[i] = rankdto.getCount();
+				}
+				request.setAttribute("array", array);
+				request.setAttribute("names", names);
+			}else {
+				String[] names = new String[0];
+				int[] array = {0};
+				request.setAttribute("array", array);
+				request.setAttribute("names", names);
 			}
 			request.setAttribute("gameList", gameList);
 			request.setAttribute("langList", langList);
-			request.setAttribute("array", array);
-			request.setAttribute("names", names);
 			request.setAttribute("graphBars", true);
 			request.setAttribute("graphSevBars", false);
 			request.setAttribute("graphSevLines", false);
@@ -247,6 +254,6 @@ public class ControlStat extends HttpServlet {
 				request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
 			}
 		}
-		
+
 	}
 }

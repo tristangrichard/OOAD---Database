@@ -47,9 +47,9 @@
 		<div style="height: 200px" class="barspace"></div>
 			<%for ( int i = 0; i < red.length; i++){%>
 			<%if(orange!=null){ %><div style="height: <%=200*(red[i]+green[i]+orange[i])/max%>px;" class="bar0"></div><%}
-				else{ %><div style="height: <%=200*(red[i]+green[i])/max%>px;" class="bar0"></div><%} %>
-			<div style="height: <%=200*(red[i])/max%>px;" class="bar1"></div>
-			<div style="height: <%=200*(green[i])/max%>px;" class="bar2"></div>
+				else{ %><div style="height: <%=200*(red[i]+green[i])/max%>px;" class="bar2"></div><%} %>
+			<div style="height: <%=200*(red[i])/max%>px;" class="bar0"></div>
+			<div style="height: <%=200*(green[i])/max%>px;" class="bar1"></div>
 			<%if(orange!=null){ %><div style="height: <%=200*(orange[i])/max%>px;" class="bar3"></div><%} %>
 			<div style="height: 200px" class="barspace"></div>
 			<%}%>
@@ -67,8 +67,8 @@
 		<%if(datapoint != null){ %><div class="space" style="margin-left:<%=400-(datapoint.length*modifiedNames.length)*20%>px;">.</div>
 		<%for ( int t = 0; t < datapoint.length; t++){
 			
-		String type = ""; switch(t){case 0: {type="primary";break;} case 1: {type="danger";break;}
-			case 2: {type="success";break;} case 3 : {type="warning"; break;}}%>
+		String type = ""; switch(t){case 0: {type="success";break;} case 1: {type="primary";break;}
+			case 2: {type="danger";break;} case 3 : {type="warning"; break;}}%>
 			
 	<div class="btn btn-small btn-<%=type%>" style="display:inline"> <%=datapoint[t]%></div>
 	<% }} %>	
