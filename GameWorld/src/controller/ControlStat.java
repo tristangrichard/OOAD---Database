@@ -165,13 +165,11 @@ public class ControlStat extends HttpServlet {
 		else if("rankSex".equals(action)){
 			String trank = request.getParameter("sexPopular");
 			int rank = Integer.parseInt(trank);
-			List<RankDTO> rankListMen = null;
-			List<RankDTO> rankListGirl = null;
+			List<RankDTO> rankList = null;
 			List<GameDTO> gameList = null;
 			List<LangDTO> langList = null;
 			try {
-				rankListMen = statLogic.getMostOwnedGameM(rank);
-				rankListGirl = statLogic.getMostOwnedGameG(rank);
+				rankList = statLogic.getMostOwnedGameMW(rank);
 				gameList = new ArrayList<GameDTO>(games.getList());
 				langList = new ArrayList<LangDTO>(lan.getList());
 			} catch (NumberFormatException e) {
@@ -182,12 +180,11 @@ public class ControlStat extends HttpServlet {
 			String[] names = new String[rank];
 			int[] arrayMen = new int[rank];
 			int[] arrayGirl = new int[rank];
-			for(int i = 0 ; i<rankListMen.size() ; i ++){
-				RankDTO rankdtoMen = rankListMen.get(i);
-				RankDTO rankdtoGirl = rankListGirl.get(i);
-				names[i] = rankdtoMen.getGname();
-				arrayMen[i] = rankdtoMen.getCount();
-				arrayGirl[i] = rankdtoGirl.getCount();
+			for(int i = 0 ; i<rankList.size() ; i ++){
+				RankDTO rankdto = rankList.get(i);
+				names[i] = rankdto.getGname();
+				arrayMen[i] = rankdto.getMen();
+				arrayGirl[i] = rankdto.getWoman();
 			}
 			request.setAttribute("gameList", gameList);
 			request.setAttribute("langList", langList);

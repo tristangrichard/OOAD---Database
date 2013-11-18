@@ -5,10 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import connector.Connector;
 import dto.RankDTO;
-import dto.UsersLangDTO;
 import daointerfaces.DALException;
 import daointerfaces.StatIDAO;
 
@@ -23,29 +21,18 @@ public class MySQLStatDAO implements StatIDAO
 		try
 		{
 			for(int i = 0; i < maxResults && rs.next(); i++)
-				results.add(new RankDTO(rs.getString(1), rs.getInt(2)));
+				results.add(new RankDTO(rs.getString(1), rs.getInt(2), 0, 0));
 		} catch (SQLException e){throw new DALException(e);}
 		return results;
 	}
-	public List<RankDTO> rankGamesG(int maxResults) throws DALException
+	public List<RankDTO> rankGamesMW(int maxResults) throws DALException
 	{
 		ArrayList<RankDTO> results = new ArrayList<RankDTO>();
-		ResultSet rs = Connector.doQuery("SELECT Gname, Antal FROM Game NATURAL JOIN (SELECT COUNT(*) AS Antal, Gid FROM UsersGames Natural Join Users where sex = '0' GROUP BY Gid) AS C ORDER BY Antal DESC;");
+		ResultSet rs = Connector.doQuery("SELECT Antal, Gname, COALESCE(Men,0) as M, (Antal-COALESCE(Men,0)) as K FROM (SELECT COUNT(*) AS Antal, Gid FROM UsersGames GROUP BY Gid) AS a NATURAL LEFT JOIN (SELECT COUNT(*) AS Men, Gid FROM Users NATURAL JOIN UsersGames WHERE Sex = '1' GROUP BY Gid) AS b Natural join Game ORDER BY Antal DESC;");
 		try
 		{
 			for(int i = 0; i < maxResults && rs.next(); i++)
-				results.add(new RankDTO(rs.getString(1), rs.getInt(2)));
-		} catch (SQLException e){throw new DALException(e);}
-		return results;
-	}
-	public List<RankDTO> rankGamesM(int maxResults) throws DALException
-	{
-		ArrayList<RankDTO> results = new ArrayList<RankDTO>();
-		ResultSet rs = Connector.doQuery("SELECT Gname, Antal FROM Game NATURAL JOIN (SELECT COUNT(*) AS Antal, Gid FROM UsersGames Natural Join Users where sex = '1' GROUP BY Gid) AS C ORDER BY Antal DESC;");
-		try
-		{
-			for(int i = 0; i < maxResults && rs.next(); i++)
-				results.add(new RankDTO(rs.getString(1), rs.getInt(2)));
+				results.add(new RankDTO(rs.getString(2), rs.getInt(1), rs.getInt(4), rs.getInt(3)));
 		} catch (SQLException e){throw new DALException(e);}
 		return results;
 	}
@@ -65,7 +52,7 @@ public class MySQLStatDAO implements StatIDAO
 		try
 		{
 			for(int i = 0; (i < maxResults) && rs.next(); i++)
-				results.add(new RankDTO(rs.getString(1), rs.getInt(2)));
+				results.add(new RankDTO(rs.getString(1), rs.getInt(2), 0, 0));
 		} catch (SQLException e){throw new DALException(e);}
 		return results;
 	}

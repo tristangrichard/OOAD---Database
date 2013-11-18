@@ -4,20 +4,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import connector.Connector;
-import daoimpl.MySQLRoleDAO;
 import daoimpl.MySQLStatDAO;
-import daoimpl.MySQLUserPubDAO;
-import daoimpl.MySQLUsersDAO;
-import daoimpl.MySQLUsersLangDAO;
 import daointerfaces.DALException;
 import daointerfaces.StatIDAO;
 import dto.RankDTO;
 
 public class StatLogic implements IStat {
 	
-	private RankDTO mostOwnedGame;
 	private StatIDAO stat;
 
 	public StatLogic() throws DALException {
@@ -89,16 +83,9 @@ public class StatLogic implements IStat {
 		return list;
 	}
 	@Override
-	public List<RankDTO> getMostOwnedGameG(int max) throws DALException {
+	public List<RankDTO> getMostOwnedGameMW(int max) throws DALException {
 		List<RankDTO> list = new ArrayList<RankDTO>();
-		list = stat.rankGamesG(max);
+		list = stat.rankGamesMW(max);
 		return list;
 	}
-	@Override
-	public List<RankDTO> getMostOwnedGameM(int max) throws DALException {
-		List<RankDTO> list = new ArrayList<RankDTO>();
-		list = stat.rankGamesM(max);
-		return list;
-	}
-
 }
