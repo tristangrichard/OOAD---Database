@@ -237,6 +237,72 @@ public class ControlStat extends HttpServlet {
 			request.setAttribute("graphSevLines", false);
 			request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
 		}
+		else if("rankGenreSex".equals(action)){
+			String trank = request.getParameter("genresexPopular");
+			int rank = Integer.parseInt(trank);
+			List<RankDTO> rankList = null;
+			List<GameDTO> gameList = null;
+			List<LangDTO> langList = null;
+			try {
+				rankList = statLogic.getMostOwnedGameGenreSex(rank);
+				gameList = new ArrayList<GameDTO>(games.getList());
+				langList = new ArrayList<LangDTO>(lan.getList());
+			} catch (NumberFormatException e) {
+				request.setAttribute("error", e.getMessage());
+			} catch (DALException e) {
+				request.setAttribute("error", e.getMessage());
+			}
+			String[] names = new String[rank];
+			int[] arrayMen = new int[rank];
+			int[] arrayGirl = new int[rank];
+			for(int i = 0 ; i<rankList.size() ; i ++){
+				RankDTO rankdto = rankList.get(i);
+				names[i] = rankdto.getGname();
+				arrayMen[i] = rankdto.getMen();
+				arrayGirl[i] = rankdto.getWoman();
+			}
+			request.setAttribute("gameList", gameList);
+			request.setAttribute("langList", langList);
+			request.setAttribute("arrayM", arrayMen);
+			request.setAttribute("arrayG", arrayGirl);
+			request.setAttribute("names", names);	
+			request.setAttribute("graphBars", false);
+			request.setAttribute("graphSevBars", true);
+			request.setAttribute("graphSevLines", false);
+			request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
+		}
+		else if("rankGenre".equals(action)){
+			String trank = request.getParameter("genrePopular");
+			int rank = Integer.parseInt(trank);
+			List<RankDTO> rankList = null;
+			List<GameDTO> gameList = null;
+			List<LangDTO> langList = null;
+			
+			try {
+				rankList = statLogic.getMostOwnedGameGenre(rank);
+				gameList = new ArrayList<GameDTO>(games.getList());
+				langList = new ArrayList<LangDTO>(lan.getList());
+			} catch (NumberFormatException e) {
+				request.setAttribute("error", e.getMessage());
+			} catch (DALException e) {
+				request.setAttribute("error", e.getMessage());
+			}
+			String[] names = new String[rank];
+			int[] array = new int[rank];
+			for(int i = 0 ; i<rankList.size() ; i ++){
+				RankDTO rankdto = rankList.get(i);
+				names[i] = rankdto.getGname();
+				array[i] = rankdto.getCount();
+			}
+			request.setAttribute("gameList", gameList);
+			request.setAttribute("langList", langList);
+			request.setAttribute("array", array);
+			request.setAttribute("names", names);	
+			request.setAttribute("graphBars", true);
+			request.setAttribute("graphSevBars", false);
+			request.setAttribute("graphSevLines", false);
+			request.getRequestDispatcher("../WEB-INF/stat/index.jsp?").forward(request, response);
+		}
 		else {
 			List<GameDTO> gameList;
 			List<LangDTO> langList;

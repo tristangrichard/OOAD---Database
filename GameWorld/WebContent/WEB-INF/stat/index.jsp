@@ -11,7 +11,7 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>Statistics</title>
 <link rel="stylesheet" href="../css/style.css">
-<style> .span2{height:500px;} .span9{height:500px;}</style>
+<style> .span2{height:700px;} .span9{height:700px;}</style>
 </head>
 
 <body>
@@ -200,6 +200,48 @@
 			<td colspan="6" align="right">
 			<input type="hidden" name="action" value="rankCountry">
 			<input class="btn btn-primary1 btn-large" type="submit" value="Most popular by country">
+			</td>
+			</tr>
+			</table>
+			</form>
+			<form method="POST" action="index.jsp">
+			<table>
+			<tr><td>Number</td></tr>
+						
+			<tr><td><select name="genrePopular" style="width:75px">
+								<%
+									for (int i = 1; i < 9; i++) {
+								%>
+								<option value=<%=i%>><%=i%></option>
+								<%
+									}
+								%>
+				</select>
+			</td>
+			<td colspan="6" align="right">
+			<input type="hidden" name="action" value="rankGenre">
+			<input class="btn btn-primary1 btn-large" type="submit" value="Most popular games by Genre">
+			</td>
+			</tr>
+			</table>
+			</form>	
+			<form method="POST" action="index.jsp">
+			<table>
+			<tr><td>Number</td></tr>
+						
+			<tr><td><select name="genresexPopular" style="width:75px">
+								<%
+									for (int i = 1; i < 7; i++) {
+								%>
+								<option value=<%=i%>><%=i%></option>
+								<%
+									}
+								%>
+				</select>
+			</td>
+			<td colspan="6" align="right">
+			<input type="hidden" name="action" value="rankGenreSex">
+			<input class="btn btn-primary1 btn-large" type="submit" value="Most popular games by Genre and Sex">
 			</td>
 			</tr>
 			</table>

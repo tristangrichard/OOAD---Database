@@ -88,4 +88,16 @@ public class StatLogic implements IStat {
 		list = stat.rankGamesMW(max);
 		return list;
 	}
+	@Override
+	public List<RankDTO> getMostOwnedGameGenre(int max) throws DALException {
+		List<RankDTO> list = new ArrayList<RankDTO>();
+		list = stat.rankGamesGenre(max);
+		return list;
+	}
+	@Override
+	public List<RankDTO> getMostOwnedGameGenreSex(int max) throws DALException {
+		List<RankDTO> list = new ArrayList<RankDTO>();
+		list = stat.rankGamesGenreSex(max);
+		return list;
+	}
 }
