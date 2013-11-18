@@ -29,7 +29,7 @@
 		<div class="span9">
 			<!-- Main content -->
 			<h2>User administration</h2>
-			<p>blabla</p>
+			<p>This is only for administrators</p>
 		</div>
 		</div>
 		<div class="footer">Gruppe 8</div>
