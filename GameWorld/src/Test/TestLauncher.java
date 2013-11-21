@@ -9,9 +9,6 @@ public class TestLauncher {
 	Test_User_Game_Lists tdbl = new Test_User_Game_Lists();
 	Test_Publisher_Genre tpg = new Test_Publisher_Genre();
 	
-	TestBL tbl = new TestBL();
-	TestStatistics ts = new TestStatistics();
-	
 	///////////////////////////////////////////////////////////////////////////////////////////
 	//This simply runs the test protocol, and increments error count, every time a test fails//
 	///////////////////////////////////////////////////////////////////////////////////////////
