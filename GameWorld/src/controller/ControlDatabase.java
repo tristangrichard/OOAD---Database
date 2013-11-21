@@ -141,7 +141,7 @@ public class ControlDatabase extends HttpServlet {
 		}else if ("devFilled".equals(action)) { 
 			try {
 				String dev = request.getParameter("newDev");
-				String con = request.getParameter("newcon");
+				String con = request.getParameter("newCon");
 				dataLogic.createDev(dev,con);
 				request.setAttribute("message", dev +" succesfully added");
 				request.getRequestDispatcher("../WEB-INF/database/index.jsp").forward(request, response);

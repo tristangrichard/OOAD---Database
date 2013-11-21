@@ -46,7 +46,7 @@
 					</tr>
 					<tr>
 						<td>Country:</td>
-						<td><input type="text" name="newFName" required
+						<td><input type="text" name="newCon" required
 				value="<% if (request.getParameter("newCon") != null)
 				out.print(request.getParameter("newCon"));%>"
 				onclick="this.select()"></td>
