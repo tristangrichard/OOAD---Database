@@ -11,7 +11,11 @@ import daointerfaces.UsersIDAO;
 import dto.GameDTO;
 import dto.UsersDTO;
 import dto.UsersGamesDTO;
-
+/**
+ * 
+ * @author Mikkel Barfred, Rasmus Hansen
+ *
+ */
 public class Test_User_Game_Lists {
 
 	private boolean error = false;

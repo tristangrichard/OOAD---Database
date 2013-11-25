@@ -8,8 +8,11 @@ import connector.Connector;
 import dto.LangDTO;
 import daointerfaces.LangIDAO;
 import daointerfaces.DALException;
-
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class MySQLLangDAO implements LangIDAO
 {
 

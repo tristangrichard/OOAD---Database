@@ -7,7 +7,11 @@ import dto.DeveloperDTO;
 import dto.GenreDTO;
 import dto.LangDTO;
 import dto.PublisherDTO;
-
+/**
+ * 
+ * @author Tristan Richard, Mathias Jeppesen
+ *
+ */
 public interface IDataLogic {
 
 	public void createGenre(String genre) throws DALException;

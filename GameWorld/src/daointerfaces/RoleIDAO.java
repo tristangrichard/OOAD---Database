@@ -3,7 +3,11 @@ package daointerfaces;
 import java.util.List;
 
 import dto.RoleDTO;
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public interface RoleIDAO
 {
 	public void create(RoleDTO row) throws DALException;

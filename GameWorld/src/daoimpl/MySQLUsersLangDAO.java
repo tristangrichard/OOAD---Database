@@ -10,8 +10,11 @@ import connector.Connector;
 import dto.UsersLangDTO;
 import daointerfaces.UsersLangIDAO;
 import daointerfaces.DALException;
-
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class MySQLUsersLangDAO implements UsersLangIDAO
 {
 

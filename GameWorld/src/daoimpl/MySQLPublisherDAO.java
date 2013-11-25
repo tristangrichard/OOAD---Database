@@ -10,8 +10,11 @@ import connector.Connector;
 import dto.PublisherDTO;
 import daointerfaces.PublisherIDAO;
 import daointerfaces.DALException;
-
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class MySQLPublisherDAO implements PublisherIDAO
 {
 

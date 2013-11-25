@@ -7,7 +7,11 @@ import daointerfaces.GameIDAO;
 import daointerfaces.UsersIDAO;
 import dto.GameDTO;
 import dto.UsersDTO;
-
+/**
+ * 
+ * @author Mikkel Barfred
+ *
+ */
 public class Test_User_Game {
 
 	private boolean error = false;

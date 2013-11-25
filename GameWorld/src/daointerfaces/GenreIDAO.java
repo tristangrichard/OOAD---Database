@@ -3,7 +3,11 @@ package daointerfaces;
 import java.util.List;
 
 import dto.GenreDTO;
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public interface GenreIDAO
 {
 	public void create(GenreDTO row) throws DALException;

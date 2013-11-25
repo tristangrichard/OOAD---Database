@@ -6,7 +6,11 @@ import daointerfaces.GenreIDAO;
 import daointerfaces.PublisherIDAO;
 import dto.GenreDTO;
 import dto.PublisherDTO;
-
+/**
+ * 
+ * @author Mikkel Barfred
+ *
+ */
 public class Test_Publisher_Genre {
 
 	private boolean error = false;

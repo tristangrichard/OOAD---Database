@@ -28,7 +28,11 @@ import dto.GameLangDTO;
 import dto.GameOSDTO;
 import dto.GamePubDTO;
 import dto.UserPubDTO;
-
+/**
+ * 
+ * @author Tristan Richard
+ *
+ */
 public class GameLogic implements IGameLogic {
 
 	private GameIDAO ga;

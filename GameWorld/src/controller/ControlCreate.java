@@ -12,7 +12,11 @@ import daoimpl.MySQLLangDAO;
 import dto.LangDTO;
 import funktionalitet.IUserLogic;
 import funktionalitet.UserLogic;
-
+/**
+ * 
+ * @author Tristan Richard
+ *
+ */
 public class ControlCreate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IUserLogic userLogic = null;

@@ -10,8 +10,11 @@ import connector.Connector;
 import dto.GenreDTO;
 import daointerfaces.GenreIDAO;
 import daointerfaces.DALException;
-
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class MySQLGenreDAO implements GenreIDAO
 {
 

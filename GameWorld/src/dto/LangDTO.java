@@ -1,5 +1,9 @@
 package dto;
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class LangDTO
 {
 	private int Langid;

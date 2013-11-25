@@ -10,7 +10,11 @@ import daointerfaces.PublisherIDAO;
 import daointerfaces.UserPubIDAO;
 import dto.PublisherDTO;
 import dto.UserPubDTO;
-
+/**
+ * 
+ * @author Tristan Richard
+ *
+ */
 public class UserPubLogic implements IUserPubLogic {
 
 	private UserPubIDAO userPub;

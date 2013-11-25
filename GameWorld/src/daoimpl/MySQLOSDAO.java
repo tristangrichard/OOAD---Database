@@ -10,8 +10,11 @@ import connector.Connector;
 import dto.OSDTO;
 import daointerfaces.OSIDAO;
 import daointerfaces.DALException;
-
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class MySQLOSDAO implements OSIDAO
 {
 

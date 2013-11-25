@@ -3,7 +3,11 @@ package daointerfaces;
 import java.util.List;
 
 import dto.UsersGamesDTO;
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public interface UsersGamesIDAO
 {
 	public void create(UsersGamesDTO row) throws DALException;

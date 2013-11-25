@@ -1,5 +1,9 @@
 package dto;
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class UserPubDTO
 {
 	private String email;

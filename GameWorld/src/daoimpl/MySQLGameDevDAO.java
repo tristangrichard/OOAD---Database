@@ -10,8 +10,11 @@ import connector.Connector;
 import dto.GameDevDTO;
 import daointerfaces.GameDevIDAO;
 import daointerfaces.DALException;
-
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class MySQLGameDevDAO implements GameDevIDAO
 {
 

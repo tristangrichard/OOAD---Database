@@ -1,8 +1,9 @@
 package connector;
-
-
-// erstat konstanterne nedenfor
-
+/**
+ * 
+ * @author Tristan Richard, Mikkel Barfred
+ *
+ */
 public abstract class Constant
 {
 	public static final String

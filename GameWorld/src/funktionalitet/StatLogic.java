@@ -9,7 +9,11 @@ import daoimpl.MySQLStatDAO;
 import daointerfaces.DALException;
 import daointerfaces.StatIDAO;
 import dto.RankDTO;
-
+/**
+ * 
+ * @author Tristan Richard, Mikkel Barfred, Rasmus Hansen
+ *
+ */
 public class StatLogic implements IStat {
 	
 	private StatIDAO stat;

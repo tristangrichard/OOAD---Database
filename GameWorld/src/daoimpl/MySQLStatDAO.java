@@ -9,9 +9,11 @@ import connector.Connector;
 import dto.RankDTO;
 import daointerfaces.DALException;
 import daointerfaces.StatIDAO;
-
-
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard, Mikkel Barfred
+ *
+ */
 public class MySQLStatDAO implements StatIDAO
 {
 	public List<RankDTO> rankGames(int maxResults) throws DALException

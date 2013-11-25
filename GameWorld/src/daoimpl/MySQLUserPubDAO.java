@@ -10,8 +10,11 @@ import connector.Connector;
 import dto.UserPubDTO;
 import daointerfaces.UserPubIDAO;
 import daointerfaces.DALException;
-
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class MySQLUserPubDAO implements UserPubIDAO
 {
 

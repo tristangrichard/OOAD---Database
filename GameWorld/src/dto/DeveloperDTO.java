@@ -1,5 +1,9 @@
 package dto;
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class DeveloperDTO
 {
 	private int Did;

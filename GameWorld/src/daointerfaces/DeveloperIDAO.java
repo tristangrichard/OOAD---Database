@@ -3,7 +3,11 @@ package daointerfaces;
 import java.util.List;
 
 import dto.DeveloperDTO;
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public interface DeveloperIDAO
 {
 	public void create(DeveloperDTO row) throws DALException;

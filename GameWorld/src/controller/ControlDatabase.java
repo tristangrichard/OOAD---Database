@@ -18,7 +18,11 @@ import funktionalitet.DataLogic;
 import funktionalitet.IDataLogic;
 import funktionalitet.IUserLogic;
 import funktionalitet.UserLogic;
-
+/**
+ * 
+ * @author Tristan Richard, Mathias Jeppesen, Mikkel Barfred
+ *
+ */
 public class ControlDatabase extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

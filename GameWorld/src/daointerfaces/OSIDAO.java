@@ -3,7 +3,11 @@ package daointerfaces;
 import java.util.List;
 
 import dto.OSDTO;
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public interface OSIDAO
 {
 	public void create(OSDTO row) throws DALException;

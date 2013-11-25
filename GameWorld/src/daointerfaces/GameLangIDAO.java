@@ -3,7 +3,11 @@ package daointerfaces;
 import java.util.List;
 
 import dto.GameLangDTO;
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public interface GameLangIDAO
 {
 	public void create(GameLangDTO row) throws DALException;

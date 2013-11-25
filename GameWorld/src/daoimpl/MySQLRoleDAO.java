@@ -10,8 +10,11 @@ import connector.Connector;
 import dto.RoleDTO;
 import daointerfaces.RoleIDAO;
 import daointerfaces.DALException;
-
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class MySQLRoleDAO implements RoleIDAO
 {
 

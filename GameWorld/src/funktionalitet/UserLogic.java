@@ -10,7 +10,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import connector.Connector;
-
+/**
+ * 
+ * @author Tristan Richard
+ *
+ */
 public class UserLogic implements IUserLogic{	
 	private UsersIDAO o;
 	private UsersDTO user;

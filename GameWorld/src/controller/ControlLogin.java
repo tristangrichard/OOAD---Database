@@ -3,7 +3,11 @@ package controller;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-
+/**
+ * 
+ * @author Tristan Richard
+ *
+ */
 public class ControlLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

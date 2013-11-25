@@ -9,8 +9,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import daointerfaces.DALException;
-
-
+/**
+ * 
+ * @author DTU
+ *
+ */
 public class Connector
 {
 	static {try {

@@ -11,7 +11,11 @@ import daointerfaces.GameIDAO;
 import daointerfaces.UsersGamesIDAO;
 import dto.GameDTO;
 import dto.UsersGamesDTO;
-
+/**
+ * 
+ * @author Tristan Richard
+ *
+ */
 public class MyGamesLogic implements IMyGamesLogic {
 
 	private UsersGamesIDAO o;

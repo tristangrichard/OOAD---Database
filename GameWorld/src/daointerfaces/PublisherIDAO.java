@@ -3,7 +3,11 @@ package daointerfaces;
 import java.util.List;
 
 import dto.PublisherDTO;
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public interface PublisherIDAO
 {
 	public void create(PublisherDTO row) throws DALException;

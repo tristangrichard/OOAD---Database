@@ -10,8 +10,11 @@ import connector.Connector;
 import dto.GameLangDTO;
 import daointerfaces.GameLangIDAO;
 import daointerfaces.DALException;
-
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class MySQLGameLangDAO implements GameLangIDAO
 {
 

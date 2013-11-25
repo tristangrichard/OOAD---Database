@@ -3,7 +3,11 @@ package daointerfaces;
 import java.util.List;
 
 import dto.RankDTO;
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public interface StatIDAO
 {
 	public List<RankDTO> rankGames(int maxResults) throws DALException;

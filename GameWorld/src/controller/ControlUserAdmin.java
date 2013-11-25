@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.util.*;
 import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import daoimpl.MySQLLangDAO;
 import daoimpl.MySQLPublisherDAO;
@@ -23,8 +22,11 @@ import dto.UserPubDTO;
 import dto.UsersDTO;
 import dto.UsersLangDTO;
 import funktionalitet.*;
-
-@WebServlet("/control")
+/**
+ * 
+ * @author Tristan Richard
+ *
+ */
 public class ControlUserAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IUserLogic userLogic = null;

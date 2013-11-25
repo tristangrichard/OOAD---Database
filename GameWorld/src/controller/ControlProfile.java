@@ -24,9 +24,11 @@ import dto.UserPubDTO;
 import dto.UsersDTO;
 import dto.UsersLangDTO;
 import funktionalitet.*;
-
-
-
+/**
+ * 
+ * @author Tristan Richard
+ *
+ */
 public class ControlProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IUserLogic userLogic = null;

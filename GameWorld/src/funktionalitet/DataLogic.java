@@ -17,7 +17,11 @@ import dto.DeveloperDTO;
 import dto.GenreDTO;
 import dto.LangDTO;
 import dto.PublisherDTO;
-
+/**
+ * 
+ * @author Tristan Richard, Mathias Jeppesen
+ *
+ */
 public class DataLogic implements IDataLogic {
 
 	private GenreIDAO gen;

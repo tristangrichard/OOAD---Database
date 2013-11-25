@@ -4,14 +4,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import connector.Connector;
-
 import dto.DeveloperDTO;
 import daointerfaces.DeveloperIDAO;
 import daointerfaces.DALException;
-
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public class MySQLDeveloperDAO implements DeveloperIDAO
 {
 

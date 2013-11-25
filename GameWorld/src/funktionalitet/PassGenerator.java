@@ -1,6 +1,10 @@
 package funktionalitet;
 import java.util.Random;
- 
+/**
+ * 
+ * @author Tristan Richard
+ *
+ */
 public class PassGenerator {
  
     private static final String[] charsets = new String[] {".-_+!?=", "0123456789", 

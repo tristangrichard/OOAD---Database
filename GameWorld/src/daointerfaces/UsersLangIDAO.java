@@ -3,7 +3,11 @@ package daointerfaces;
 import java.util.List;
 
 import dto.UsersLangDTO;
-
+/**
+ * 
+ * @author Rasmus Hansen, Tristan Richard
+ *
+ */
 public interface UsersLangIDAO
 {
 	public void create(UsersLangDTO row) throws DALException;

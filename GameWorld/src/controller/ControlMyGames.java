@@ -15,7 +15,11 @@ import funktionalitet.IMyGamesLogic;
 import funktionalitet.IUserLogic;
 import funktionalitet.MyGamesLogic;
 import funktionalitet.UserLogic;
-
+/**
+ * 
+ * @author Tristan Richard
+ *
+ */
 public class ControlMyGames extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

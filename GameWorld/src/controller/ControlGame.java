@@ -29,7 +29,11 @@ import funktionalitet.GameLogic;
 import funktionalitet.IGameLogic;
 import funktionalitet.IUserLogic;
 import funktionalitet.UserLogic;
-
+/**
+ * 
+ * @author Tristan Richard
+ *
+ */
 public class ControlGame extends HttpServlet {
 
 	private GenreIDAO gen = null;

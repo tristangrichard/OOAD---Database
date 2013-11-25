@@ -1,5 +1,9 @@
 package Test;
-
+/**
+ * 
+ * @author Mikkel Barfred
+ *
+ */
 public class TestLauncher {
 
 	private static int errors = 0;

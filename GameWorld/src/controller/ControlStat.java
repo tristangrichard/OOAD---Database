@@ -17,9 +17,11 @@ import dto.LangDTO;
 import dto.RankDTO;
 import dto.UsersDTO;
 import funktionalitet.*;
-
-
-
+/**
+ * 
+ * @author Tristan Richard, Mikkel Barfred, Rasmus Hansen, Mathias Jeppesen, Thordur Birgisson
+ *
+ */
 public class ControlStat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IUserLogic userLogic = null;
