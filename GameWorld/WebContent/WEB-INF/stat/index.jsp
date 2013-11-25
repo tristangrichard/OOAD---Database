@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:useBean id="gameList" class="java.util.ArrayList" scope="request" />
 <jsp:useBean id="langList" class="java.util.ArrayList" scope="request" />
-
 <%@ page import="dto.LangDTO"%>
 <%@ page import="dto.GameDTO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- **
+ * 
+ * @author Mikkel Barfred, Tristan Richard
+ *
+ * -->
 <html>
-
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>Statistics</title>

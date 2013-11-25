@@ -1,3 +1,8 @@
+<!-- **
+ * 
+ * @author Mikkel Barfred, Tristan Richard
+ *
+ * -->
 <html>
 	<!--  Purely test data meant for understanding  ------------------------------------------------------------------------>
 	<%

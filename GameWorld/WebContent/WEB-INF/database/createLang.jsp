@@ -6,9 +6,7 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>Language Administration</title>
 <link rel="stylesheet" href="../css/style.css">
-
 </head>
-
 <body>
 <div class="container">
 		<h1 id = "headerh1">GameWorld</h1>

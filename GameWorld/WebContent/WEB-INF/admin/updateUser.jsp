@@ -7,6 +7,11 @@
 <%@ page import="dto.LangDTO"%>
 <%@ page import="dto.UsersDTO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- **
+ * 
+ * @author Tristan Richard, Thordur Birgisson
+ *
+ * -->
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">

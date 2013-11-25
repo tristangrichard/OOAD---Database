@@ -1,4 +1,9 @@
 <%@ page import="java.util.ArrayList"%>
+<!-- **
+ * 
+ * @author Mikkel Barfred, Tristan Richard
+ *
+ * -->
 <html>
 <style>.bar0{width:36px}.bar1{width:36px}.bar2{width:36px}.bar3{width:36px}</style>
 	<!--  Purely test data meant for understanding  ------------------------------------------------------------------------>

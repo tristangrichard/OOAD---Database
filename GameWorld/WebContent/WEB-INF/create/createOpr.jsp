@@ -3,6 +3,11 @@
 <jsp:useBean id="langList" class="java.util.ArrayList" scope="request" />
 <%@ page import="dto.LangDTO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- **
+ * 
+ * @author Tristan Richard
+ *
+ * -->
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">

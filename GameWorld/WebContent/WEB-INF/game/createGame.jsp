@@ -11,6 +11,11 @@
 <%@ page import="dto.DeveloperDTO"%>
 <%@ page import="dto.PublisherDTO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- **
+ * 
+ * @author Tristan Richard
+ *
+ * -->
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">

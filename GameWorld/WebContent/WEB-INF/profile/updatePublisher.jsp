@@ -8,8 +8,12 @@
 <%@ page import="dto.LangDTO"%>
 <%@ page import="dto.UsersDTO"%>
 <%@ page import="dto.PublisherDTO"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- **
+ * 
+ * @author Tristan Richard
+ *
+ * -->
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">

@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- **
+ * 
+ * @author Tristan Richard
+ *
+ * -->
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>Genre Administration</title>
 <link rel="stylesheet" href="../css/style.css">
-
 </head>
-
 <body>
 <div class="container">
 		<h1 id = "headerh1">GameWorld</h1>
