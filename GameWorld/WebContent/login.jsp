@@ -41,7 +41,7 @@
 				Login.
 			</p>
 			<p>Admin: m.b@mail.dk</p>
-			<p>Game: info@ea.dk</p>
+			<p>Publisher: info@ea.dk</p>
 			<p>User: ST92@dtu.dk</p>
 		</div>
 		<div class="footer">Gruppe 8</div>
