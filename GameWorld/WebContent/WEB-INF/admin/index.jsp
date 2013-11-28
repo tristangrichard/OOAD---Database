@@ -16,7 +16,7 @@
 
 <body>
 <div class="container">
-	<h1 id="headerh1">GameWorrld</h1>
+	<h1 id="headerh1">GameWorld</h1>
 	<div id="messagecontainer">
 			<div class="error">${error}</div>
 			<div class="message">${message}</div>
