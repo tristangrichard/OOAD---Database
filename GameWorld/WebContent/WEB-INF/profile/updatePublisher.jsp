@@ -159,7 +159,7 @@
 						<td colspan="2" align="right">
 						<input type="hidden" name="action" value="updatePubFilled"> 
 						<input type="hidden" name="userToUpdate" value="<%=user1.getEmail()%>">
-						<input class="btn btn-primary1 btn-large" type="submit"value="Update Operator"></td>
+						<input class="btn btn-primary1 btn-large" type="submit"value="Update Profile"></td>
 						<td colspan="4" align="right"> <input class="btn btn-primary1 btn-large" type="button" value="Deactivate Profile" onclick="{return confirmComplete();}"></td>
 
 					</tr>

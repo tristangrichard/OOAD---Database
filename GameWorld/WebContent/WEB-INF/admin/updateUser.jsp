@@ -138,7 +138,7 @@
 						<input type="hidden" name="action" value="updateOprFilled"> 
 						<input type="hidden" name="userToUpdate" value="<%=user1.getEmail()%>">
 						<input type="hidden" name="oldEmail" value="<%=user1.getEmail()%>">
-						<input class="btn btn-primary1 btn-large" type="submit" value="Update Operator"></td>
+						<input class="btn btn-primary1 btn-large" type="submit" value="Update User"></td>
 						<td></td>
 					</tr>
 				</table>

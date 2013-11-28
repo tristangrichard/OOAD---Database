@@ -68,8 +68,7 @@
 								while (j < gameList.size()) {
 									String url = gameUrl.get(j).toString();
 						%>
-						<td align="center"><img alt="" src="<%=url%>" width="100"
-							height="145"></td>
+						<td align="center"><img alt="" src="<%=url%>" width="100" height="145"></td>
 						<%
 							a++;
 									j++;
